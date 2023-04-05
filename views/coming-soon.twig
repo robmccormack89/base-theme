@@ -1,1 +1,66 @@
-Website is under construction & coming soon. Please check back shortly.
+{% extends 'base.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block styles %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      font-family: 'Miriam Libre', sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    }
+    .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {
+      font-family: 'Miriam Libre', sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    }
+    .uk-overlay-primary {
+      background: rgb(0 0 0 / 80%);
+    }
+    .uk-text-lead {
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+    .content-stuff {
+      margin-top: -70px;
+    }
+  </style>
+{% endblock %}
+
+{% block main %}
+  <div class="uk-light wrap uk-background-norepeat uk-background-cover uk-background-center-center uk-cover-container uk-background-secondary">
+
+    <img src="https://images.pexels.com/photos/894695/pexels-photo-894695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" uk-cover>
+
+    <div class="uk-overlay uk-overlay-primary uk-padding-remove uk-position-z-index uk-position-relative">
+    <div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport" uk-height-viewport="min-height: 400">
+
+      <!-- TEXT -->
+      <div class="content-stuff uk-container uk-container-xsmall uk-flex-auto uk-text-center">
+        <img src="{{theme.link}}/assets/img/__CoffeeTea.png" alt="" class="uk-width-1-2 uk-width-1-3@s">
+        <hr class="uk-divider-small">
+        <h1 class="uk-heading-primary uk-text-uppercase uk-text-bold uk-margin-small-top">Our New Website is on its way</h1>
+        <div class="uk-width-4-5@m uk-margin-auto">
+          <p class="uk-text-lead">We are working hard to bring you a new experience. Please try back at a later stage. You can also email any enquiries you might have to enquiries@coffeeandtea.ie.</p>
+        </div>
+      </div>
+      <!-- /TEXT -->
+
+      <!-- FOOT -->
+      <div class="uk-position-bottom-center uk-position-small">
+        {# <span class="uk-text-small uk-text-center">© 2019 | <a href="https://github.com/zzseba78/Kick-Off" title="Created by KickOff">Created by robmccormack89</a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" uk-tooltip><span uk-icon="uikit"></span></a></span> #}
+        <p class="uk-text-center uk-text-small">
+          {{ __('© All Rights Reserved %s', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}" uk-tooltip="{{ __('Return to Homepage', 'base-theme')|e('esc_html') }}">{{ site.title|e('esc_html') }}</a>
+          <br hidden>
+          <span hidden>Made by <a href="https://github.com/robmccormack89/" uk-tooltip="Check me out on github" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a></span>
+        </p>
+      </div>
+      <!-- /FOOT -->
+      
+    </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
