@@ -1,75 +1,66 @@
-{% import "_snippets.twig" as snippets %}
+<article id="post-{{ post.id|e('esc_html') }}" class="post item uk-article {{ post.class|e('esc_html') }}" data-template="_tease.twig">
 
-<article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }} uk-card uk-flex uk-flex-middle" uk-grid data-template="_tease.twig">
-  
-  {% if post.thumbnail %}
-    <li class="uk-width-1-3@m">
-      <figure class="uk-inline">
-        <img class="" src="{{ post.thumbnail.src|resize(520)|e('esc_url') }}" alt="{{ post.thumbnail.alt|e('esc_html') }}">
-        {% if post.thumbnail.caption %}
-          <figcaption class="uk-overlay uk-overlay-primary uk-position-bottom uk-padding-small uk-text-center">
-            {{ post.thumbnail.caption|e('esc_html') }}
-          </figcaption>
-        {% endif %}
+  {% block tease_thumb %}
+    {% if post.thumbnail %}
+      <figure>
+        <a title="{{ post.thumbnail.title|e('esc_html') }}" href="{{ post.link|e('esc_url') }}">
+          <img src="{{ post.thumbnail.src|resize(w|default(600), h|default(null), pos|default(null))|e('esc_url') }}" width="{{ w|default(600) }}" alt="{{ post.thumbnail.alt|e('esc_html') }}">
+        </a>
       </figure>
-    </li>
-  {% endif %}
-  
-  <li class="uk-width-2-3@m">
-  
-    {% block single_header %}
-      <header class="tease-header uk-card-header uk-padding-remove uk-margin-bottom">
-        
-        {# tease title #}
-        <h2 class="uk-text-bold uk-h1 uk-margin-remove">
-          {{ post.title|e('esc_html') }}
-        </h2>
-        
-        {# tease meta #}
-        {% if post.categories or (post.date and post.post_type == 'post') %}
-          <div class="uk-text-meta">
-            
-            {# post date #}
-            {% set _post_date %}{% spaceless %}
-              <time class="post-date">{{ post.date|date('j F Y')|e('esc_html') }}</time>
-            {% endspaceless %}{% endset %}
-            {{ snippets.written_on|e('esc_html')|format(_post_date) }}
-          
-            {# post cats #}
-            {% if post.categories %}
-              {% set _post_cats %}{% spaceless %}
-                <span class="post-terms">{{ post.categories|join(', ') }}</span>
-              {% endspaceless %}{% endset %}
-              {{ snippets.posted_in|e('esc_html')|format(_post_cats) }}
-            {% endif %}
-            
-          </div>
-        {% endif %}
-        
-      </header>
-    {% endblock %}
-  
-    {% block single_content %}
-      <div class="uk-card-body uk-padding-remove tease-content">
-        
-        {# single content or password form #}
-        {% if not fn('post_password_required', post.id) %}
-          <p class="uk-margin-bottom">{{ post.preview.length(32).force.read_more('') }}</p>
-        {% else %}
-          <div class="password-protected-form">
-            {% include '_password-protected-form.twig' with {small: true} %}
-          </div>
-        {% endif %}
-        
-      </div>
-    {% endblock %}
-  
-    {% if not fn('post_password_required', post.id) %}
-      <footer class="uk-card-footer uk-padding-remove tease-footer">
-        <a href="{{ post.link|e('esc_url') }}" class="uk-button uk-button-primary">{{ snippets.read_more|e('esc_html') }}</a>
-      </footer>
     {% endif %}
-  
-  </li>
+  {% endblock %}
+
+  {% block tease_metas %}
+    {% if (post.author or post.date or post.categories) and (post.post_type == 'post') %}
+      <div class="article-meta uk-article-meta dotted-subs">
+
+        {% if post.date %}
+          {% set _post_dated %}
+            <time>{{ fn('human_time_diff', fn('get_the_time', 'U'), fn('current_time', 'timestamp'))|e('esc_html') }}</time>
+          {% endset %}
+          <span class="post-date uk-text-capitalize">
+            <span uk-icon="icon: file-edit; ratio: 1"></span> {{ __('%s ago', 'base-theme')|e('esc_html')|format(_post_dated) }}
+          </span>
+        {% endif %}
+
+        {# nothidden = hide for now #}
+        {% if post.categories and nothidden %}
+          <span class="post-cats uk-text-capitalize">
+            <span uk-icon="icon: folder; ratio: 1"></span> {{ post.terms( {query:{taxonomy:'category', orderby:'name', order: 'ASC'}} )|join(', ')|e('esc_html') }}
+          </span>
+        {% endif %}
+
+        {# post read_time custom field #}
+        {% if fn('get_post_meta', post.id, 'read_time', true) %}
+          <span class="post-read-time uk-text-capitalize">
+            <span uk-icon="icon: clock; ratio: 1"></span> {{ fn('get_post_meta', post.id, 'read_time', true)|e('esc_html') }}
+          </span>
+        {% endif %}
+        
+        {% if fn('comments_open')and configs.enable_post_comments and post.comments|length > 0 %}
+          <span class="post-comment-count uk-text-capitalize">
+            <span uk-icon="icon: comments; ratio: 1"></span> {{ post.comments|length|e('esc_html') }} <span>{{ _x('Comments', 'Comments', 'base-theme')|e('esc_html') }}</span>
+          </span>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block tease_title %}
+    <h2 class="uk-h3 uk-article-title uk-margin-small">
+      <a class="uk-link-heading" title="{{ post.title|e('esc_html') }}" href="{{ post.link|e('esc_url') }}">{{ post.title|e('esc_html') }}</a>
+    </h2>
+  {% endblock %}
+
+  {% block tease_preview %}
+    <p class="excerpt">{{ post.preview.length(preview_length|default(12)).force.read_more('')|e('esc_html') }}</p>
+  {% endblock %}
+
+  {% block tease_read_more %}
+    <a href="{{ post.link|e('esc_url') }}" class="uk-button uk-button-link uk-animation-toggle uk-text-capitalize">
+      {{ __('Read more', 'base-theme')|e('esc_html') }} <span class="uk-animation-slide-left-small" uk-icon="arrow-right"></span>
+    </a>
+  {% endblock %}
 
 </article>

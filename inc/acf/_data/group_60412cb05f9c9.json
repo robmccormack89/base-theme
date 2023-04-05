@@ -1,0 +1,49 @@
+{
+    "key": "group_60412cb05f9c9",
+    "title": "Product Tag (Feature) Fields",
+    "fields": [
+        {
+            "key": "field_60412cddbdefd",
+            "label": "Tag Thumbnail",
+            "name": "tag_thumbnail",
+            "type": "image",
+            "instructions": "Upload the thumbnail image for Product Tag. Recommended to upload image with dimensions of 215px by 150px (jpg or png)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": 1000,
+            "max_height": 1000,
+            "max_size": 2,
+            "mime_types": ".jpg, .png"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "product_tag"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1651147466
+}

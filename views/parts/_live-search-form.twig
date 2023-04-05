@@ -1,0 +1,28 @@
+<form id="form_validate_search" class="form_search_main uk-search uk-search-navbar uk-width-1-1 uk-position-relative uk-inline uk-flex uk-flex-center" role="search" method="get" action="{{ site.url|e('esc_url') }}" accept-charset="utf-8" novalidate="novalidate">
+  <div class="uk-width-1-1 uk-position-relative">
+
+    {# animated spinner #}
+    {% if configs.live_search %}
+      <div id="loaderSearchToggle" class="uk-position-bottom-left" style="display:none;">
+        <div id="loaderSearch"></div>
+      </div>
+    {% endif %}
+    
+    {# reset close button #}
+    {% if configs.live_search %}
+      <button id="LiveSearchReset" type="reset" class="uk-search-icon-flip uk-icon uk-search-icon" style="display:none;">
+        <span uk-icon="icon: refresh; ratio: 1"></span>
+      </button>
+    {% endif %}
+
+    {# search text input #}
+    <input id="input_search" class="uk-search-input" type="text" name="s" maxlength="300" pattern=".*\S+.*" placeholder="{{ configs.live_search ? _x('Start typing...', 'Search form', 'base-theme')|e('esc_html') : _x('Start typing & press enter...', 'Search form', 'base-theme')|e('esc_html') }}" required autocomplete="off" value>
+
+  </div>
+
+  {# the results will go here via ajax #}
+  {% if configs.live_search %}
+    <div id="response_search_results" class="search-results-ajax uk-height-max-medium uk-overflow-auto"></div>
+  {% endif %}
+
+</form>

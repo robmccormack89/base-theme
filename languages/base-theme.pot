@@ -1,4 +1,4 @@
-# Copyright (C) 2022 base-theme
+# Copyright (C) 2023 base-theme
 # This file is distributed under the same license as the base-theme package.
 msgid ""
 msgstr ""
@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-21 20:21+0000\n"
+"POT-Creation-Date: 2023-03-24 17:56+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -15,24 +15,44 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:21
-msgctxt "404"
+#: 404.php:21, singular.php:41, templates/custom.php:45
+msgctxt "404/Error pages"
 msgid "Error: Page not found"
 msgstr ""
 
-#: 404.php:22
-msgctxt "404"
-msgid "Sorry, there has been an error locating a resource for your query."
+#: 404.php:22, singular.php:42, templates/custom.php:46
+msgctxt "404/Error pages"
+msgid "Sorry, there has been an error locating a resource for your query. Try finding what you want using the search form below."
 msgstr ""
 
-#: archive.php:30, archive.php:28, archive.php:26
+#: archive.php:44, archive.php:39, archive.php:34
 msgctxt "Archives"
 msgid "Archive"
 msgstr ""
 
-#: inc/Theme.php:333
+#: inc/extra/configs.php:64
+msgctxt "Theme Featured Image - src"
+msgid "https://picsum.photos/1920/1200"
+msgstr ""
+
+#: inc/extra/configs.php:65
+msgctxt "Theme Featured Image - alt"
+msgid ""
+msgstr ""
+
+#: inc/extra/configs.php:66
+msgctxt "Theme Featured Image - caption"
+msgid ""
+msgstr ""
+
+#: inc/Theme.php:310
 msgctxt "Menu locations"
 msgid "Main Menu"
+msgstr ""
+
+#: inc/Theme.php:311
+msgctxt "Menu locations"
+msgid "Iconnav Menu"
 msgstr ""
 
 #: search.php:27
@@ -49,92 +69,179 @@ msgstr ""
 msgid "Custom Template"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:5
-msgctxt "Base"
-msgid "Sorry, nothing to display here..."
+#: views/temp/archive/archive.php:92
+msgctxt "404/Error pages"
+msgid "Sorry, there has been an error locating a resource for your query. Try filtering again."
 msgstr ""
 
-#: views/temp/parts/_snippets.php:11
-msgctxt "Footer"
-msgid "Back to Homepage"
+#: views/temp/archive/_blog-filters.php:10
+msgctxt "Blog filters"
+msgid "Filters:"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:12
-msgctxt "Footer"
-msgid "Go to Top"
+#: views/temp/archive/_blog-filters.php:34
+msgctxt "Shop filters"
+msgid "More %s"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:13
-msgctxt "Footer"
-msgid "©"
+#: views/temp/archive/_loader-posts.php:1
+msgctxt "Blog filters"
+msgid "Posts loading..."
 msgstr ""
 
-#: views/temp/parts/_snippets.php:19
-msgctxt "Archive"
-msgid "No posts found..."
-msgstr ""
-
-#: views/temp/parts/_snippets.php:25
-msgctxt "Password-protected content"
-msgid "This content is password protected. To view it please enter your password below:"
-msgstr ""
-
-#: views/temp/parts/_snippets.php:26
-msgctxt "Password-protected content"
-msgid "Password"
-msgstr ""
-
-#: views/temp/parts/_snippets.php:27
-msgctxt "Password-protected content"
-msgid "Enter"
-msgstr ""
-
-#: views/temp/parts/_snippets.php:33
-msgctxt "Archive"
+#: views/temp/archive/_pagination.php:9
 msgid "Newer posts"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:34
-msgctxt "Archive"
+#: views/temp/archive/_pagination.php:29
 msgid "Older posts"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:35
-msgctxt "Single"
-msgid "Newer Article"
+#: views/temp/archive/_pagination.php:47
+msgid "End of posts..."
 msgstr ""
 
-#: views/temp/parts/_snippets.php:36
-msgctxt "Single"
-msgid "Older Article"
+#: views/temp/archive/_pagination.php:48
+msgid "No more Posts to load"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:42
-msgctxt "Single"
-msgid "Written on %s."
+#: views/temp/archive/_tease.php:22, views/temp/single/_single-meta.php:9
+msgid "%s ago"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:43
-msgctxt "Single"
-msgid "Posted in %s."
+#: views/temp/archive/_tease.php:42, views/temp/single/_comments.php:5
+msgctxt "Comments"
+msgid "Comments"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:49
-msgctxt "Search form"
-msgid "Try using the search form below to search this website for something else."
+#: views/temp/archive/_tease.php:62
+msgid "Read more"
 msgstr ""
 
-#: views/temp/parts/_snippets.php:50
+#: views/temp/base.php:31
+msgid "Sorry, nothing to display here...."
+msgstr ""
+
+#: views/temp/parts/footer.php:26
+msgid "Scroll to Top"
+msgstr ""
+
+#: views/temp/parts/footer.php:31, views/temp/parts/header.php:152
+msgid "© All Rights Reserved %s"
+msgstr ""
+
+#: views/temp/parts/footer.php:31
+msgid "Return to Homepage"
+msgstr ""
+
+#: views/temp/parts/header.php:173, views/temp/parts/_live-search-form.php:19, views/temp/parts/_search-form.php:6
 msgctxt "Search form"
 msgid "Start typing..."
 msgstr ""
 
-#: views/temp/parts/_snippets.php:51
+#: views/temp/parts/_live-search-form.php:19
 msgctxt "Search form"
-msgid "Submit"
+msgid "Start typing & press enter..."
 msgstr ""
 
-#: views/temp/parts/_snippets.php:58
-msgctxt "Tease"
-msgid "Read more"
+#: views/temp/parts/_live-search-results.php:78
+msgid "%1$s in %2$s"
+msgstr ""
+
+#: views/temp/parts/_live-search-results.php:94
+msgid "Sorry, we couldnt find anything for your query. Try searching for something else."
+msgstr ""
+
+#: views/temp/parts/_password-form.php:2
+msgctxt "Password protected content"
+msgid "This content is password protected. To view it please enter your password below:"
+msgstr ""
+
+#: views/temp/parts/_password-form.php:9, views/temp/parts/_password-form.php:14
+msgctxt "Password protected content"
+msgid "Password"
+msgstr ""
+
+#: views/temp/parts/_password-form.php:19, views/temp/parts/_password-form.php:19
+msgctxt "Password protected content"
+msgid "Enter"
+msgstr ""
+
+#: views/temp/parts/_search-form.php:12
+msgctxt "Search form"
+msgid "Search"
+msgstr ""
+
+#: views/temp/single/_comment-form.php:16
+msgctxt "Comments"
+msgid "Your name"
+msgstr ""
+
+#: views/temp/single/_comment-form.php:21
+msgctxt "Comments"
+msgid "Your email"
+msgstr ""
+
+#: views/temp/single/_comment-form.php:29
+msgctxt "Comments"
+msgid "Your website address (including http:// or https://)"
+msgstr ""
+
+#: views/temp/single/_comment-form.php:34
+msgctxt "Comments"
+msgid "Leave a message..."
+msgstr ""
+
+#: views/temp/single/_comment-form.php:40
+msgctxt "Comments"
+msgid "Send"
+msgstr ""
+
+#: views/temp/single/_comment-form.php:41
+msgctxt "Comments"
+msgid "Clear"
+msgstr ""
+
+#: views/temp/single/_comment.php:28
+msgctxt "Comments"
+msgid "Edit"
+msgstr ""
+
+#: views/temp/single/_comment.php:41
+msgctxt "Comments"
+msgid "Reply"
+msgstr ""
+
+#: views/temp/single/_comment.php:43
+msgctxt "Comments"
+msgid "Reply to"
+msgstr ""
+
+#: views/temp/single/_comments.php:38
+msgctxt "Comments"
+msgid "Leave a new comment"
+msgstr ""
+
+#: views/temp/single/_single-author.php:14
+msgid "Posted by %s"
+msgstr ""
+
+#: views/temp/single/_single-author.php:24
+msgid "Actions"
+msgstr ""
+
+#: views/temp/single/_single-author.php:25
+msgid "More articles by this author"
+msgstr ""
+
+#: views/temp/single/_single-pagination.php:9
+msgid "Newer article"
+msgstr ""
+
+#: views/temp/single/_single-pagination.php:21
+msgid "Older article"
+msgstr ""
+
+#: views/temp/single/_single-share.php:4
+msgid "Share this post:"
 msgstr ""

@@ -15,4 +15,13 @@ require('lg-zoom.js');
 require('lg-fullscreen.js');
 require('lg-share.js');
 require('lg-hash.js');
-// import swiper
+
+// import Swiper bundle with all modules installed
+import Swiper from 'swiper/bundle';
+window.Swiper = Swiper;
+
+// require debounce & make available in window
+window.debounce = require('debounce');
+
+// load infinite scroll
+window.InfiniteScroll = require('infinite-scroll');

@@ -1,5 +1,3 @@
-{% import "_snippets.twig" as snippets %}
-
 {% block html_head_container %}
 
   {% include '_html-head.twig' %}
@@ -8,59 +6,53 @@
   </head>
   {% endblock %}
 
-  <body class="{{ body_class }}">
-    
-    {% block theme_preloader_markup %}
-      {% if configs.theme_preloader %}
-        <div id="Preloader" class="preloader"></div>
-      {% endif %}
-    {% endblock %}
-    
-    {% do action('theme_before_header') %}
+  <body class="{{ body_class }} {{ (configs.animated_preloader) ? 'no-overflow' : 'no-preloader' }}" data-template="base.twig">
+
+    {% if configs.animated_preloader %}
+      <div id="Preloader" class="preloader"></div>
+    {% endif %}
 
     {% block header %}
-      {% include '_header.twig' %}
+      {% include 'header.twig' %}
     {% endblock %}
-    
-    {% block breads %}
-      {% if fn('yoast_breadcrumb_enabled') and not fn('is_front_page') %}
-        <nav class="uk-navbar-container uk-navbar-transparent">
-          <div class="uk-container padding-top-10">
-            {{ fn('yoast_breadcrumb') }}
-          </div>
-        </nav>
-      {% endif %}
-    {% endblock %}
-    
+
+    {# this acts as the base for all templates including 404s #}
     <main id="Main" role="main">
       <div id="ContentSection">
         {% block main %}
-          <div class="uk-section uk-container">
-            {{ snippets.nothing_here()|e('esc_html') }}
+          <div class="uk-section uk-container uk-container-xsmall">
+
+            {# main title #}
+            {% if title or archive.title or post.title %}
+              <h1>{{ title|default(archive.title|default('post.title'))|e('esc_html') }}</h1>
+            {% endif %}
+
+            {# main description or message #}
+            <p>{{ description|default(archive.description|default(post.description|default(__('Sorry, nothing to display here....', 'base-theme'))))|e('esc_html') }}</p>
+
+            {# if it's a 404, include the search form #}
+            {% include (fn('is_404') or fn('get_post_status', post.id) == 'private') ? '_search-form.twig' ignore missing  %}
+
           </div>
         {% endblock %}
       </div>
     </main>
-    
+
     {% block footer %}
-      {% include '_footer.twig' %}
+      {% include 'footer.twig' %}
     {% endblock %}
-    
-    {% do action('theme_above_footer') %}
-    
+
     {{ fn('wp_footer') }}
-    
-    {% block theme_preloader_scripts %}
-      {% if configs.theme_preloader %}
-        <script type='text/javascript'>
-          document.body.addEventListener("load", window.parent.PreloadMe());
-        </script>
-      {% endif %}
-    {% endblock %}
-    
+
     {% block scripts %}
     {% endblock %}
-    
+
+    {% if configs.animated_preloader %}
+      <script type='text/javascript'>
+        document.body.addEventListener("load", preloadMe());
+      </script>
+    {% endif %}
+
   </body>
 
 </html>

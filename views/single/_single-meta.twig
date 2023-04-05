@@ -1,0 +1,30 @@
+<div class="article-meta uk-article-meta dotted-subs">
+
+  {# post date #}
+  {% if post.date %}
+    {% set _post_dated %}
+      <time>{{ fn('human_time_diff', fn('get_the_time', 'U'), fn('current_time', 'timestamp'))|e('esc_html') }}</time>
+    {% endset %}
+    <span class="post-date">
+      <span uk-icon="icon: file-edit; ratio: 1"></span> {{ __('%s ago', 'base-theme')|e('esc_html')|format(_post_dated) }}
+    </span>
+  {% endif %}
+
+  {# post cats #}
+  {% if post.categories %}
+    <span class="post-cats">
+      <span uk-icon="icon: folder; ratio: 1"></span>
+      {% for cat in post.categories %}
+        <a title="{{ cat|e('esc_html') }}" href="{{ cat.link|e('esc_url') }}">{{ cat|e('esc_html') }}</a>{{ loop.last ? '' : ' |' }}
+      {% endfor %}
+    </span>
+  {% endif %}
+
+  {# post read_time custom field #}
+  {% if fn('get_post_meta', post.id, 'read_time', true) %}
+    <span class="post-read-time">
+      <span uk-icon="icon: clock; ratio: 1"></span> {{ fn('get_post_meta', post.id, 'read_time', true)|e('esc_html') }}
+    </span>
+  {% endif %}
+  
+</div>

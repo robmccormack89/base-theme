@@ -1,0 +1,37 @@
+<footer class="site-footer uk-background-muted" data-template="footer.twig">
+  <div class="uk-container uk-padding">
+
+    {# footer socials/icon nav: if available #}
+    {% if has_menu_iconnav %}
+
+      {# socials/icon nav: title #}
+      <h4 class="uk-text-center uk-margin-small">{{ menu_iconnav.title|e('esc_html') }}</h4>
+
+      {# socials/icon nav: items #}
+      <ul class="uk-iconnav uk-flex uk-flex-center">
+        {% for item in menu_iconnav.get_items %}
+          <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+            <a href="{{ item.get_link|e('esc_url') }}" target="_blank">
+              {{ item.title|e('wp_kses_post')}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <hr class="uk-divider-small uk-text-center">
+
+    {% endif %}
+
+    {# footer scroll to top button #}
+    <div class="uk-flex uk-flex-center">
+      <a href="#" uk-totop uk-scroll uk-tooltip="{{ __('Scroll to Top', 'base-theme')|e('esc_html') }}"></a>
+    </div>
+
+    {# footer copyrights & credits #}
+    <p class="uk-text-center uk-text-small">
+      {{ __('© All Rights Reserved %s', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}" uk-tooltip="{{ __('Return to Homepage', 'base-theme')|e('esc_html') }}">{{ site.title|e('esc_html') }}</a>
+      <br>
+      Made by <a href="https://github.com/robmccormack89/" uk-tooltip="Check me out on github" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a>
+    </p>
+
+  </div>
+</footer>

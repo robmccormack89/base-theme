@@ -1,0 +1,13 @@
+<figure class="uk-inline uk-margin-remove">
+
+  {# the post thumbnail #}
+  <img class="cover-img min-height-medium uk-height-max-large" src="{{ post.thumbnail.src|resize(1920, 450, 'center')|e('esc_url') }}" alt="{{ post.thumbnail.alt|e('esc_html') }}">
+
+  {# the post thumbnail caption #}
+  {% if post.thumbnail.caption %}
+    <figcaption class="uk-position-bottom uk-text-center uk-padding-small uk-light uk-overlay uk-overlay-faint uk-text-small">
+      {{ post.thumbnail.caption|e('esc_html') }}
+    </figcaption>
+  {% endif %}
+
+</figure>

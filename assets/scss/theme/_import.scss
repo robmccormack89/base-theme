@@ -1,17 +1,10 @@
-// 1. set the theme variables
-$theme_border: 1px solid #eeeeee;
-$theme_border_color: #eeeeee;
-$theme_border_accent_color: #eeeeee;
-$theme_border_thick: 2px solid #eeeeee;
-$theme_border_light: 1px solid rgba(255,255,255,.2);
-$theme_solid_border: 2px solid 1px solid #eeeeee91;
-
 // 2. import the theme components
-
-@import "blocks.scss";
+@import "backgrounds.scss";
 @import "borders.scss";
+@import "gutenberg.scss";
 @import "loaders.scss";
-@import "utility.scss";
+@import "position.scss";
+@import "theme.scss";
 
 // 3. import the outside sources. this may be done as a separate file in assets/scss folder, tho woocommerce uses some uikit variables at the moment
 
@@ -20,3 +13,11 @@ $theme_solid_border: 2px solid 1px solid #eeeeee91;
 @import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
 @import "node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+
+// Import swiper styles
+// @import "../../node_modules/swiper/swiper-bundle.min.css";
+@import "node_modules/swiper/swiper-bundle.min";
+
+// import woocommerce sass
+// @import "../lib/woocommerce/woocommerce.scss";
+// @import "../lib/woocommerce/woocommerce-layout.scss";

@@ -1,0 +1,27 @@
+<!-- wp:acf/cover-section {"id":"block_62c56d02582bd","name":"acf/cover-section","data":{"field_61d76f01c14b7":"","field_626756573afe1":"","field_620e46bf11699":""},"align":"full","mode":"preview","full_height":false} /-->
+
+<!-- wp:acf/cover-section {"id":"block_62c56d2b582be","name":"acf/cover-section","data":{"field_61d76f01c14b7":"","field_626756573afe1":"rgb(238,238,34)","field_620e46bf11699":"uk-section-large"},"align":"full","mode":"preview","full_height":false} -->
+<!-- wp:heading {"textAlign":"center","level":1,"className":"uk-heading-medium uk-margin-remove-bottom"} -->
+<h1 class="has-text-align-center uk-heading-medium uk-margin-remove-bottom">Hello</h1>
+<!-- /wp:heading -->
+<!-- /wp:acf/cover-section -->
+
+<!-- wp:acf/half-and-half-section {"id":"block_62c56d39582bf","name":"acf/half-and-half-section","data":{"field_61d6f23c2068b":"14428","field_620e7b33c8ad2":"left","field_6220ea51b4656":"#dd3333","field_6220eac8b4658":"disabled"},"align":"full","mode":"preview","align_content":"center"} -->
+<!-- wp:heading {"textAlign":"center","textColor":"white","className":"uk-heading-medium"} -->
+<h2 class="has-text-align-center uk-heading-medium has-white-color has-text-color">Hello</h2>
+<!-- /wp:heading -->
+<!-- /wp:acf/half-and-half-section -->
+
+<!-- wp:acf/highlight-card-section {"id":"block_62c56d4b582c0","name":"acf/highlight-card-section","data":{"field_6221629a4ffd1":"left","field_6221629a50311":"14428"},"align":"full","mode":"preview","align_content":"center"} -->
+<!-- wp:heading {"textAlign":"center"} -->
+<h2 class="has-text-align-center">Hello</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">Introduce new sections and organise content to help visitors (and search engines) understand the structure of your content.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:acf/highlight-card-section -->
+
+<!-- wp:acf/featured-items-row {"id":"block_62c56efc582c1","name":"acf/featured-items-row","data":{"field_61d741c2b5996":{"62c56f0d582c2":{"field_61d7426a0bbed":"","field_61d741c2b6aaa":"","field_61d741c2b65b0":"","field_61d742e20bbee":""},"62c56f14582c3":{"field_61d7426a0bbed":"","field_61d741c2b6aaa":"","field_61d741c2b65b0":"","field_61d742e20bbee":""},"62c56f1d582c4":{"field_61d7426a0bbed":"","field_61d741c2b6aaa":"","field_61d741c2b65b0":"","field_61d742e20bbee":""}}},"align":"full","mode":"preview","align_content":"center center"} /-->
+
+<!-- wp:acf/slider-section {"id":"block_62c56f35582c5","name":"acf/slider-section","data":{"field_61e4f0b9dbac3":{"62c56f46582c6":{"field_61e4f0a3842ab":"","field_61e4f0a38469b":"","field_61e4f0a384a68":"","field_61e4f0a384e54":"","field_61e4f0a3851bf":""},"62c56f4f582c7":{"field_61e4f0a3842ab":"","field_61e4f0a38469b":"","field_61e4f0a384a68":"","field_61e4f0a384e54":"","field_61e4f0a3851bf":""},"62c56f57582c8":{"field_61e4f0a3842ab":"","field_61e4f0a38469b":"","field_61e4f0a384a68":"","field_61e4f0a384e54":"","field_61e4f0a3851bf":""}}},"align":"full","mode":"preview","align_text":"center","align_content":"center"} /-->

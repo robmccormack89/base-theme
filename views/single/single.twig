@@ -1,129 +1,102 @@
 {% extends 'base.twig' %}
-{% import "_snippets.twig" as snippets %}
 
 {% block styles %}
-  <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
-{% endblock %}
-
-{% block breads %}
-  {% if post.thumbnail %}
-    <figure class="uk-inline uk-margin-remove">
-      <img class="cover-img min-height-medium uk-height-max-large" src="{{ post.thumbnail.src|resize(1920, 450, 'center')|e('esc_url') }}" alt="{{ post.thumbnail.alt|e('esc_html') }}">
-      {% if post.thumbnail.caption %}
-        <figcaption class="uk-overlay uk-overlay-primary uk-position-bottom uk-padding-small uk-text-center">
-          {{ post.thumbnail.caption|e('esc_html') }}
-        </figcaption>
-      {% endif %}
-    </figure>
-  {% endif %}
   {{ parent() }}
+  <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
+
 {% endblock %}
 
 {% block main %}
-  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }} uk-section" data-template="single.twig">
+  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }} uk-article uk-background-default" data-template="single.twig">
 
     {% block single_header %}
-      <header class="single-header uk-container uk-margin-medium-bottom">
+      <header class="single-header">
 
-        {# single title #}
-        <h1 class="uk-text-bold uk-heading-small uk-margin-remove">
-          {{ post.title|e('esc_html') }}
-        </h1>
-        
-        {# single meta #}
-        {% if post.categories or (post.date and post.post_type == 'post') %}
-          <div class="uk-text-meta">
-            
-            {# post date #}
-            {% set _post_date %}{% spaceless %}
-              <time class="post-date">{{ post.date|date('j F Y')|e('esc_html') }}</time>
-            {% endspaceless %}{% endset %}
-            {{ snippets.written_on|e('esc_html')|format(_post_date) }}
-          
-            {# post cats #}
-            {% if post.categories %}
-              {% set _post_cats %}{% spaceless %}
-                <span class="post-terms">{{ post.categories|join(', ') }}</span>
-              {% endspaceless %}{% endset %}
-              {{ snippets.posted_in|e('esc_html')|format(_post_cats) }}
-            {% endif %}
-            
+        {% block single_title_metas %}
+          <div class="single-title-meta uk-section uk-section-muted uk-section-small uk-padding-remove-top">
+            <div class="uk-container uk-container-xsmall uk-margin-small-top uk-text-left uk-text-center@s">
+
+              <h1 class="uk-article-title">{{ post.title|e('esc_html') }}</h1>
+
+              {% block single_metas %}
+                {% if (post.author or post.date or post.categories) and (post.post_type == 'post') %}
+                  {% include '_single-meta.twig' %}
+                {% endif %}
+              {% endblock %}
+
+            </div>
           </div>
-        {% endif %}
+        {% endblock %}
+
+        {% block single_thumb %}
+          {% if post.thumbnail %}
+            {% include '_single-thumb.twig' %}
+          {% endif %}
+        {% endblock %}
+
+        {% block breads %}
+          {% if fn('yoast_breadcrumb_enabled') and not fn('is_front_page') %}
+            {% include '_breads.twig' %}
+          {% endif %}
+        {% endblock %}
 
       </header>
     {% endblock %}
-    
+
     {% block single_content %}
-      <div class="single-content">
+      <div class="single-content uk-background-default uk-section uk-section-small">
+
+        {% block single_content_lead %}
+          {% if post.post_excerpt and (post.post_type == 'post' or configs.enable_page_excerpts == true) %}
+            <div class="single-excerpt uk-container uk-container-xsmall uk-margin-bottom">
+              <p class="uk-text-lead uk-dropcap">{{ post.post_excerpt|e('esc_html') }}</p>
+              <hr class="uk-divider-small">
+            </div>
+          {% endif %}
+        {% endblock %}
         
-        {# single content or password form #}
-        {% if not fn('post_password_required', post.id) %}
+        {% block single_content_editor %}
           <div class="content-editor gutenberg-editor">
-            {{ post.content }}
+            {{ post.content|e('wp_kses_post') }}
           </div>
-        {% else %}
-          <div class="password-protected-form uk-container">
-            {% include '_password-protected-form.twig' %}
-          </div>
-        {% endif %}
+        {% endblock %}
         
       </div>
     {% endblock %}
-    
+
     {% block single_footer %}
-      {% if (post.next or post.prev) and (post.post_type == 'post') and not fn('post_password_required', post.id) %}
-        <footer class="single-footer uk-container uk-margin-medium-top">
-              
-          {% block single_share %}
-            {% if configs.theme_post_share %}
-              {# share goes here... #}
-            {% endif %}
-          {% endblock %}
-      
-          {% block single_pagination %}
-            {% if configs.theme_post_paging and (post.next or post.prev) %}
-              <nav class="article-pagination">
-                <ul class="uk-child-width-1-2" uk-grid>
-                  
-                  {# left #}
-                  <li class="prev-article uk-text-left">
-                    {% if post.next %}
-                      <a href="{{ post.next.link|e('esc_url') }}" class="uk-link-reset">
-                        <div class="uk-text-emphasis">
-                          <i uk-icon="icon: chevron-double-left; ratio: .8"></i> {{ snippets.prev_post|e('esc_html') }}
-                        </div>
-                        <div class="uk-text-small uk-text-meta uk-text-truncate uk-visible@m">{{ post.next.title|e('esc_html') }}</div>
-                      </a>
-                    {% endif %}
-                  </li>
-                  
-                  {# right #}
-                  <li class="next-article uk-text-right">
-                    {% if post.prev %}
-                      <a href="{{ post.prev.link|e('esc_url') }}" class="uk-link-reset">
-                        <div class="uk-text-emphasis">
-                          {{ snippets.next_post|e('esc_html') }} <i uk-icon="icon: chevron-double-right; ratio: .8"></i>
-                        </div>
-                        <div class="uk-text-small uk-text-meta uk-text-truncate uk-visible@m">{{ post.prev.title|e('esc_html') }}</div>
-                      </a>
-                    {% endif %}
-                  </li>
-                  
-                </ul>
-              </nav>
-            {% endif %}
-          {% endblock %}
-      
-          {% block single_comments %}
-            {% if configs.theme_post_comments %}
-              {# comments go here... #}
-            {% endif %}
-          {% endblock %}
+       {% if post.post_type == 'post' and (configs.enable_post_sharing or configs.enable_post_author or configs.enable_post_paging or (fn('comments_open') and configs.enable_post_comments and ((post.comments|length > 0) or fn('is_user_logged_in')))) %}
+        <footer class="single-footer uk-container uk-container-xsmall uk-section uk-padding-remove-top">
+          <ul class="uk-child-width-1-1 uk-grid-divider" uk-grid>
+
+            {% block single_share %}
+              {% if configs.enable_post_sharing %}
+                {% include '_single-share.twig' %}
+              {% endif %}
+            {% endblock %}
+
+            {% block single_author %}
+              {% if configs.enable_post_author %}
+                {% include '_single-author.twig' %}
+              {% endif %}
+            {% endblock %}
+
+            {% block single_pagination %}
+              {% if configs.enable_post_paging and (post.next or post.prev) %}
+                {% include '_single-pagination.twig' %}
+              {% endif %}
+            {% endblock %}
           
+            {% block single_comments %}
+              {% if fn('comments_open') and configs.enable_post_comments and ((post.comments|length > 0) or fn('is_user_logged_in')) %}
+                {% include '_comments.twig' %}
+              {% endif %}
+            {% endblock %}
+          
+          </ul>
         </footer>
       {% endif %}
     {% endblock %}
-  
+
   </article>
 {% endblock %}

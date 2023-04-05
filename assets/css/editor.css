@@ -8,15 +8,15 @@ body {
   margin-right: auto;
   box-sizing: border-box;
 }
-/* base margins: 900px */
+/* base margins: 900px S */
 .gutenberg-editor > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide):not(div.wp-block-image):not(.uk-container-break) {
+  max-width: 750px;
+}
+/* alignwide margins: 1400px L */
+.gutenberg-editor > .alignwide {
   max-width: 1200px;
 }
-/* alignwide margins: 1400px */
-.gutenberg-editor > .alignwide {
-  max-width: 1600px;
-}
-/* alignleft, aligncenter & alignright wraps: 1200px */
+/* alignleft, aligncenter & alignright wraps: 1200px M */
 .gutenberg-editor > div.wp-block-image,
 .wp-block-button.alignleft,
 .wp-block-button.aligncenter,
@@ -25,16 +25,17 @@ body {
 .wp-block-audio.aligncenter,
 .wp-block-audio.alignright
 {
-  max-width: 1400px;
+  max-width: 900px;
   display: flow-root;
 }
-/* alignleft, aligncenter & alignright elements: 900px */
+/* alignleft, aligncenter & alignright elements: 900px S */
 .gutenberg-editor > div.wp-block-image .aligncenter,
 .gutenberg-editor > div.wp-block-image .alignleft,
 .gutenberg-editor > div.wp-block-image .alignright
 {
-  max-width: 1200px;
+  max-width: 750px;
 }
+/* S */
 .alignleft > .wp-block-button__link,
 .aligncenter > .wp-block-button__link,
 .alignright > .wp-block-button__link,
@@ -48,7 +49,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   display: table;
-  max-width: 1200px;
+  max-width: 750px;
 }
 .alignleft > .wp-block-button__link,
 .alignleft audio,

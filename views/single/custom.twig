@@ -1,23 +1,29 @@
 {% extends 'single.twig' %}
 
 {% block header %}
-  {{ (fn('post_password_required', post.id)) ? parent() }}
+  {# parent() #}
 {% endblock %}
 
 {% block main %}
-  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }} {{ (fn('post_password_required', post.id)) ? 'uk-section' }}">
+  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }}">
     
     {% block single_header %}
-      {{ (fn('post_password_required', post.id)) ? parent() }}
     {% endblock %}
     
     {% block single_content %}
-      {{ parent() }}
+      <div class="single-content uk-background-default">
+        {% block single_content_editor %}
+          {{ parent() }}
+        {% endblock %}
+      </div>
+    {% endblock %}
+
+    {% block single_footer %}
     {% endblock %}
   
   </article>
 {% endblock %}
 
 {% block footer %}
-  {{ (fn('post_password_required', post.id)) ? parent() }}
+  {# parent() #}
 {% endblock %}

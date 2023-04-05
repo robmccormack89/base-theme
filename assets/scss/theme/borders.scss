@@ -1,25 +1,39 @@
 // theme borders
 .theme-border {
-  border: 1px solid $theme_border_color;
+	border: $theme_border;
 }
 .theme-border-top {
-  border-top: 1px solid $theme_border_color;
-}
-.theme-border-right {
-  border-right: 1px solid $theme_border_color;
+	border-top: $theme_border;
 }
 .theme-border-bottom {
-  border-bottom: 1px solid $theme_border_color;
+	border-bottom: $theme_border;
 }
 .theme-border-left {
-  border-left: 1px solid $theme_border_color;
+	border-left: $theme_border;
 }
-.uk-light .theme-border-left {
-  border-left: 1px solid #ffffff40;
+.theme-border-right {
+	border-right: $theme_border;
 }
-.uk-light .theme-border-right {
-  border-right: 1px solid #ffffff40;
+
+// light borders
+.uk-light {
+	.theme-border {
+		border: $theme_border_light;
+	}
+	.theme-border-top {
+		border-top: $theme_border_light;
+	}
+	.theme-border-bottom {
+		border-bottom: $theme_border_light;
+	}
+	.theme-border-left {
+		border-left: $theme_border_light;
+	}
+	.theme-border-right {
+		border-right: $theme_border_light;
+	}
 }
+
 // theme divider
 .theme-divider {
   display: flex;
@@ -35,7 +49,7 @@
   right: 0;
   bottom: auto;
   left: 20px;
-  border-bottom: 1px solid $theme_border_color;
+  border-bottom: $theme_border;
 }
 .theme-divider::after {
   content: '';
@@ -44,6 +58,22 @@
   right: 0;
   bottom: 0;
   left: 20px;
-  border-bottom: 2px solid $theme_border_accent_color;
+  border-bottom: $theme_border_thick;
   width: 40px;
+}
+
+// UIKIT EXTENDS utilities
+.uk-border-rounded.rounded-bottom-only {
+  border-radius: 0px 0px 5px 5px;
+}
+
+// UIKIT LIGHT divider border colour
+.uk-light hr,
+hr.uk-light {
+  border-top-color: $theme_border_light_color;
+}
+
+// general use utility classes
+.border-full {
+  border-radius: 100%;
 }
