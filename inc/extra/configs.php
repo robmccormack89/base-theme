@@ -59,12 +59,6 @@ $configs['blog_filters_properties'] = (object) [
 // Meta gallerys config (uses nanogallery)
 $configs['meta_galleries'] = true;
 
-// ACF configs
-$configs['acf_local_json'] = true;
-$configs['acf_blocks'] = true;
-$configs['acf_template_settings'] = false;
-$configs['acf_options_page'] = false;
-
 // Theme defaults
 $configs['theme_defaults'] = (object) [
   "thumbnail" => [
