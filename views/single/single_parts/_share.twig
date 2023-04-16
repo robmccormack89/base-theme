@@ -1,0 +1,7 @@
+{# share label #}
+<div class="uk-margin-right uk-text-small">{{ _x('Share this post:', 'Single: share', 'base-theme')|e('esc_html') }}</div>
+
+{# share buttons #}
+<a href="https://www.facebook.com/sharer.php?u={{ post.link|e('esc_url') }}&t={{ post.title|url_encode }}" class="uk-icon-button uk-margin-small-right" uk-icon="facebook"></a>
+<a href="https://twitter.com/share?url={{ post.link|e('esc_url') }}&text={{ post.title|url_encode }}" class="uk-icon-button uk-margin-small-right" uk-icon="twitter"></a>
+<a href="https://pinterest.com/pin/create/link/?url={{ post.link|e('esc_url') }}{% if post.thumbnail %}&media={{ post.thumbnail.src|e('esc_url') }}{% endif %}&description={{ post.title|url_encode }}" class="uk-icon-button" uk-icon="pinterest"></a>

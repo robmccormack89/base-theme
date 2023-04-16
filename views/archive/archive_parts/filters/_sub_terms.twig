@@ -1,0 +1,10 @@
+{% for term in sub_terms %}
+  <label class="uk-form-label">
+    <input
+    class="uk-checkbox uk-border-rounded has-children {{ fn('is_term_active', term.term_id, q_vars) ? 'prevent-unclick'}}"
+    type="checkbox"
+    name="{{ q_key }}" id="{{ term.term_id|e('esc_html') }}" value="{{ term.slug|e('esc_html') }}" data-parent="{{ fn('get_parent_term_slug_from_child', term)|e('esc_html') }}"
+    {{ fn('is_term_active', term.term_id, q_vars) ? 'checked'}}>
+    {{ term.name|e('esc_html') }}
+  </label>
+{% endfor %}

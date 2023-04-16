@@ -1,3 +1,31 @@
+/* dark light buttons */
+.dark-light-switcher svg {
+  color: $global-inverse-color;
+  height: 20px;
+  width: 20px;
+  stroke: $global-muted-color;
+}
+.dark-light-switcher svg:focus, .dark-light-switcher svg:hover {
+  stroke: $global-color;
+}
+.sun-link svg {
+  height: 21px;
+  width: 21px;
+}
+.sun-link svg .sun-st {
+  fill:none;
+  stroke:$inverse-global-muted-color;
+  stroke-width:2;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+.sun-link svg .sun-link:focus .sun-st, .sun-link:hover .sun-st {
+  stroke:$inverse-global-color;
+}
+
+
+
+
 // custom design element
 .dotted-subs>:not(:first-child) {
   margin-left: 20px;

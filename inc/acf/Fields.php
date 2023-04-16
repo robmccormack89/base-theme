@@ -48,10 +48,9 @@ class Fields {
   
   public function register_options_pages() {
     if(function_exists('acf_add_options_page')) {
-      global $snippets;
       acf_add_options_page(array(
-        'page_title' 	=> $snippets['options_page_title'],
-        'menu_title'	=> $snippets['options_page_menu_title'],
+        'page_title' 	=> 'Options Page',
+        'menu_title'	=> 'Options Page',
         'menu_slug' 	=> 'theme-settings',
         'capability'	=> 'edit_posts',
         'redirect'		=> false

@@ -2,50 +2,24 @@
 
 {% block styles %}
   {{ parent() }}
+  
+  {# gutenburg styles #}
   <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
-
 {% endblock %}
 
 {% block main %}
-  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }} uk-article uk-background-default" data-template="single.twig">
+  <article id="{{ post.id|e('esc_html') }}" class="uk-article {{ post.class|e('esc_html') }}" data-template="single.twig">
 
+    {# single header #}
     {% block single_header %}
-      <header class="single-header">
-
-        {% block single_title_metas %}
-          <div class="single-title-meta uk-section uk-section-muted uk-section-small uk-padding-remove-top">
-            <div class="uk-container uk-container-xsmall uk-margin-small-top uk-text-left uk-text-center@s">
-
-              <h1 class="uk-article-title">{{ post.title|e('esc_html') }}</h1>
-
-              {% block single_metas %}
-                {% if (post.author or post.date or post.categories) and (post.post_type == 'post') %}
-                  {% include '_single-meta.twig' %}
-                {% endif %}
-              {% endblock %}
-
-            </div>
-          </div>
-        {% endblock %}
-
-        {% block single_thumb %}
-          {% if post.thumbnail %}
-            {% include '_single-thumb.twig' %}
-          {% endif %}
-        {% endblock %}
-
-        {% block breads %}
-          {% if fn('yoast_breadcrumb_enabled') and not fn('is_front_page') %}
-            {% include '_breads.twig' %}
-          {% endif %}
-        {% endblock %}
-
-      </header>
+      {% include 'single_parts/header.twig' %}
     {% endblock %}
 
+    {# single content #}
     {% block single_content %}
       <div class="single-content uk-background-default uk-section uk-section-small">
 
+        {# the content leader. uses post->post_excerpt & adds a dropcap #}
         {% block single_content_lead %}
           {% if post.post_excerpt and (post.post_type == 'post' or configs.enable_page_excerpts == true) %}
             <div class="single-excerpt uk-container uk-container-xsmall uk-margin-bottom">
@@ -55,6 +29,7 @@
           {% endif %}
         {% endblock %}
         
+        {# the actual post content. with gutenberg-friendly wrapper #}
         {% block single_content_editor %}
           <div class="content-editor gutenberg-editor">
             {{ post.content|e('wp_kses_post') }}
@@ -64,38 +39,9 @@
       </div>
     {% endblock %}
 
+    {# single footer #}
     {% block single_footer %}
-       {% if post.post_type == 'post' and (configs.enable_post_sharing or configs.enable_post_author or configs.enable_post_paging or (fn('comments_open') and configs.enable_post_comments and ((post.comments|length > 0) or fn('is_user_logged_in')))) %}
-        <footer class="single-footer uk-container uk-container-xsmall uk-section uk-padding-remove-top">
-          <ul class="uk-child-width-1-1 uk-grid-divider" uk-grid>
-
-            {% block single_share %}
-              {% if configs.enable_post_sharing %}
-                {% include '_single-share.twig' %}
-              {% endif %}
-            {% endblock %}
-
-            {% block single_author %}
-              {% if configs.enable_post_author %}
-                {% include '_single-author.twig' %}
-              {% endif %}
-            {% endblock %}
-
-            {% block single_pagination %}
-              {% if configs.enable_post_paging and (post.next or post.prev) %}
-                {% include '_single-pagination.twig' %}
-              {% endif %}
-            {% endblock %}
-          
-            {% block single_comments %}
-              {% if fn('comments_open') and configs.enable_post_comments and ((post.comments|length > 0) or fn('is_user_logged_in')) %}
-                {% include '_comments.twig' %}
-              {% endif %}
-            {% endblock %}
-          
-          </ul>
-        </footer>
-      {% endif %}
+      {% include 'single_parts/footer.twig' %}
     {% endblock %}
 
   </article>

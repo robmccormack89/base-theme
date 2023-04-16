@@ -1,0 +1,30 @@
+<ul class="uk-grid uk-grid-medium uk-flex uk-flex-middle" uk-grid>
+
+  {# author avatar img #}
+  <li class="uk-width-1-6 uk-width-auto@m">
+    <img src="{{ post.author.avatar|e('esc_url') }}" class="uk-border-circle">
+  </li>
+
+  {# author name & desc #}
+  <li class="uk-width-expand">
+    {% set _authr_link %}
+      <a href="{{ post.author.link|e('esc_url') }}">{{ post.author|e('esc_html') }}</a>
+    {% endset %}
+    <h2 class="uk-margin-small-bottom uk-h4">{{ _x('Posted by %s', 'Single: author', 'base-theme')|e('esc_html')|format(_authr_link) }}</h2>
+    <p class="uk-text-small uk-text-muted uk-margin-remove">{{ post.author.description|e('esc_html') }}</p>
+  </li>
+
+  {# author more info: posts link in a dropdown #}
+  <li class="uk-width-auto">
+    <div class="uk-inline">
+      <a href="#" class="uk-icon-button uk-icon" uk-icon="icon:more-vertical"></a>
+      <div uk-dropdown="mode:click; pos: bottom-right; boundary:#author-wrap">
+        <ul class="uk-nav uk-dropdown-nav">
+          <li class="uk-nav-header">{{ _x('Actions', 'Single: author', 'base-theme')|e('esc_html') }}</li>
+          <li><a href="{{ post.author.link|e('esc_url') }}">{{ _x('More articles by this author', 'Single: author', 'base-theme')|e('esc_html') }} <span uk-icon="icon: arrow-right"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </li>
+
+</ul>

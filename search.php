@@ -14,25 +14,25 @@ use Timber\PostQuery;
 use Timber\Term;
 use Timber\Pagination;
 
-// set templates variable as an array
-$templates = array('search.twig', 'archive.twig', 'base.twig');
-
 // set the context
 $context = Theme::context();
 
-// set some context vars
-$context['posts'] = new PostQuery(); // archive posts
-$context['configs']['blog_filters'] = false; // disable blog filters on search archives
+// set templates variable as an array
+$templates = array('search.twig', 'archive.twig', 'base.twig');
 
-// set title & description vars
-$title = _x( 'Search results', 'Search results', 'base-theme' );
-$description = _x( 'You have searched for:', 'Search results', 'base-theme' ) . ' "' . get_search_query() . '"';
+// disable blog filters on search archives
+$context['configs']['blog_filters'] = false;
+
+// set some context vars
+$context['title'] = _x( 'Search results', 'Search: results', 'base-theme' );
+$context['description'] = _x( 'You have searched for:', 'Search: results', 'base-theme' ) . ' "' . get_search_query() . '"';
+$context['posts'] = new PostQuery();
 
 // create the archive object, and fill it. i think this is good practice as it matches singular context format like post.title as archive.title
 $context['archive'] = (object) [
   "posts" => $context['posts'],
-  "title" => (is_paged()) ? $title . ' - Page ' . get_query_var('paged') : $title,
-  "description" => $description,
+  "title" => (is_paged()) ? $context['title'] . ' - Page ' . get_query_var('paged') : $context['title'],
+  "description" => $context['description'],
   "thumbnail" => [
     "src" => false,
     "alt" => false,

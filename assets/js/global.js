@@ -1,8 +1,12 @@
 // Function called before the popup for media info is displayed. Content and title can be changed. used in nano-gallery: justified 
 function my_popup_info(item, title, content){
+
 	var my_title = title + ' <b>nanogallery2</b>';
+
 	var my_content = content + '<br><br>[The content of this popup can be customized with some javascript.]';
+
 	return {title: my_title, content: my_content};
+	
 }
 
 // just the inf scroll pagination init
@@ -420,3 +424,41 @@ function addQuickLoadToDataLinkAttrs(){
 		};
 	});
 }
+
+//
+// dark/light cookie'd
+//
+
+// global theme functions
+
+// setting & getting cookies
+window.setCookie = function(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+};
+window.unsetCookie = function(name) {
+  document.cookie =  name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+};
+window.getCookie = function(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+  else return null;
+};
+
+// sets the dark style by adding the provided classes to the body
+window.setDarkStyle = function(darkClass, showID, hideID) {
+  document.body.classList.add(darkClass);
+  setDarkLightSwitch(showID, hideID);
+};
+// removes the dark style, which reverts back to the light style, by removing the provided classes from the body
+window.unsetDarkStyle = function(darkClass, showID, hideID) {
+  document.body.classList.remove(darkClass);
+  setDarkLightSwitch(showID, hideID);
+};
+function setDarkLightSwitch(showID, hideID) {
+  document.getElementById(showID).removeAttribute("hidden");
+  document.getElementById(hideID).setAttribute("hidden", "");
+};

@@ -6,6 +6,7 @@
             "key": "field_66371jddbdefd",
             "label": "Range Thumbnail",
             "name": "range_thumbnail",
+            "aria-label": "",
             "type": "image",
             "instructions": "Upload the thumbnail image for Product Range. Recommended to upload image with dimensions of 215px by 150px (jpg or png)",
             "required": 0,
@@ -16,15 +17,15 @@
                 "id": ""
             },
             "return_format": "array",
-            "preview_size": "medium",
             "library": "all",
             "min_width": "",
             "min_height": "",
             "min_size": "",
-            "max_width": 1000,
-            "max_height": 1000,
-            "max_size": 2,
-            "mime_types": ".jpg, .png"
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ".jpg, .png",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -45,5 +46,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1651147466
+    "modified": 1675992850
 }

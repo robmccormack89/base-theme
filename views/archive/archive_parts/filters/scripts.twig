@@ -1,0 +1,226 @@
+<script type='text/javascript'>
+
+    // pagination vars
+    var pagination_id = 'themePagination';
+    var pagi_items_sel = '.archive-posts';
+    var pagi_item_sel = '.item';
+    var pagi_next_sel = '.next';
+    var pagi_loader_sel = '.page-load-status';
+    var pagi_hider_sel = '.pagination';
+    var pagi_button = false;
+    var pagi_disable_history = true;
+
+    //
+    // filters vars
+    //
+
+    // filters vars: id & class strings
+    var filters_form_id = 'FiltersForm';
+    var filter_button_class = 'filter-btn';
+    var filter_button_sel = '.' + filter_button_class;
+    var filter_button_with_subs_class = 'has-subs';
+    var filter_button_with_subs_sel = '.' + 'has-subs';
+    var filter_area_class = 'filter-area';
+    var filter_area_sel = '.' + filter_area_class;
+    var drops_area_id = 'FiltersFormDropArea';
+
+    // filters vars: the grid & loop - required wrapping selectors
+    var demo_posts_grid_id = 'DemoPostsGrid';
+    var posts_grid_id = 'PostsGrid';
+    var loop_container_id = 'TheLoopContainer';
+    var loop_id = 'TheLoop';
+    var loop_sel = '#' + loop_id;
+
+    // filters vars: spinner & on/off selectors
+    var theme_show_class = 'theme-show';
+    var theme_active_class = 'theme-active';
+    var style_hide_class = 'uk-hidden';
+    var spinner_for_sub_id_prefix = 'loader_';
+
+    // filters vars: more ui selectors
+    var unclick_class = 'prevent-unclick';
+    var unclick_class_sel = '.' + unclick_class;
+    var drop_target_attr = 'drop_target';
+    var term_has_children_class = 'has-children';
+    var term_has_children_sel = '.' + term_has_children_class;
+
+    // filters vars: set the element vars using querySelector
+    form = document.querySelector('#' + filters_form_id);
+    var filterBtns = document.querySelectorAll('.' + filter_button_class);
+
+    // filters vars: term related vars. will be for defining what  terms are used in the filters & which ones have parent->child groupings
+    // create js data array of objects using the php data: configs.blog_filters_properties.types
+    // this data is the settings for the taxonomies to use as filters & which are to have subs etc
+
+    var taxes_objs_array = [];
+    {% for item in configs.blog_filters_properties.types %}
+      {% if item.parentGroupId %}
+
+        var  {{item.parentGroupId}}_obj = {
+          parentGroupId: '{{item.parentGroupId}}', 
+          route: '/wp-json/' + '{{item.parentGroupId}}',
+          subGroupId: '{{item.subGroupId}}', 
+          subId: '{{item.subId}}', 
+          formQueryKey: '{{item.formQueryKey}}', 
+          taxKey: '{{item.taxKey}}',
+          altQueryKey: '{{item.altQueryKey}}', 
+          currentQueryVar: '{{ fn('get_query_var', item.altQueryKey) }}'
+        };
+        taxes_objs_array.push({{item.parentGroupId}}_obj);
+
+      {% else %}
+
+        var {{item.formQueryKey}}_obj = {
+          formQueryKey: '{{item.formQueryKey}}', 
+          taxKey: '{{item.taxKey}}',
+          altQueryKey: '{{item.altQueryKey}}', 
+          currentQueryVar: '{{ fn('get_query_var', item.formQueryKey) }}'
+        };
+        taxes_objs_array.push({{item.formQueryKey}}_obj);
+
+      {% endif %}
+    {% endfor %}
+
+    var query_fields_array = [];
+    {% for item in configs.blog_filters_properties.types %}
+      query_fields_array.push('{{item.formQueryKey}}');
+    {% endfor %}
+
+    //
+    // filters & related events
+    //
+
+    // on window load...
+    window.addEventListener('load', (event) => {
+
+      // trigger child term filter button dropdowns: on window load. only when they have children & those children contain a checked item
+      for (tax in taxes_objs_array) {
+        if(taxes_objs_array[tax].parentGroupId){
+          var the_parent_group = document.getElementById(taxes_objs_array[tax].parentGroupId);
+          const steadyTaxesObj = taxes_objs_array[tax];
+          if(the_parent_group){
+            var has_children_items = the_parent_group.querySelectorAll(term_has_children_sel);
+            if(has_children_items.length > 0){
+              if(ifArrayContainsCheckedItem(has_children_items)){
+                getSubDropsFromParentSelection(event, steadyTaxesObj.currentQueryVar, steadyTaxesObj.taxKey, steadyTaxesObj.formQueryKey, steadyTaxesObj.route, steadyTaxesObj.parentGroupId, steadyTaxesObj.subGroupId, steadyTaxesObj.subId, style_hide_class, spinner_for_sub_id_prefix)
+              }
+            }
+          }
+        }
+      }
+
+      // trigger custom disabled checkboxes
+      const windowChkdChks = document.querySelectorAll(unclick_class_sel);
+      windowChkdChks.forEach(item => {
+        item.addEventListener('click', function(){
+          event.preventDefault();
+        }, false)
+      });
+
+      // trigger the toggle'able drop areas via filter buttons
+      if(filterBtns.length > 0){
+        toggleDropsAndAreas(filter_button_sel, drop_target_attr, theme_show_class, filter_area_sel, theme_active_class);
+      }
+
+    });
+
+    // for each item in the taxes_objs_array, trigger some stuff on particular events...
+    for (tax in taxes_objs_array) {
+      if(taxes_objs_array[tax].parentGroupId){
+
+        // trigger child term filter button dropdowns: add click event listener to each relevant button when they have children
+        var the_parent_group = document.getElementById(taxes_objs_array[tax].parentGroupId);
+        const steadyTaxesObj = taxes_objs_array[tax];
+        if(the_parent_group){
+          var has_children_items = the_parent_group.querySelectorAll(term_has_children_sel);
+          if(has_children_items.length > 0){
+            // loop thru & add a 'click' event listener to each item
+            has_children_items.forEach(item => {
+              item.addEventListener('click', function(){
+                getSubDropsFromParentSelection(event, steadyTaxesObj.currentQueryVar, steadyTaxesObj.taxKey, steadyTaxesObj.formQueryKey, steadyTaxesObj.route, steadyTaxesObj.parentGroupId, steadyTaxesObj.subGroupId, steadyTaxesObj.subId, style_hide_class, spinner_for_sub_id_prefix)
+              }, false)
+            });
+          }
+        }
+
+        // trigger custom disabled checkboxes on the correct sub term: after jingo event
+        var the_sub = document.getElementById(taxes_objs_array[tax].subId);
+        the_sub.addEventListener('jingo', (e) => {
+          const theSubChkdChks = document.querySelectorAll(unclick_class_sel);
+          theSubChkdChks.forEach(item => {
+            item.addEventListener('click', function(){
+              event.preventDefault();
+            }, false)
+          });
+        }, false);
+
+      }
+    }
+
+    // filters form events...
+    if(form){
+
+      // on submission
+      form.addEventListener('submit', function() {
+
+        // prevent default submission of form
+        event.preventDefault();
+
+        // then do custom submission
+        filtersFormSubmitCustom(event, form, demo_posts_grid_id, posts_grid_id, loop_container_id, loop_sel, taxes_objs_array, query_fields_array, style_hide_class);
+
+      })
+
+      // after successful submission (custom event)
+      form.addEventListener('filtersFormSubmissionSuccess', function() {
+
+        // re-Enable the Disabled Checkboxes
+        reEnableDisabledCheckboxes(drops_area_id);
+
+        // re-Enable pagination
+        {% if configs.infinite_pagination %}
+          if(document.getElementById(pagination_id)) archivePagination(pagi_items_sel, pagi_item_sel, pagi_next_sel, pagi_loader_sel, pagi_hider_sel, pagi_button, pagi_disable_history);
+        {% endif %}
+
+      })
+
+      // on clearing & resetting
+      form.addEventListener("reset", function(){
+        setTimeout(function() {
+
+          // re-hide the drop areas
+          removeClassFromElements(filter_area_sel, theme_show_class)
+          removeClassFromElements(filter_button_sel, theme_active_class)
+
+          // and also hide the filter subs dropdowns. foreach parent chld terms group
+          for (i in taxes_objs_array) {
+            if(taxes_objs_array[tax].subId){
+              addClassToElements('#' + taxes_objs_array[tax].subId, style_hide_class)
+            }
+          }
+
+          // then, do a custom form submission (this SHOULD reset the posts to the page's default args)
+          filtersFormSubmitCustom(event, form, demo_posts_grid_id, posts_grid_id, loop_container_id, loop_sel, taxes_objs_array, query_fields_array, style_hide_class);
+
+          // then redo the Parent -> Child filter drops
+          for (tax in taxes_objs_array) {
+            if(taxes_objs_array[tax].parentGroupId){
+              var another_parent_group = document.getElementById(taxes_objs_array[tax].parentGroupId);
+              const steadyTaxesObj = taxes_objs_array[tax];
+              if(another_parent_group){
+                var more_has_children_items = another_parent_group.querySelectorAll(term_has_children_sel);
+                if(more_has_children_items.length > 0){
+                  if(ifArrayContainsCheckedItem(more_has_children_items)){
+                    getSubDropsFromParentSelection(event, steadyTaxesObj.currentQueryVar, steadyTaxesObj.taxKey, steadyTaxesObj.formQueryKey, steadyTaxesObj.route, steadyTaxesObj.parentGroupId, steadyTaxesObj.subGroupId, steadyTaxesObj.subId, style_hide_class, spinner_for_sub_id_prefix)
+                  }
+                }
+              }
+            }
+          }
+
+        });
+      }, true);
+
+    };
+
+</script>

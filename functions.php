@@ -39,4 +39,4 @@ if($configs['blog_filters']) require get_template_directory() . '/inc/extra/blog
   ACf should be installed via required plugins
 
 */
-// if(class_exists('ACF')) new Rmcc\Fields;
+if(class_exists('ACF')) new Rmcc\Fields;

@@ -1,0 +1,16 @@
+<form class="search-form uk-width-large" role="search" action="{{ site.url|e('esc_url') }}" method="get" data-template="_search-form.twig">
+  <ul class="uk-grid-collapse uk-flex uk-flex-middle" uk-grid>
+
+    {# search input & hidden post_type = 'post' input #}
+    <ul class="search-form-input uk-width-expand">
+      <input class="password-box uk-input" name="s" id="404-search" type="search" placeholder="{{ _x('Start typing...', 'Search: form', 'base-theme')|e('esc_html') }}" size="20" required maxlength="100" pattern=".*\S+.*" autocomplete="off" />
+      <input type="hidden" name="post_type" value="post" />
+    </ul>
+
+    {# submit button #}
+    <ul class="search-form-button uk-width-auto">
+      <input class="password-btn uk-button uk-button-primary" type="submit" value="{{ _x('Search', 'Search: form', 'base-theme')|e('esc_html') }}" />
+    </ul>
+
+  </div>
+</form>

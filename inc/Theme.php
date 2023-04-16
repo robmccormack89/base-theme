@@ -17,8 +17,9 @@ use Twig\Extra\String\StringExtension;
 Timber::$dirname = array(
   'views',
   'views/archive',
-  'views/parts',
   'views/single',
+  'views/global',
+  'views/shortcodes',
 );
 
 // set the $autoescape value
@@ -59,19 +60,19 @@ class Theme extends Timber {
         // register_taxonomy_for_object_type('category', 'attachment');
         // register_taxonomy_for_object_type( 'post_tag', 'attachment' );
 
-        // add custom taxonomy ('media_category') to media library
+        // add custom taxonomy ('media_category') to media library post type
         $labels_media_cats = array(
-          'name' => 'Media Categories',
-          'singular_name' => 'Media Category',
-          'search_items' => 'Search Media Categories',
-          'all_items' => 'All Categories',
-          'parent_item' => 'Parent Media Category',
-          'parent_item_colon' => 'Parent Media Category:',
-          'edit_item' => 'Edit Media Category',
-          'update_item' => 'Update Media Category',
-          'add_new_item' => 'Add New Media Category',
-          'new_item_name' => 'New Media Category Name',
-          'menu_name' => 'Media Category',
+          'name' => _x('Media Categories', 'Custom taxonomy label: plural', 'base-theme'),
+          'singular_name' => _x('Media Category', 'Custom taxonomy label: singular', 'base-theme'),
+          'search_items' => _x('Search Media Categories', 'Custom taxonomy label: search', 'base-theme'),
+          'all_items' => _x('All Media Categories', 'Custom taxonomy label: all', 'base-theme'),
+          'parent_item' => _x('Parent Media Category', 'Custom taxonomy label: parent', 'base-theme'),
+          'parent_item_colon' => _x('Parent Media Category', 'Custom taxonomy label: parent', 'base-theme') . ':',
+          'edit_item' => _x('Edit Media Category', 'Custom taxonomy label: edit', 'base-theme'),
+          'update_item' => _x('Update Media Category', 'Custom taxonomy label: update', 'base-theme'),
+          'add_new_item' => _x('Add New Media Category', 'Custom taxonomy label: add', 'base-theme'),
+          'new_item_name' => _x('New Media Category Name', 'Custom taxonomy label: new', 'base-theme'),
+          'menu_name' => _x('Media Category', 'Custom taxonomy label: menu label', 'base-theme'),
         );
         $args_media_cats = array(
           'labels' => $labels_media_cats,
@@ -81,6 +82,28 @@ class Theme extends Timber {
           'show_admin_column' => 'true',
         );
         register_taxonomy('media_category', 'attachment', $args_media_cats);
+
+        $labels_media_tags = array(
+          'name' => _x('Media Tags', 'Custom taxonomy label: plural', 'base-theme'),
+          'singular_name' => _x('Media Tag', 'Custom taxonomy label: singular', 'base-theme'),
+          'search_items' => _x('Search Media Tags', 'Custom taxonomy label: search', 'base-theme'),
+          'all_items' => _x('All Media Tags', 'Custom taxonomy label: all', 'base-theme'),
+          'parent_item' => _x('Parent Media Tag', 'Custom taxonomy label: parent', 'base-theme'),
+          'parent_item_colon' => _x('Parent Media Tag', 'Custom taxonomy label: parent', 'base-theme') . ':',
+          'edit_item' => _x('Edit Media Tag', 'Custom taxonomy label: edit', 'base-theme'),
+          'update_item' => _x('Update Media Tag', 'Custom taxonomy label: update', 'base-theme'),
+          'add_new_item' => _x('Add New Media Tag', 'Custom taxonomy label: add', 'base-theme'),
+          'new_item_name' => _x('New Media Tag Name', 'Custom taxonomy label: new', 'base-theme'),
+          'menu_name' => _x('Media Tag', 'Custom taxonomy label: menu label', 'base-theme'),
+        );
+        $args_media_tags = array(
+          'labels' => $labels_media_tags,
+          'hierarchical' => false,
+          'query_var' => 'true',
+          'rewrite' => 'true',
+          'show_admin_column' => 'true',
+        );
+        register_taxonomy('media_tag', 'attachment', $args_media_tags);
 
       });
 

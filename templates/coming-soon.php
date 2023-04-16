@@ -12,7 +12,7 @@
 // namespace & use
 namespace Rmcc;
 
-$templates = array('coming-soon.twig');
+$templates = array('coming_soon.twig');
 
 // set the context
 $context = Theme::context();

@@ -1,6 +1,6 @@
 {% block html_head_container %}
 
-  {% include '_html-head.twig' %}
+  {% include '_html_head.twig' %}
     {% block styles %}
     {% endblock %}
   </head>
@@ -23,15 +23,15 @@
           <div class="uk-section uk-container uk-container-xsmall">
 
             {# main title #}
-            {% if title or archive.title or post.title %}
-              <h1>{{ title|default(archive.title|default('post.title'))|e('esc_html') }}</h1>
+            {% if title %}
+              <h1>{{ title|e('esc_html') }}</h1>
             {% endif %}
 
             {# main description or message #}
-            <p>{{ description|default(archive.description|default(post.description|default(__('Sorry, nothing to display here....', 'base-theme'))))|e('esc_html') }}</p>
+            <p>{{ description|default(_x('Sorry, nothing to display here....', 'Base: No content message', 'base-theme'))|e('esc_html') }}</p>
 
             {# if it's a 404, include the search form #}
-            {% include (fn('is_404') or fn('get_post_status', post.id) == 'private') ? '_search-form.twig' ignore missing  %}
+            {% include (fn('is_404') or fn('get_post_status', post.id) == 'private') ? '_search_form.twig' ignore missing  %}
 
           </div>
         {% endblock %}
@@ -46,6 +46,29 @@
 
     {% block scripts %}
     {% endblock %}
+
+    {# dark light js init #}
+    <script>
+      var darkLightCookie = getCookie("darklightswitch");
+      if (darkLightCookie) {
+        setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
+      } else {
+        unsetDarkStyle('uk-light', 'DarkSwitch', 'LightSwitch');
+      }
+      document.querySelectorAll('.darklight-switch').forEach(item => {
+        item.addEventListener('mousedown', event => {
+          event.preventDefault();
+          var darkLightCookie = getCookie("darklightswitch");
+          if (darkLightCookie != "" && darkLightCookie != null) {
+            unsetCookie('darklightswitch');
+            unsetDarkStyle('uk-light', 'DarkSwitch', 'LightSwitch');
+          } else {
+            setCookie('darklightswitch', 'dark', 7);
+            setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
+          }
+        })
+      })
+    </script>
 
     {% if configs.animated_preloader %}
       <script type='text/javascript'>

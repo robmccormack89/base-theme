@@ -1,0 +1,46 @@
+<div class="comment-form">
+  <form class="comment-form" id="comment-form-box" method="post" action="{{ site.site_url ~ '/wp-comments-post.php' }}">
+    <fieldset class="uk-fieldset">
+
+      {# hidden user fields header if user is available #}
+      {% if user %}
+        <input type="hidden" name="email" value="{{ user.user_email|e('esc_url') }}">
+        <input type="hidden" name="author" value="{{ user.name|e('esc_html') }}">
+        <input type="hidden" name="url" value="{{ user.link|e('esc_url') }}">
+      {% else %}
+        <div class="uk-margin-small">
+          <ul class="uk-grid-small" uk-grid>
+
+            {# name input: not current user #}
+            <li class="uk-width-1-2@s">
+              <input class="uk-input" required name="author" type="text" placeholder="{{ _x('Your name', 'Single: comments', 'base-theme')|e('esc_html') }}">
+            </li>
+
+            {# email input: not current user #}
+            <li class="uk-width-1-2@s">
+              <input class="uk-input" required name="email" type="email" id="email" placeholder="{{ _x('Your email', 'Single: comments', 'base-theme')|e('esc_html') }}">
+            </li>
+
+          </ul>
+        </div>
+
+        {# website url input: not current user #}
+        <div class="uk-margin-small">
+          <input class="uk-input" name="url" type="url" placeholder="{{ _x('Your website address (including http:// or https://)', 'Single: comments', 'base-theme')|e('esc_html') }}">
+        </div>
+      {% endif %}
+
+      {# message/body input with hidden post comment inputs #}
+      <textarea id="comment-form-box" class="uk-textarea" name="comment" placeholder="{{ _x('Leave a message...', 'Single: comments', 'base-theme')|e('esc_html') }}" cols="60" rows="4"></textarea>
+      <input name="comment_post_ID" value="{{ post.id|e('esc_html') }}" type="hidden">
+      <input name="comment_parent" value="{{ comment.id|default('0')|e('esc_html') }}" type="hidden">
+
+      {# submit/reset buttons #}
+      <div class="uk-margin-top">
+        <button type="submit" name="Submit" class="uk-button uk-button-small uk-button-primary">{{ _x('Send', 'Single: comments', 'base-theme')|e('esc_html') }}</button>
+        <button type="reset" class="uk-button uk-button-small uk-button-default">{{ _x('Clear', 'Single: comments', 'base-theme')|e('esc_html') }}</button>
+      </div>
+
+    </fieldset>
+  </form>
+</div>

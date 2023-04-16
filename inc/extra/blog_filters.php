@@ -120,7 +120,7 @@ function get_subterms_for_filters($req) {
 	$context['q_key'] = $q_key;
   $context['sub_terms'] = array_merge(...$subs_array);
 	if(empty($context['sub_terms'])) return;
-	$data = Timber::compile(array('_blog-filters-subterms.twig'), $context);
+	$data = Timber::compile(array('archive_parts/filters/_sub_terms.twig'), $context);
   return $data;
 
 }

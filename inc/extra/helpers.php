@@ -2,7 +2,7 @@
 
 function meta_gallery($atts) {
   $context = Timber::context();
-  $template = 'meta-gallery.twig';
+  $template = 'meta_gallery.twig';
   $context['gallery'] = null;
 
   if(is_array($atts)){

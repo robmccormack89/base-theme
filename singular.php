@@ -18,34 +18,27 @@ global $configs;
 // set the context
 $context = Theme::context();
 
+// set templates variable as an array
+$templates = array('base.twig');
+
 // set some context vars
+$context['title'] = _x( 'Error: Page not found', '404/Error pages', 'base-theme' );
+$context['description'] = _x( 'Sorry, there has been an error locating a resource for your query. Try finding what you want using the search form below.', '404/Error pages', 'base-theme' );
 $context['post'] = new Post(); // the singlular post object
-$context['description'] = false; // wont bother setting post.description. keep it null
-$context['post']->the_excerpt = $context['post']->post_excerpt ?: false; // set post.the_excerpt instead
 
-// set templates variable as an array (requires $context['post'])
-$templates = array(
-	'single-' . $context['post']->ID . '.twig',
-	'single-' . $context['post']->slug . '.twig',
-	'single-' . $context['post']->post_type . '.twig',
-	'single.twig',
-	'base.twig'
-);
+// if not a privated post
+if(get_post_status($context['post']->ID) != 'private') {
 
-// add new template for password protected singulars (does not work on static front_pages)
-if(post_password_required($context['post'])){
-	$templates  = array(
-		'single-protected.twig'
-	);
-}
+	$context['title'] = $context['post']->title; // just good housekeeping
+	$context['description'] = $context['post']->post_excerpt ?: false; // just good housekeeping
 
-// for private pages/posts, re-route to base.twig with title & description set the same as a 404
-if(get_post_status($context['post']->ID) == 'private') {
-  $context['title'] = _x( 'Error: Page not found', '404/Error pages', 'base-theme' );
-  $context['description'] = _x( 'Sorry, there has been an error locating a resource for your query. Try finding what you want using the search form below.', '404/Error pages', 'base-theme' );
-	$templates  = array(
-		'base.twig'
-	);
+	// add new template for password protected singulars (does not work on static front_pages)
+	if(post_password_required($context['post'])){
+		array_unshift($templates, 'single_protected.twig');
+	} else {
+		array_unshift($templates, 'single-' . $context['post']->ID . '.twig', 'single-' . $context['post']->slug . '.twig', 'single-' . $context['post']->post_type . '.twig', 'single.twig');
+	}
+
 }
 
 // & render the template with the context

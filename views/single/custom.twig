@@ -1,7 +1,7 @@
 {% extends 'single.twig' %}
 
 {% block header %}
-  {# parent() #}
+  {{ parent() }}
 {% endblock %}
 
 {% block main %}
@@ -11,7 +11,7 @@
     {% endblock %}
     
     {% block single_content %}
-      <div class="single-content uk-background-default">
+      <div class="single-content">
         {% block single_content_editor %}
           {{ parent() }}
         {% endblock %}
@@ -25,5 +25,5 @@
 {% endblock %}
 
 {% block footer %}
-  {# parent() #}
+  {{ parent() }}
 {% endblock %}

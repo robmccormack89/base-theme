@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-24 17:56+0000\n"
+"POT-Creation-Date: 2023-04-15 14:53+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -15,233 +15,399 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:21, singular.php:41, templates/custom.php:45
+#: 404.php:21, archive.php:23, index.php:20, singular.php:25, templates/custom.php:45
 msgctxt "404/Error pages"
 msgid "Error: Page not found"
 msgstr ""
 
-#: 404.php:22, singular.php:42, templates/custom.php:46
+#: 404.php:22, archive.php:24, index.php:21, singular.php:26, templates/custom.php:46
 msgctxt "404/Error pages"
 msgid "Sorry, there has been an error locating a resource for your query. Try finding what you want using the search form below."
 msgstr ""
 
-#: archive.php:44, archive.php:39, archive.php:34
+#: archive.php:86
 msgctxt "Archives"
-msgid "Archive"
+msgid "Tag: "
 msgstr ""
 
-#: inc/extra/configs.php:64
+#: archive.php:75
+msgctxt "Archives"
+msgid "Year: "
+msgstr ""
+
+#: archive.php:62
+msgctxt "Archives"
+msgid "Month: "
+msgstr ""
+
+#: archive.php:49
+msgctxt "Archives"
+msgid "Day: "
+msgstr ""
+
+#: archive.php:35
+msgctxt "Archives"
+msgid "Author: "
+msgstr ""
+
+#: inc/extra/configs.php:71
 msgctxt "Theme Featured Image - src"
 msgid "https://picsum.photos/1920/1200"
 msgstr ""
 
-#: inc/extra/configs.php:65
+#: inc/extra/configs.php:72
 msgctxt "Theme Featured Image - alt"
-msgid ""
+msgid "Alt"
 msgstr ""
 
-#: inc/extra/configs.php:66
+#: inc/extra/configs.php:73
 msgctxt "Theme Featured Image - caption"
-msgid ""
+msgid "Caption"
 msgstr ""
 
-#: inc/Theme.php:310
+#: inc/Theme.php:65
+msgctxt "Custom taxonomy label: plural"
+msgid "Media Categories"
+msgstr ""
+
+#: inc/Theme.php:66
+msgctxt "Custom taxonomy label: singular"
+msgid "Media Category"
+msgstr ""
+
+#: inc/Theme.php:67
+msgctxt "Custom taxonomy label: search"
+msgid "Search Media Categories"
+msgstr ""
+
+#: inc/Theme.php:68
+msgctxt "Custom taxonomy label: all"
+msgid "All Media Categories"
+msgstr ""
+
+#: inc/Theme.php:69, inc/Theme.php:70
+msgctxt "Custom taxonomy label: parent"
+msgid "Parent Media Category"
+msgstr ""
+
+#: inc/Theme.php:71
+msgctxt "Custom taxonomy label: edit"
+msgid "Edit Media Category"
+msgstr ""
+
+#: inc/Theme.php:72
+msgctxt "Custom taxonomy label: update"
+msgid "Update Media Category"
+msgstr ""
+
+#: inc/Theme.php:73
+msgctxt "Custom taxonomy label: add"
+msgid "Add New Media Category"
+msgstr ""
+
+#: inc/Theme.php:74
+msgctxt "Custom taxonomy label: new"
+msgid "New Media Category Name"
+msgstr ""
+
+#: inc/Theme.php:75
+msgctxt "Custom taxonomy label: menu label"
+msgid "Media Category"
+msgstr ""
+
+#: inc/Theme.php:87
+msgctxt "Custom taxonomy label: plural"
+msgid "Media Tags"
+msgstr ""
+
+#: inc/Theme.php:88
+msgctxt "Custom taxonomy label: singular"
+msgid "Media Tag"
+msgstr ""
+
+#: inc/Theme.php:89
+msgctxt "Custom taxonomy label: search"
+msgid "Search Media Tags"
+msgstr ""
+
+#: inc/Theme.php:90
+msgctxt "Custom taxonomy label: all"
+msgid "All Media Tags"
+msgstr ""
+
+#: inc/Theme.php:91, inc/Theme.php:92
+msgctxt "Custom taxonomy label: parent"
+msgid "Parent Media Tag"
+msgstr ""
+
+#: inc/Theme.php:93
+msgctxt "Custom taxonomy label: edit"
+msgid "Edit Media Tag"
+msgstr ""
+
+#: inc/Theme.php:94
+msgctxt "Custom taxonomy label: update"
+msgid "Update Media Tag"
+msgstr ""
+
+#: inc/Theme.php:95
+msgctxt "Custom taxonomy label: add"
+msgid "Add New Media Tag"
+msgstr ""
+
+#: inc/Theme.php:96
+msgctxt "Custom taxonomy label: new"
+msgid "New Media Tag Name"
+msgstr ""
+
+#: inc/Theme.php:97
+msgctxt "Custom taxonomy label: menu label"
+msgid "Media Tag"
+msgstr ""
+
+#: inc/Theme.php:495
 msgctxt "Menu locations"
 msgid "Main Menu"
 msgstr ""
 
-#: inc/Theme.php:311
+#: inc/Theme.php:496
 msgctxt "Menu locations"
 msgid "Iconnav Menu"
 msgstr ""
 
 #: search.php:27
-msgctxt "Search results"
+msgctxt "Search: results"
 msgid "Search results"
 msgstr ""
 
 #: search.php:28
-msgctxt "Search results"
+msgctxt "Search: results"
 msgid "You have searched for:"
+msgstr ""
+
+#: templates/coming-soon.php:4
+msgid "Coming Soon Template"
 msgstr ""
 
 #: templates/custom.php:4
 msgid "Custom Template"
 msgstr ""
 
-#: views/temp/archive/archive.php:92
-msgctxt "404/Error pages"
-msgid "Sorry, there has been an error locating a resource for your query. Try filtering again."
+#: templates/maintenance.php:4
+msgid "Maintenance Mode Template"
 msgstr ""
 
-#: views/temp/archive/_blog-filters.php:10
-msgctxt "Blog filters"
+#: views/temp/archive/archive_parts/filters/_form.php:10
+msgctxt "Archive: filters"
 msgid "Filters:"
 msgstr ""
 
-#: views/temp/archive/_blog-filters.php:34
-msgctxt "Shop filters"
+#: views/temp/archive/archive_parts/filters/_form.php:37
+msgctxt "Archive: filters"
 msgid "More %s"
 msgstr ""
 
-#: views/temp/archive/_loader-posts.php:1
-msgctxt "Blog filters"
+#: views/temp/archive/archive_parts/filters/_loading_posts.php:1
+msgctxt "Archive: filters"
 msgid "Posts loading..."
 msgstr ""
 
-#: views/temp/archive/_pagination.php:9
+#: views/temp/archive/archive_parts/loop.php:23
+msgctxt "404/Error pages"
+msgid "Sorry, there has been an error locating a resource for your query. Please try again."
+msgstr ""
+
+#: views/temp/archive/archive_parts/_pagination.php:9
+msgctxt "Archive: pagination"
 msgid "Newer posts"
 msgstr ""
 
-#: views/temp/archive/_pagination.php:29
+#: views/temp/archive/archive_parts/_pagination.php:29
+msgctxt "Archive: pagination"
 msgid "Older posts"
 msgstr ""
 
-#: views/temp/archive/_pagination.php:47
+#: views/temp/archive/archive_parts/_pagination.php:47
+msgctxt "Archive: pagination"
 msgid "End of posts..."
 msgstr ""
 
-#: views/temp/archive/_pagination.php:48
+#: views/temp/archive/archive_parts/_pagination.php:48
+msgctxt "Archive: pagination"
 msgid "No more Posts to load"
 msgstr ""
 
-#: views/temp/archive/_tease.php:22, views/temp/single/_single-meta.php:9
+#: views/temp/archive/archive_parts/_tease.php:22
+msgctxt "Tease: date"
 msgid "%s ago"
 msgstr ""
 
-#: views/temp/archive/_tease.php:42, views/temp/single/_comments.php:5
-msgctxt "Comments"
+#: views/temp/archive/archive_parts/_tease.php:35
+msgctxt "Tease: comments"
 msgid "Comments"
 msgstr ""
 
-#: views/temp/archive/_tease.php:62
+#: views/temp/archive/archive_parts/_tease.php:55
+msgctxt "Tease: read more"
 msgid "Read more"
 msgstr ""
 
 #: views/temp/base.php:31
+msgctxt "Base: No content message"
 msgid "Sorry, nothing to display here...."
 msgstr ""
 
-#: views/temp/parts/footer.php:26
+#: views/temp/coming_soon.php:1
+msgctxt "Coming soon mode"
+msgid "Website is under construction & coming soon. Please check back shortly."
+msgstr ""
+
+#: views/temp/global/footer.php:26
+msgctxt "Footer: to top"
 msgid "Scroll to Top"
 msgstr ""
 
-#: views/temp/parts/footer.php:31, views/temp/parts/header.php:152
+#: views/temp/global/footer.php:31, views/temp/global/header.php:167
+msgctxt "Footer: copyright"
 msgid "© All Rights Reserved %s"
 msgstr ""
 
-#: views/temp/parts/footer.php:31
+#: views/temp/global/footer.php:31
+msgctxt "Footer: back to home"
 msgid "Return to Homepage"
 msgstr ""
 
-#: views/temp/parts/header.php:173, views/temp/parts/_live-search-form.php:19, views/temp/parts/_search-form.php:6
-msgctxt "Search form"
+#: views/temp/global/header.php:95, views/temp/global/header.php:188, views/temp/global/_search_form.php:6
+msgctxt "Search: form"
 msgid "Start typing..."
 msgstr ""
 
-#: views/temp/parts/_live-search-form.php:19
-msgctxt "Search form"
+#: views/temp/global/header.php:95
+msgctxt "Search: form"
 msgid "Start typing & press enter..."
 msgstr ""
 
-#: views/temp/parts/_live-search-results.php:78
+#: views/temp/global/_live_search_results.php:83
+msgctxt "Search: results"
 msgid "%1$s in %2$s"
 msgstr ""
 
-#: views/temp/parts/_live-search-results.php:94
+#: views/temp/global/_live_search_results.php:100
+msgctxt "Search: form"
 msgid "Sorry, we couldnt find anything for your query. Try searching for something else."
 msgstr ""
 
-#: views/temp/parts/_password-form.php:2
+#: views/temp/global/_password_form.php:2
 msgctxt "Password protected content"
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: views/temp/parts/_password-form.php:9, views/temp/parts/_password-form.php:14
+#: views/temp/global/_password_form.php:9, views/temp/global/_password_form.php:14
 msgctxt "Password protected content"
 msgid "Password"
 msgstr ""
 
-#: views/temp/parts/_password-form.php:19, views/temp/parts/_password-form.php:19
+#: views/temp/global/_password_form.php:19, views/temp/global/_password_form.php:19
 msgctxt "Password protected content"
 msgid "Enter"
 msgstr ""
 
-#: views/temp/parts/_search-form.php:12
-msgctxt "Search form"
+#: views/temp/global/_search_form.php:12
+msgctxt "Search: form"
 msgid "Search"
 msgstr ""
 
-#: views/temp/single/_comment-form.php:16
-msgctxt "Comments"
-msgid "Your name"
+#: views/temp/maintenance.php:1
+msgctxt "Maintenance mode"
+msgid "We are currently undergoing routine maintenance. Please try back in a few minutes."
 msgstr ""
 
-#: views/temp/single/_comment-form.php:21
-msgctxt "Comments"
-msgid "Your email"
+#: views/temp/single/single_parts/comments/list.php:3
+msgctxt "Single: comments"
+msgid "Comments"
 msgstr ""
 
-#: views/temp/single/_comment-form.php:29
-msgctxt "Comments"
-msgid "Your website address (including http:// or https://)"
-msgstr ""
-
-#: views/temp/single/_comment-form.php:34
-msgctxt "Comments"
-msgid "Leave a message..."
-msgstr ""
-
-#: views/temp/single/_comment-form.php:40
-msgctxt "Comments"
-msgid "Send"
-msgstr ""
-
-#: views/temp/single/_comment-form.php:41
-msgctxt "Comments"
-msgid "Clear"
-msgstr ""
-
-#: views/temp/single/_comment.php:28
-msgctxt "Comments"
-msgid "Edit"
-msgstr ""
-
-#: views/temp/single/_comment.php:41
-msgctxt "Comments"
-msgid "Reply"
-msgstr ""
-
-#: views/temp/single/_comment.php:43
-msgctxt "Comments"
-msgid "Reply to"
-msgstr ""
-
-#: views/temp/single/_comments.php:38
-msgctxt "Comments"
+#: views/temp/single/single_parts/comments/list.php:36
+msgctxt "Single: comments"
 msgid "Leave a new comment"
 msgstr ""
 
-#: views/temp/single/_single-author.php:14
+#: views/temp/single/single_parts/comments/_comment.php:28
+msgctxt "Single: comments"
+msgid "Edit"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_comment.php:41
+msgctxt "Single: comments"
+msgid "Reply"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_comment.php:43
+msgctxt "Single: comments"
+msgid "Reply to"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:16
+msgctxt "Single: comments"
+msgid "Your name"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:21
+msgctxt "Single: comments"
+msgid "Your email"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:29
+msgctxt "Single: comments"
+msgid "Your website address (including http:// or https://)"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:34
+msgctxt "Single: comments"
+msgid "Leave a message..."
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:40
+msgctxt "Single: comments"
+msgid "Send"
+msgstr ""
+
+#: views/temp/single/single_parts/comments/_form.php:41
+msgctxt "Single: comments"
+msgid "Clear"
+msgstr ""
+
+#: views/temp/single/single_parts/_author.php:13
+msgctxt "Single: author"
 msgid "Posted by %s"
 msgstr ""
 
-#: views/temp/single/_single-author.php:24
+#: views/temp/single/single_parts/_author.php:23
+msgctxt "Single: author"
 msgid "Actions"
 msgstr ""
 
-#: views/temp/single/_single-author.php:25
+#: views/temp/single/single_parts/_author.php:24
+msgctxt "Single: author"
 msgid "More articles by this author"
 msgstr ""
 
-#: views/temp/single/_single-pagination.php:9
+#: views/temp/single/single_parts/_meta.php:9
+msgctxt "Single: meta date"
+msgid "%s ago"
+msgstr ""
+
+#: views/temp/single/single_parts/_pagination.php:8
+msgctxt "Single: pagination"
 msgid "Newer article"
 msgstr ""
 
-#: views/temp/single/_single-pagination.php:21
+#: views/temp/single/single_parts/_pagination.php:20
+msgctxt "Single: pagination"
 msgid "Older article"
 msgstr ""
 
-#: views/temp/single/_single-share.php:4
+#: views/temp/single/single_parts/_share.php:2
+msgctxt "Single: share"
 msgid "Share this post:"
 msgstr ""

@@ -11,14 +11,11 @@ function ajax_live_search() {
     'response' => ''
   );
 
-  // set some vars & context vars from the query/string
   $query = filter_var($_POST['query'], FILTER_SANITIZE_STRING); // validate the string to remove html or script crap
-  $context['query_string_upper'] = ucwords($query); // capitalize the query string. escaped on the other end just in case
+  $context['query_string'] = $query; // capitalize the query string. escaped on the other end just in case
 
-  // if the query isnt empty, go ahead & get the data using it
-  if (!empty($query)) {
-
-    $data['result'] = 1; // once there is a query, we will set result to 1. coz we will outut the template regardless of data. the template will display the message for no data itself
+  // if query is not empty, lets get stuff using it
+  if (!empty($context['query_string'])) {
 
     global $configs;
     $context['configs'] = $configs;
@@ -33,7 +30,7 @@ function ajax_live_search() {
             'name__like' => $query,
           );
           $tax_items = get_terms($tax, $tax_args);
-          $context['result_items'][$tax] = $tax_items; // result_items.category
+          if(!empty($tax_items)) $context['result_items'][$tax] = $tax_items; // result_items.category
         }
       }
     }
@@ -50,7 +47,7 @@ function ajax_live_search() {
           'posts_per_page' => -1
         );
         $post_items = new Timber\PostQuery($post_args);
-        $context['result_items'][$type] = $post_items; // result_items.category
+        if($post_items->found_posts > 0) $context['result_items'][$type] = $post_items; // result_items.category
         
       }
     }
@@ -79,18 +76,19 @@ function ajax_live_search() {
               ),
             );
             $types_in_taxes = new Timber\PostQuery($types_in_taxes_args);
-            $context['result_items_within'][$type][$tax] = $types_in_taxes; // result_items_within.post.category
+            if($types_in_taxes->found_posts > 0) $context['result_items_within'][$type][$tax] = $types_in_taxes; // result_items_within.post.category
 
           }
         }
       }
     }
 
-    // compile the data in twig & set
-    $response = Timber::compile(array('_live-search-results.twig'), $context);
-    $data['response'] = $response;
-
   }
+
+  // compile the data in twig & set
+  $data['result'] = 1; // a valid result!! posts or no posts, we will compile the template
+  $response = Timber::compile(array('_live_search_results.twig'), $context);
+  $data['response'] = $response;
 
   // echo the json_encoded compiled twig template, then kill the function
   echo json_encode($data);

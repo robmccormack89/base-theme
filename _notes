@@ -1,0 +1,14 @@
+verify: twig folders structure - features should be modular******
+verify: twig code is semantic, formatted, blocked/commented, translated & escaped******
+verify: php code is consistent, commented, formatted, modular, translated & readable
+verify: translations are setup & working (gulp pot)
+verify: gulp style & npm webpack are output
+verify: configs are working as expected
+
+feature: maintenance mode******
+feature: dynamic live_search******
+feature: dynamic blog_filters******
+feature: dynamic meta_galleries******
+feature: light/dark switch*******
+feature: sticky nav
+feature: simplified blocks
