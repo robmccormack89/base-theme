@@ -1,0 +1,29 @@
+{% extends 'single.twig' %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+{% block main %}
+  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }}">
+    
+    {% block single_header %}
+    {% endblock %}
+    
+    {% block single_content %}
+      <div class="single-content">
+        {% block single_content_editor %}
+          {{ parent() }}
+        {% endblock %}
+      </div>
+    {% endblock %}
+
+    {% block single_footer %}
+    {% endblock %}
+  
+  </article>
+{% endblock %}
+
+{% block footer %}
+  {{ parent() }}
+{% endblock %}

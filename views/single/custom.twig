@@ -1,29 +1,137 @@
 {% extends 'single.twig' %}
 
 {% block header %}
-  {{ parent() }}
 {% endblock %}
 
 {% block main %}
-  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }}">
-    
-    {% block single_header %}
-    {% endblock %}
-    
-    {% block single_content %}
-      <div class="single-content">
-        {% block single_content_editor %}
-          {{ parent() }}
-        {% endblock %}
-      </div>
-    {% endblock %}
+  <section id="Cover" class="uk-background-primary uk-light">
 
-    {% block single_footer %}
-    {% endblock %}
+    <h1 class="uk-heading-medium"><span class="uk-text-primary">Natural</span><br>Brazilian Coffee</h1>
+    <p>Curabitur imperdiet varius lacus, id placerat purus vulputate non. Fusce in felis vel arcu maximus placerat eu ut arcu. Ut nunc ex, gravida vel porttitor et, pretium ac sapien.</p>
+
+  </section>
+
+  <section id="underCover">
   
-  </article>
+    underCover
+
+    {# http://kaffa.like-themes.com/wp-content/uploads/2020/06/coffee-bean.png #}
+  
+  </section>
+
+
+  <section id="About">
+  
+    Arabica & Robusta
+    Exclusive Planted Coffee
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi.
+
+    Download price
+    3-068-387-01-39
+    Read More
+    Shop now
+    since
+    1967
+    shape_about
+
+    {# http://kaffa.like-themes.com/wp-content/uploads/elementor/thumbs/shape_about-p4lzdx8zi5fb2dmvy77lht9fm0bzsrgqofgw7ji5pe.jpg #}
+  
+  </section>
+  <section id="Features">
+  
+    Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris semper accumsan . Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.
+    01
+    Arabica Green
+    Curabitur semper erat a lacus consequat, sit amet quam convallis.
+    02
+    Arabica Roasted
+    Praesent at faucibus justo, eu semper massa viverra luctus.
+    03
+    Robusta Roasted
+    Fusce venenatis ante ac interdum faucibus proin nunc.
+    04
+    Mixed Sorts
+    Aenean hendrerit ligula ut facilisis convallis gravida suscipit.
+  
+  </section>
+  <section id="CTA">
+  
+    Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris semper accumsan . Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.
+    01
+    Arabica Green
+    Curabitur semper erat a lacus consequat, sit amet quam convallis.
+    02
+    Arabica Roasted
+    Praesent at faucibus justo, eu semper massa viverra luctus.
+    03
+    Robusta Roasted
+    Fusce venenatis ante ac interdum faucibus proin nunc.
+    04
+    Mixed Sorts
+    Aenean hendrerit ligula ut facilisis convallis gravida suscipit.
+  
+  </section>
+  <section id="Benefits">
+  
+
+    Pure Grades
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.
+    Wide Assortment
+    Cras ut nisl ac sapien interdum scelerisque sed in elit rutrum in massa sed congue eget turpis ligula.
+    Proper Roasting
+    Proin non vulputate diam, ut varius orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    High Quality
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.
+    Excellent Grinding
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.
+    Awesome Aroma
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.
+  
+  </section>
+  <section id="Video">
+  
+    How we Prepare our Beans
+    Watch Video
+    Read More
+  
+  </section>
+  <section id="Numbers">
+  
+    37
+    Selected Varieties
+    259
+    Hectares of Plantations
+    140
+    Coffee Pickers
+    75
+    Consumer Countries
+  
+  </section>
+  <section id="Product">
+
+    Online Store
+    Popular Products
+    Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac mi.
+
+    Add to cart
+
+    Rated
+    5.00
+    out of 5
+    Ethiopia Arabica
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+    Pure Grade
+    Amazing Vanilla Aroma
+    Strong Roasting
+    Ultra Grinding
+    $19.99 $16.99
+    Add to cart
+    More Info
+  
+  </section>
 {% endblock %}
 
 {% block footer %}
-  {{ parent() }}
 {% endblock %}
