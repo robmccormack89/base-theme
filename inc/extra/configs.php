@@ -31,7 +31,7 @@ $configs['live_search'] = true;
 $configs['live_search_types'] = array('post', 'page');
 $configs['live_search_taxes'] = array('category', 'post_tag');
 $configs['live_search_types_in_taxes'] = array('post');
-// $configs['live_search'] = false; // disable
+$configs['live_search'] = false; // disable
 
 // Blog Filters configs
 $configs['blog_filters'] = true;
@@ -54,7 +54,7 @@ $configs['blog_filters_properties'] = (object) [
     ]
   )
 ];
-// $configs['blog_filters'] = false; // disable
+$configs['blog_filters'] = false; // disable
 
 // Meta gallerys config (uses nanogallery)
 $configs['meta_galleries'] = true;
