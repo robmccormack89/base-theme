@@ -494,6 +494,7 @@ class Theme extends Timber {
     register_nav_menus(array(
       'main_menu' => _x( 'Main Menu', 'Menu locations', 'base-theme' ),
       'iconnav_menu' => _x( 'Iconnav Menu', 'Menu locations', 'base-theme' ),
+      'socials_menu' => _x( 'Socials Menu', 'Menu locations', 'base-theme' ),
     ));
   }
 
@@ -522,9 +523,16 @@ class Theme extends Timber {
 
     $context['menu_main'] = new \Timber\Menu('main_menu', $main_menu_args);
     $context['has_menu_main'] = has_nav_menu('main_menu');
+
+    if($context['has_menu_main']){
+      list($context['menu_main']->first_half_items, $context['menu_main']->second_half_items) = array_chunk($context['menu_main']->items, ceil(count($context['menu_main']->items) / 2));
+    }
     
     $context['menu_iconnav'] = new \Timber\Menu('iconnav_menu', $foot_menu_args);
     $context['has_menu_iconnav'] = has_nav_menu('iconnav_menu');
+
+    $context['menu_socials'] = new \Timber\Menu('socials_menu', $foot_menu_args);
+    $context['has_menu_socials'] = has_nav_menu('socials_menu');
 
     // return context
     return $context;

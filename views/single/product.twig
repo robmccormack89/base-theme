@@ -1,0 +1,215 @@
+{% extends "single.twig" %}
+
+{% block styles %}
+  {{ parent() }}
+  <!-- <link rel="stylesheet" href="{{ theme.link }}/assets/css/product.css" /> -->
+  <style>
+    .uk-container-small {
+      max-width: 980px;
+    }
+    .uk-background-tertiary {
+      background-color: #a93b59;
+    }
+    .uk-background-fourth {
+      background-color: #2c9363;
+    }
+    .woocommerce-product-gallery {
+      width: 100%!important;
+    }
+    @media (max-width: 639px) {
+      .single-content .uk-section-small {
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block main %}
+  <div id="Product-{{ post.id|e('esc_html') }}" class="single-product-details {{ post.class|e('esc_html') }}" itemscope itemtype="http://schema.org/Product">
+
+    {% block single_header %}
+      {% if fn('post_password_required', post.id) %}
+        {{ parent() }}
+      {% endif %}
+      <header id="StyleHeaderPink" class="itsa-header style-header uk-background-muted uk-position-relative theme-border-bottom" hidden>
+        <div class="uk-container uk-container-small">
+          <ul class="uk-flex uk-flex-middle uk-grid-collapse uk-grid uk-grid-stack uk-position-relative uk-position-z-index" uk-grid>
+            <li class="uk-width-1-1 uk-width-3-4@m">
+              <img class="uuuukkk-height-large cover-img uk-box-shadow-large uk-border-rounded rounded-bottom-only" src="{{ post.thumbnail.src|resize(735, 420, 'center')|e('esc_url') }}" width="735" height="420">
+            </li>
+            <li class="content">
+              <div class="uk-position-relative">
+                <div class="uk-card uk-card-default uk-card-body uk-border-rounded">
+                  <h1 class="uk-card-title uk-margin-small {{ (post.preview) ? '' : 'uk-h1' }}">{{ post.title|e('esc_html') }}</h1>
+                  {% if post.preview %}
+                    <p class="uk-margin-small">{{ post.preview.length(preview_length|default(20)).force.read_more('')|e('esc_html') }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <header class="itsa-header style-header new uk-background-muted uk-position-relative theme-border-bottom" hidden>
+        <div class="uk-container">
+          <div class="uk-inline">
+            <img class="uk-height-large cover-img uk-box-shadow-large uk-border-rounded rounded-bottom-only" src="{{ post.thumbnail.src|resize(1200, 320, 'center')|e('esc_url') }}" width="1200" height="320">
+            <div class="uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-position-small uk-overlay uk-overlay-faint uk-border-rounded uk-light uk-text-center">
+              <div class="uk-width-1-1 uk-width-1-2@m">
+                <h1 class="uk-margin-small {{ (post.preview) ? 'uk-h2' : 'uk-h1' }}">{{ post.title|e('esc_html') }}</h1>
+                {% if post.preview %}
+                  <p class="uk-margin-small">{{ post.preview.length(preview_length|default(20)).force.read_more('')|e('esc_html') }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      {% block breads %}
+        <div class="uk-background-mmmmuted padding-5 ttttheme-border-bottom">
+          <div class="uk-container">
+            {% include '_breads.twig' %}
+          </div>
+        </div>
+      {% endblock %}
+    {% endblock %}
+
+    {% block single_content %}
+      {% if not fn('post_password_required', post.id) %}
+        <div class="single-content">
+
+          {# product content #}
+          <section class="product-content-section uk-section-xsmall uk-container uk-container-xsmall">
+
+            {% do action('woocommerce_before_single_product') %} {# store notices #}
+
+            <div class="uk-child-width-1-2@m" uk-grid="masonry: true;">
+
+              <div class="product-right">
+                {% do action('woocommerce_single_product_summary') %} {# product details #}
+              </div>
+
+              <div class="product-left uk-flex-first@m">
+                {% do action('woocommerce_before_single_product_summary') %} {# product thumb/gallery #}
+              </div>
+
+            </div>
+
+          </section>
+
+          {# {% include '_product-feature-meta.twig' %}
+
+          {% include '_product-collection-meta.twig' %}
+
+          {% include '_product-range-meta.twig' %} #}
+
+          {# meta link #}
+          <meta itemprop="url" content="{{ post.link|e('esc_url') }}" />
+
+          {% do action('woocommerce_after_single_product') %}
+
+          {% block single_footer %}
+            {# parent() #}
+          {% endblock %}
+
+        </div>
+      {% else %}
+        <div class="password-protected-form uk-container">
+          {# {% include '_password-protected-form.twig' %} #}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script type='text/javascript'>
+
+    // what to do to Woo when the document is ready
+    jQuery(document).ready(function($) {
+
+      // notices
+      $(".woocommerce-notices-wrapper").addClass("uk-container uk-container-large uk-margin-small");
+      $(".woocommerce-notices-wrapper .button").addClass("uk-button uk-button-primary uk-button-small uk-small-margin-right");
+
+      // sale badge
+      $(".onsale").addClass("uk-card-badge uk-label");
+
+      // add-to-cart
+      $(".variations_form table").addClass("uk-table-small uk-table-divider uk-table-middle uk-table-justify uk-position-relative");
+      // add-to-cart
+      $(".product-right .button").addClass("uk-button uk-button-primary");
+      // product buttons
+      $("#ProductButtons .button").addClass("uk-button uk-button-small uk-button-primary");
+      // quantity input
+      $(".quantity").addClass("uk-width-auto uk-display-inline-block");
+
+      // product metas
+      $(".product_meta").addClass("uk-margin-small-top");
+      $(".product_meta > span").addClass("uk-display-block");
+
+      // stock
+      $(".in-stock").addClass("uk-text-success");
+      $(".out-of-stock").addClass("uk-text-danger");
+
+      // tab heading
+      $(".tab-content h2").addClass("uk-h4");
+      // reviews tab
+      $("ol.commentlist").addClass("uk-list uk-list-divider");
+      // additional info tab
+      $(".woocommerce-product-attributes").addClass("uk-table-small uk-table-divider uk-table-middle uk-table-justify uk-margin-remove-bottom");
+
+    });
+
+    var related_swiper = new Swiper('#slideshow_related', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      // autoplay: {
+      //   delay: 4000,
+      //   disableOnInteraction: true,
+      // },
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+      },
+      breakpoints: {
+        960: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        1290: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+      }
+    });
+    var upsells_swiper = new Swiper('#slideshow_upsells', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      // autoplay: {
+      //   delay: 4000,
+      //   disableOnInteraction: true,
+      // },
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+      },
+      breakpoints: {
+        // 960: {
+        //   slidesPerView: 3,
+        //   spaceBetween: 15,
+        // },
+        1290: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      }
+    });
+
+  </script>
+{% endblock %}

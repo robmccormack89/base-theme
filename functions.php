@@ -33,3 +33,18 @@ if (class_exists('Timber\Timber')) new Rmcc\Theme;
 
 if($configs['live_search']) require get_template_directory() . '/inc/extra/live_search.php';
 if($configs['blog_filters']) require get_template_directory() . '/inc/extra/blog_filters.php';
+
+/* if Woocommerce is available (plugin is installed), do the ThemeWoo class & all the includes
+
+  Woocommerce should be installed via required plugins
+
+*/
+if (class_exists('Timber\Timber') && class_exists('Woocommerce')) {
+  function timber_set_product( $post ) {
+    global $product;
+    $product = wc_get_product( $post->ID );
+  }
+  new Rmcc\ThemeWoo;
+  // require_once get_template_directory() . '/inc/woo/helpers.php';
+  // require_once get_template_directory() . '/inc/woo/functions.php';
+}

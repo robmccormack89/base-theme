@@ -61,7 +61,7 @@ function get_parent_term_slug_from_child($child, $tax = 'category'){
 // set conditionals for shop filters functionality on child term archives
 function is_child_term_archive($tax_key = null) {
 	$queried_object = get_queried_object();
-  if($queried_object->parent) {
+  if(property_exists($queried_object, 'parent')) {
 		if($queried_object->parent != '0'){
 			if($tax_key){
 				$parent_term = get_term($queried_object->parent);

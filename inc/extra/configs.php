@@ -28,33 +28,44 @@ $configs['infinite_pagination'] = true;
 
 // Live Search configs
 $configs['live_search'] = true;
-$configs['live_search_types'] = array('post', 'page');
-$configs['live_search_taxes'] = array('category', 'post_tag');
-$configs['live_search_types_in_taxes'] = array('post');
-$configs['live_search'] = false; // disable
+// $configs['live_search_types'] = array('post', 'page');
+$configs['live_search_types'] = array('product', 'page');
+// $configs['live_search_taxes'] = array('category', 'post_tag');
+$configs['live_search_taxes'] = array('product_cat', 'product_tag');
+$configs['live_search_types_in_taxes'] = array('product');
+// $configs['live_search'] = false; // disable
 
 // Blog Filters configs
 $configs['blog_filters'] = true;
 $configs['blog_filters_properties'] = (object) [
   "types" => array(
+    // (object) [
+    //   "parentGroupId" => 'post_cat_group',
+    //   "subGroupId" => 'post_subcat_group',
+    //   "subId" => 'post_cat_sub',
+    //   "formQueryKey" => 'category_name',
+    //   "taxKey" => 'category',
+    //   "altQueryKey" => 'cat',
+    //   "currentQueryVar" => ''
+    // ],
     (object) [
-      "parentGroupId" => 'post_cat_group',
-      "subGroupId" => 'post_subcat_group',
-      "subId" => 'post_cat_sub',
-      "formQueryKey" => 'category_name',
-      "taxKey" => 'category',
-      "altQueryKey" => 'cat',
+      "parentGroupId" => 'product_cat_group',
+      "subGroupId" => 'product_subcat_group',
+      "subId" => 'product_cat_sub',
+      "formQueryKey" => 'product_cat',
+      "taxKey" => 'product_cat',
+      "altQueryKey" => 'product_cat',
       "currentQueryVar" => ''
     ],
     (object) [
-      "formQueryKey" => 'tag',
-      "taxKey" => 'post_tag',
-      "altQueryKey" => 'tag_id',
+      "formQueryKey" => 'product_tag',
+      "taxKey" => 'product_tag',
+      "altQueryKey" => 'product_tag',
       "currentQueryVar" => ''
     ]
   )
 ];
-$configs['blog_filters'] = false; // disable
+// $configs['blog_filters'] = false; // disable
 
 // Meta gallerys config (uses nanogallery)
 $configs['meta_galleries'] = true;

@@ -14,11 +14,12 @@
   <style>
 
     {# vars #}
-      {% set green_colour = '#227243' %}
-      {% set green_colour_seethru = '#227243e6' %}
+      {% set green_colour = '#608853' %}
+      {% set green_colour_seethru = '#608853e6' %}
       {% set black_colour = '#000000' %}
       {% set black_colour_seethru = '#000000cc' %}
       {% set white_colour = '#ffffff' %}
+      {% set white_colour_seethru = '#ffffffcc' %}
       {% set yellow_colour = '#e4e400' %}
     {# /vars #}
 
@@ -96,6 +97,18 @@
         line-height: 1.9rem;
       }
 
+      {# leads #}
+      .uk-text-lead {
+        font-size: 1.2rem;
+        line-height: 1.2;
+      }
+      @media (min-width: 1200px){
+        .uk-text-lead {
+          font-size: 1.5rem;
+          line-height: 1.5;
+        }
+      }
+
     {# /text #}
 
     {# backgrounds #}
@@ -119,6 +132,9 @@
       }
       .uk-overlay-secondary {
         background: {{black_colour_seethru}};
+      }
+      .overlay-default:after {
+        background-color: {{white_colour_seethru}};
       }
 
     {# /backgrounds #}
@@ -163,13 +179,14 @@
       }
       .uk-button-large {
         border-radius: 100px;
-        font-size: .875rem;
-        line-height: 60px;
-        padding: 0 60px;
+        font-size: 1rem;
+        line-height: 80px;
+        padding: 0 80px;
       }
       .uk-button-primary,
-      .uk-cover-container.uk-light .uk-button-primary {
-        background-color: {{green_colour}};
+      .uk-cover-container.uk-light .uk-button-primary,
+      .uk-icon-button.uk-background-primary {
+        background-color: {{green_colour}}!important;
         color: {{white_colour}};
       }
       .uk-button-secondary {
@@ -356,14 +373,14 @@
       }
       @media (min-width: 1200px){
         .main-nav .uk-navbar-item, .main-nav .uk-navbar-nav>li>a, .main-nav .uk-navbar-toggle {
-          min-height: 260px;
+          min-height: 200px;
         }
       }
       .uk-light .uk-navbar-nav>li>a, .uk-light .uk-navbar-toggle  {
         color: hsla(0,0%,100%,1);
       }
       .uk-light .uk-navbar-nav>li.uk-active>a {
-        color: #377f53;
+        color: {{green_colour}};
       }
       .uk-icon-button.uk-icon-button-large {
         height: 50px;
@@ -379,441 +396,829 @@
       }
     {# /nav #}
 
+    {# util #}
+      .large-right {
+        padding-right: 100px;
+      }
+      .full-height-viewport {
+        height: 100vh;
+      }
+    {# /util #}
+
+    {# lists #}
+      .uk-list-xlarge>*>ul, .uk-list-xlarge>:nth-child(n+2) {
+        margin-top: 50px;
+      }
+    {# /lists #}
+
+    {# dividers #}
+      .uk-divider-small:after {
+        border-top: 8px solid #608853;
+        border-radius: 100px;
+        width: 60px;
+      }
+      .primary-divider:after {
+        width: 250px;
+        border-radius: 0;
+        border-color: #608853!important;
+        border-width: medium;
+      }
+    {# /dividers #}
+
+    {# Swiper styles #}
+      .swiper, swiper-container {
+        padding: 0;
+      }
+      @media (min-width: 640px){
+        .swiper, swiper-container {
+          padding: 0 20px;
+        }
+      }
+      .uk-light .swiper-pagination-bullet {
+        background: #fff;
+      }
+      .swiper-pagination-bullet-active {
+        background: #608853!important;
+      }
+    {# /Swiper styles #}
+
+    {# footer #}
+      footer .uk-logo .uk-width-medium {
+        width: 250px;
+      }
+      .footer-nav {
+        column-count: 2;
+        column-gap: 10px;
+        font-size: 1.2rem;
+      }
+      .footer-nav>* {
+        padding-left: 20px;
+      }
+    {# /footer #}
+
+    .uk-offcanvas-bar {
+      width: 86%;
+      max-width: 450px!important;
+    }
+
+    .uk-width-xsmall {
+      width: 100px;
+    }
+
+    .uk-padding-medium {
+      padding: 20px;
+    }
+
+    .uk-nav-default>li>a {
+      color: #333;
+    }
+    .uk-nav-default>li.uk-active>a {
+      color: {{green_colour}};
+    }
+    .uk-nav>li>a {
+      font-weight: 800;
+    }
+
+    .uk-offcanvas-bar .uk-nav-default {
+      font-size: 1.1rem;
+    }
+    .uk-offcanvas-bar .uk-nav-default li>a {
+      display: block;
+    }
+    .uk-offcanvas-bar .uk-nav-default li.uk-parent>a::before {
+      content: "";
+      width: 1.4em;
+      height: 1.4em;
+      margin-left: 10px;
+      float: right;
+      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%222%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    .uk-offcanvas-bar .uk-nav-default li.uk-parent.uk-open>a::before {
+      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E);
+    }
+
   </style>
 {% endblock %}
 
 {% block main %}
-    
-  {# cover #}
-  <section class="">
-    <div class="uk-cover-container uk-light" uk-height-viewport>
-      <img src="{{theme.link}}/assets/img/coffee/beans_bg.jpg" alt="" uk-cover>
-      <div class="uk-position-cover uk-overlay uk-overlay-secondary"></div>
-      <div class="uk-position-top uk-light">
-        <nav class="main-nav uk-navbar-container uk-navbar-transparent">
-          <div class="uk-container uk-container-expand">
-            <div uk-navbar>
-              <div class="uk-navbar-left uk-visible@m">
-                <div class="uk-navbar-item uk-flex uk-flex-left uk-flex middle uk-padding-remove-left">
+
+  <header class="uk-position-top uk-position-z-index uk-light">
+    <nav class="main-nav uk-navbar-container uk-navbar-transparent">
+      <div class="uk-container uk-container-expand">
+        <div uk-navbar>
+
+          {# main_nav_left_socials #}
+          {% if has_menu_socials %}
+            <div class="uk-navbar-left uk-visible@m">
+              <div class="uk-navbar-item uk-flex uk-flex-left uk-flex middle uk-padding-remove-left">
+                {% for item in menu_socials.get_items %}
+                  <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 1.5"></a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
+          {# main_nav_center_main_menu #}
+          <div class="uk-navbar-center uk-flex uk-flex-middle">
+
+            {# main_nav_center_main_menu_left #}
+            {% if has_menu_main %}
+              {% if menu_main.first_half_items is not empty %}
+                <div class="uk-flex-left uk-visible@m">
+                  <ul class="uk-navbar-nav">
+                    {% for item in menu_main.first_half_items %}
+                      {% if item.get_children %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                          <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                              {% for child in item.get_children %}
+                                <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                                  <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
+                                  {% if child.children %}
+                                    <div uk-dropdown="pos: right-top">
+                                      <ul class="uk-nav uk-dropdown-nav">
+                                        {% for third in child.children %}
+                                          <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                            <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
+                                          </li>
+                                        {% endfor %}
+                                      </ul>
+                                    </div>
+                                  {% endif %}
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </li>
+                      {% else %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endif %}
+
+            {# main_nav_center_logo_center #}
+            <a class="uk-navbar-item uk-logo" href="#">
+              {% if theme.logo %}
+                {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
+                <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
+              {% else %}
+                {# {{ site.title|e('esc_html') }} #}
+                <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+              {% endif %}
+            </a>
+
+            {# main_nav_center_main_menu_right #}
+            {% if has_menu_main %}
+              {% if menu_main.second_half_items is not empty %}
+                <div class="uk-flex-right uk-visible@m">
+                  <ul class="uk-navbar-nav">
+                    {% for item in menu_main.second_half_items %}
+                      {% if item.get_children %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                          <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                              {% for child in item.get_children %}
+                                <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                                  <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
+                                  {% if child.children %}
+                                    <div uk-dropdown="pos: right-top">
+                                      <ul class="uk-nav uk-dropdown-nav">
+                                        {% for third in child.children %}
+                                          <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                            <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
+                                          </li>
+                                        {% endfor %}
+                                      </ul>
+                                    </div>
+                                  {% endif %}
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </li>
+                      {% else %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endif %}
+
+          </div>
+
+          {# main_nav_right_mobile_toggle #}
+          {% if has_menu_main %}
+            <div class="uk-navbar-right">
+              <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {% if has_menu_main %}
+    <div id="offcanvas-overlay" class="" uk-offcanvas="overlay: true">
+      <div class="uk-offcanvas-bar uk-padding-remove">
+        <div class="overlay-wrap overlay-default uk-dark uk-width-1-1 uk-height-1-1 uk-padding-medium" style="background-image: url(https://picsum.photos/id/20/1920/800);">
+
+          <a class="uk-offcanvas-close uk-position-small uk-text-emphasis"><span uk-icon="icon: close; ratio: 1.5"></span></a>
+
+          <div class=" uk-position-relative uk-position-z-index">
+            <a class="uk-logo" href="/">
+              {# <img src="{{ theme.link }}/assets/img/coffee/demo/light_logo.png" alt="" class="uk-width-xsmall"> #}
+            </a>
+
+            {# mobile menu nav #}
+            <ul class="uk-nav-default uk-margin" uk-nav="multiple: true">
+              {% if has_menu_main %}
+
+                {# mobile menu title #}
+                <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
+                  {{ menu_main.title|e('esc_html') }}
+                  <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
+                </li>
+
+                <li class="uk-nav-divider" hidden></li>
+
+                {# mobile menu items #}
+                {% for item in menu_main.get_items %}
+                  {% if item.get_children %}
+                    <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
+                      <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
+                      <ul class="uk-nav-sub">
+                        {% for child in item.get_children %}
+                          <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                            <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
+                            {% if child.children %}
+                              <ul class="uk-nav-sub">
+                                {% for third in child.children %}
+                                  <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                    <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% else %}
+                    <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                      <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+
+              {% endif %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# <div class="uk-background-secondary" uk-height-viewport></div> #}
+
+  <div>
+
+    {# cover #}
+    <section class="">
+      <div class="uk-cover-container uk-light" uk-height-viewport>
+        <img src="{{theme.link}}/assets/img/coffee/beans_bg.jpg" alt="" uk-cover>
+        <div class="uk-position-cover uk-overlay uk-overlay-secondary"></div>
+        <div class="uk-position-top uk-light" hidden>
+          <nav class="main-nav uk-navbar-container uk-navbar-transparent">
+            <div class="uk-container uk-container-expand">
+              <div uk-navbar>
+                <div class="uk-navbar-left uk-visible@m">
+                  <div class="uk-navbar-item uk-flex uk-flex-left uk-flex middle uk-padding-remove-left">
+                    <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: twitter; ratio: 1.5"></a>
+                    <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: facebook; ratio: 1.5"></a>
+                    <a href="" class="uk-icon-button uk-icon-button-large" uk-icon="icon: youtube; ratio: 1.5"></a>
+                  </div>
+                </div>
+                <div class="uk-navbar-center uk-flex uk-flex-middle">
+                  <div class="uk-flex-left uk-visible@m">
+                    <ul class="uk-navbar-nav">
+                      <li class="uk-active"><a href="#">Home</a></li>
+                      <li>
+                        <a href="#">About</a>
+                        <div class="uk-navbar-dropdown">
+                          <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <a class="uk-navbar-item uk-logo" href="#">
+                    <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+                  </a>
+                  <div class="uk-flex-right uk-visible@m">
+                    <ul class="uk-navbar-nav">
+                      <li><a href="#">Shop</a></li>
+                      <li><a href="#">Contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="uk-navbar-right">
+                  <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="uk-position-center uk-position-z-index">
+          <div class="uk-container uk-margin-large-bottom">
+            <h1 class="uk-heading-large uk-text-center"><span class="uk-text-primary">Quality</span><br>Coffee & Tea</h1>
+            <div class="uk-flex uk-flex-center uk-margin-medium-top">
+              <a href="#" class="uk-button uk-button-large uk-button-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# cover pull-up #}
+    <section class="uk-section uk-section-primary uk-light">
+      <div class="float-box uk-position-relative uk-height-small">
+        <div class="uk-position-bottom-center">
+          <div class="coffee_bean-container uk-container uk-container-xsmall">
+            <img class="coffee_bean-img uk-padding-small uk-padding-remove-vertical" src="{{ theme.link }}/assets/img/coffee/coffee_bean.png" alt="">
+          </div>
+        </div>
+        <div class="lte-effect-smoke">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-1" alt=".">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-2" alt=".">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-3" alt=".">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-4" alt=".">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-5" alt=".">
+          <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-6" alt=".">
+        </div>
+      </div>
+    </section>
+
+    {# about #}
+    <section class="uk-section uk-section-large uk-section-default">
+      <div class="uk-container uk-container-large">
+        <div class="uk-child-width-1-2@m uk-flex uk-flex-middle" uk-grid>
+          <div>
+            <h2 class="uk-h1"><span class="uk-text-primary">Arabica & Robusta</span><br>Exclusive Planted Coffee</h2>
+            <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi. Maecenas dapibus mattis eros, at fermentum sapien.</p>
+            <a class="uk-button uk-button-primary uk-button-large uk-margin-right">read more</a>
+            <a class="uk-button uk-button-secondary uk-button-large">shop now</a>
+          </div>
+          <div>
+            <img src="{{ theme.link }}/assets/img/coffee/about.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# features x4 #}
+    <section class="uk-section uk-section-large uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);">
+      <div class="uk-position-relative uk-position-z-index">
+        <div class="uk-container uk-text-center uk-margin-medium-bottom">
+          <h2 class="uk-h1"><span class="uk-text-primary">Coffeeandtea.ie</span><br>The Products We offer</h2>
+          <hr class="uk-divider-small">
+          <p class="uk-text-lead uk-text-bold uk-text-emphasis uk-text-center">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris <span class="uk-text-primary">semper accumsan</span>. Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.</p>
+        </div>
+        <div class="uk-container uk-container-xlarge uk-margin-large-top">
+
+          <div class="four-items-swipe swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="uk-text-center uk-padding-small">
+                  <a class="uk-transition-toggle uk-position-relative">
+                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/beans_800.jpg" width="300" height="300" alt="">
+                    <div class="uk-position-center-left number-badge-wrap">
+                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">01</div>
+                    </div>
+                  </a>
+                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Quality Coffees</h3>
+                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="uk-text-center uk-padding-small">
+                  <a class="uk-transition-toggle uk-position-relative">
+                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/leaves_800.jpg" width="300" height="300" alt="">
+                    <div class="uk-position-center-left number-badge-wrap">
+                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">02</div>
+                    </div>
+                  </a>
+                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Luxurious Teas</h3>
+                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="uk-text-center uk-padding-small">
+                  <a class="uk-transition-toggle uk-position-relative">
+                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/choc_800.jpg" width="300" height="300" alt="">
+                    <div class="uk-position-center-left number-badge-wrap">
+                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">03</div>
+                    </div>
+                  </a>
+                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Delicious Chocolates</h3>
+                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="uk-text-center uk-padding-small">
+                  <a class="uk-transition-toggle uk-position-relative">
+                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
+                    <div class="uk-position-center-left number-badge-wrap">
+                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">04</div>
+                    </div>
+                  </a>
+                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">More Delicious Treats</h3>
+                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="uk-text-center uk-padding-small">
+                  <a class="uk-transition-toggle uk-position-relative">
+                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/beans_800.jpg" width="300" height="300" alt="">
+                    <div class="uk-position-center-left number-badge-wrap">
+                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">01</div>
+                    </div>
+                  </a>
+                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Quality Coffees</h3>
+                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination uk-position-relative"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    {# numbers x4 #}
+    <section class="uk-section overlay-wrap overlay-primary uk-light uk-position-relative uk-background-cover" style="background-image: url({{theme.link}}/assets/img/coffee/tea_leaf_01.jpg);">
+      <div class="uk-container uk-container-xlarge uk-position-relative uk-position-z-index">
+        <div class="uk-child-width-1-4@m uk-text-center" uk-grid>
+          <div>
+            <h3 class="uk-heading-large">37</h3>
+            <h4 class="uk-h3 uk-margin-small-top">Selected Varieties</h4>
+          </div>
+          <div>
+            <h3 class="uk-heading-large">259</h3>
+            <h4 class="uk-h3 uk-margin-small-top">Hectares of Plantations</h4>
+          </div>
+          <div>
+            <h3 class="uk-heading-large">140</h3>
+            <h4 class="uk-h3 uk-margin-small-top">Coffee Pickers</h4>
+          </div>
+          <div>
+            <h3 class="uk-heading-large">75</h3>
+            <h4 class="uk-h3 uk-margin-small-top">Consumer Countries</h4>
+          </div>
+        </div>
+      <div>
+    </section>
+
+    {# benefits x6 #}
+    <section class="uk-section uk-section-default uk-section-large" style="background-image: url({{theme.link}}/assets/img/coffee/paper_bg.jpg);">
+      <div class="uk-container uk-container-small uk-text-center uk-margin-medium-bottom">
+        <h2 class="uk-h1"><span class="uk-text-primary">Coffeeandtea.ie</span><br>The benefits of shopping with us</h2>
+        <hr class="uk-divider-small">
+        <p class="uk-text-lead">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi.</p>
+      </div>
+      <div class="uk-container uk-container-xlarge">
+        <div class="uk-child-width-1-3@m uk-flex uk-flex-middle uk-grid-large" uk-grid>
+          <div class="uk-width-1-4">
+            <ul class="uk-list uk-list-xlarge icon-list uk-text-left">
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-delivery-truck; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-tea-bag; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-roaster; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="uk-width-1-2">
+            <img src="{{theme.link}}/assets/img/coffee/cup.png" alt="">
+          </div>
+          <div class="uk-width-1-4">
+            <ul class="uk-list uk-list-xlarge icon-list uk-text-right">
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-sustainable; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand uk-flex-first">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-badge; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand uk-flex-first">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-text-primary" uk-icon="icon: rmcc-cup; ratio: 5"></span>
+                  </div>
+                  <div class="uk-width-expand uk-flex-first">
+                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
+                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# CTAs x3 #}
+    <section class="">
+      <div class="uk-child-width-1-3@m uk-grid-collapse uk-grid-match" uk-grid>
+        <div class="">
+          <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
+            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_01.jpg" alt="">
+            <div class="uk-position-top-right uk-position-large">
+              <img class="" src="{{theme.link}}/assets/img/coffee/stamp.png" alt="">
+            </div>
+          </a>
+        </div>
+        <div class="uk-position-relative overlay-wrap overlay-primary uk-light uk-flex uk-flex-middle uk-background-cover" style="background-image: url({{theme.link}}/assets/img/coffee/leaves_overlay_bg_small.png);">
+          <div class="uk-padding-large uk-position-relative uk-position-z-index">
+            <h2 class="uk-heading-medium"><span class="uk-text-secondary">Divine</span><br>Aroma<br>in Every Cup</h2>
+            <div class="uk-width-4-5@m">
+              <p class="uk-text-emphasis bigger-lines">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+            </div>
+            <a class="uk-button uk-button-secondary uk-button-large uk-margin-medium-top">Read More</a>
+          </div>
+        </div>
+        <div class="">
+          <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
+            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_02.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {# cover / CTA / video popup #}
+    <section class="">
+      <div class="uk-cover-container" uk-height-viewport>
+        <img src="https://picsum.photos/id/20/1920/800" alt="" uk-cover>
+        <div class="uk-position-cover uk-overlay uk-overlay-secondary uk-light uk-flex uk-flex-center uk-flex-middle uk-text-center">
+          <div>
+          <h2 class="uk-heading-medium"><span class="uk-text-primary">How we Prepare our Beans</span><br>Watch Video</h2>
+          <a href="#" class="uk-icon-link uk-transition-scale-up uk-transition-opaque">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+          </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# the product #}
+    <section class="uk-section uk-section-default uk-section-large">
+      <div class="uk-container uk-container-small uk-text-center uk-margin-large-bottom">
+        <h4 class="uk-text-primary uk-margin-small-bottom">Online Store</h4>
+        <h2 class="uk-margin-small-top uk-h1">Popular Products</h2>
+        <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac mi.</p>
+      </div>
+      <div class="uk-container uk-container-xlarge">
+        <div class="uk-grid-large uk-grid-column-large" uk-grid>
+          <div class="uk-width-1-2@m"><img src="https://picsum.photos/id/20/800/800" alt=""></div>
+          <div class="uk-width-2-5@m">
+            Rated: 5.00 out of 5
+            <h2>Ethiopia Arabica</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <ul class="uk-list uk-list-striped">
+              <li>Pure Grade</li>
+              <li>Amazing Vanilla Aroma</li>
+              <li>Strong Roasting</li>
+              <li>Ultra Grinding</li>
+            </ul>
+            <div>$19.99 $16.99</div>
+            <a>add to cart</a>
+            <a>more info</a>
+          </div>
+        </div>
+        <ul class="uk-child-width-1-4@m uk-grid-medium uk-margin-xlarge-top" uk-grid>
+          <li class="uk-text-center">
+            <img src="https://picsum.photos/id/42/800/800" alt="">
+            <h3>Etiam dictum arcu posuere</h3>
+            <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+          </li>
+          <li class="uk-text-center">
+            <img src="https://picsum.photos/id/41/800/800" alt="">
+            <h3>Etiam dictum arcu posuere</h3>
+            <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+          </li>
+          <li class="uk-text-center">
+            <img src="https://picsum.photos/id/52/800/800" alt="">
+            <h3>Etiam dictum arcu posuere</h3>
+            <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+          </li>
+          <li class="uk-text-center">
+            <img src="https://picsum.photos/id/63/800/800" alt="">
+            <h3>Etiam dictum arcu posuere</h3>
+            <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
+          </li>
+        </ul>
+        <div class="uk-flex uk-flex-center uk-margin-large-top">
+          <a>shop now</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  {# website footer #}
+  <footer class="uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);" hidden>
+    <div class="uk-position-relative uk-position-z-index">
+      <div class="uk-section uk-section-large uk-container uk-container-xlarge">
+        <ul class="uk-child-width-1-3@m uk-grid-large uk-grid-column-large" uk-grid>
+          <li>
+            <div class="large-right">
+              <a class="uk-logo" href="/">
+                <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-medium">
+              </a>
+              <p>Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo. Vestibulum mattis, nisi ut.</p>
+              <div class="uk-flex uk-flex-left uk-flex middle">
                 <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: twitter; ratio: 1.5"></a>
                 <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: facebook; ratio: 1.5"></a>
                 <a href="" class="uk-icon-button uk-icon-button-large" uk-icon="icon: youtube; ratio: 1.5"></a>
-                </div>
-              </div>
-              <div class="uk-navbar-center uk-flex uk-flex-middle">
-                <div class="uk-flex-left uk-visible@m">
-                  <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="#">Home</a></li>
-                    <li>
-                      <a href="#">About</a>
-                      <div class="uk-navbar-dropdown">
-                        <ul class="uk-nav uk-navbar-dropdown-nav">
-                          <li class="uk-active"><a href="#">Active</a></li>
-                          <li><a href="#">Item</a></li>
-                          <li><a href="#">Item</a></li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <a class="uk-navbar-item uk-logo" href="#">
-                  <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
-                </a>
-                <div class="uk-flex-right uk-visible@m">
-                  <ul class="uk-navbar-nav">
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Contact</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="uk-navbar-right">
-                <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
               </div>
             </div>
-          </div>
-        </nav>
-      </div>
-      <div class="uk-position-center">
-        <div class="uk-container uk-margin-large-bottom">
-          <h1 class="uk-heading-large uk-text-center"><span class="uk-text-primary">Quality</span><br>Coffee & Tea</h1>
-          <div class="uk-flex uk-flex-center uk-margin-medium-top">
-            <a href="#" class="uk-button uk-button-large uk-button-primary">Shop Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div id="offcanvas-overlay" class="" uk-offcanvas="overlay: true">
-    <div class="uk-offcanvas-bar uk-padding-remove">
-      <div class="overlay-wrap overlay-primary uk-light uk-width-1-1 uk-height-1-1 uk-padding-small" style="background-image: url(https://picsum.photos/id/20/1920/800);">
-        <button class="uk-offcanvas-close" type="button" uk-close></button>
-        <div class=" uk-position-relative uk-position-z-index">
-          <h3>Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {# allows .uk-navbar-toggle-animate to work on uk-toggles with offcanvas as targets. needs anim-target attribute #}
-  <script>
-    var animated_toggles = document.querySelectorAll('.uk-navbar-toggle-animate');
-    animated_toggles.forEach(item => {
-      if(item.getAttribute('anim-target')){
-        var target = document.querySelector(item.getAttribute('anim-target'))
-        target.addEventListener('show', function(){
-          if(item.ariaExpanded == 'false') item.ariaExpanded = 'true';
-        }, false)
-        target.addEventListener('hide', function(){
-          if(item.ariaExpanded == 'true') item.ariaExpanded = 'false';
-        }, false)
-      }
-    });
-  </script>
-
-  {# cover pull-up #}
-  <section class="uk-section uk-section-primary uk-light">
-    <div class="float-box uk-position-relative uk-height-small">
-      <div class="uk-position-bottom-center">
-        <div class="coffee_bean-container uk-container uk-container-xsmall">
-          <img class="coffee_bean-img uk-padding-small uk-padding-remove-vertical" src="{{ theme.link }}/assets/img/coffee/coffee_bean.png" alt="">
-        </div>
-      </div>
-      <div class="lte-effect-smoke">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-1" alt=".">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-2" alt=".">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-3" alt=".">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-4" alt=".">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-5" alt=".">
-        <img src="{{theme.link}}/assets/img/coffee/smoke.png" class="lte-effect-item-6" alt=".">
-      </div>
-    </div>
-  </section>
-
-  {# about #}
-  <section class="uk-section uk-section-large uk-section-default">
-    <div class="uk-container uk-container-xlarge">
-      <div class="uk-child-width-1-2@m uk-flex uk-flex-middle" uk-grid>
-        <div>
-          <h2 class="uk-h1"><span class="uk-text-primary">Arabica & Robusta</span><br>Exclusive Planted Coffee</h2>
-          <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi.</p>
-          <ul class="uk-list">
-            <li><a class="uk-link-text uk-text-bold uk-text-emphasis"><span class="uk-margin-small-right uk-text-primary" uk-icon="icon: download; ratio: 1.5"></span>Download</a></li>
-            <li><a class="uk-link-text uk-text-bold uk-text-emphasis"><span class="uk-margin-small-right uk-text-primary" uk-icon="icon: receiver; ratio: 1.5"></span>3-068-387-01-39</a></li>
-          </ul>
-          <a class="uk-button uk-button-primary uk-button-large uk-margin-right">read more</a>
-          <a class="uk-button uk-button-secondary uk-button-large">shop now</a>
-        </div>
-        <div>
-          <img src="{{ theme.link }}/assets/img/coffee/about.jpg" alt="">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {# features x4 #}
-  <section class="uk-section uk-section-muted uk-section-large" style="background-image: url({{theme.link}}/assets/img/coffee/paper_bg.jpg);">
-    <div class="uk-container">
-      <p class="uk-text-lead uk-text-bold uk-text-emphasis uk-text-center">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris <span class="uk-text-primary">semper accumsan</span>. Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.</p>
-    </div>
-    <div class="uk-container uk-container-xlarge uk-margin-large-top">
-      <ul class="uk-child-width-1-4@m" uk-grid>
-        <li class="uk-text-center">
-          <a class="uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
-            <div class="uk-position-center-left number-badge-wrap">
-              <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">01</div>
+          </li>
+          <li>
+            <div class="large-right">
+              <h3 class="uk-text-primary uk-margin-remove">Navigation</h3>
+              <hr class="uk-divider-small primary-divider uk-margin-small-top uk-margin-medium-bottom">
+              <ul class="footer-nav uk-list uk-list-hyphen">
+                <li>Homepage</li>
+                <li>About us</li>
+                <li>Coffee</li>
+                <li>Chocolate</li>
+                <li>Tea</li>
+                <li>Shop</li>
+                <li>Contact</li>
+                <li>Basket</li>
+                <li>Checkout</li>
+                <li>Account</li>
+              </ul>
             </div>
-          </a>
-          <h3 class="uk-h4 uk-text-emphasis uk-margin-small-bottom">Etiam dictum arcu posuere</h3>
-          <p class="uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <a class="uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
-            <div class="uk-position-center-left number-badge-wrap">
-              <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">02</div>
-            </div>
-          </a>
-          <h3 class="uk-h4 uk-text-emphasis uk-margin-small-bottom">Etiam dictum arcu posuere</h3>
-          <p class="uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <a class="uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
-            <div class="uk-position-center-left number-badge-wrap">
-              <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">03</div>
-            </div>
-          </a>
-          <h3 class="uk-h4 uk-text-emphasis uk-margin-small-bottom">Etiam dictum arcu posuere</h3>
-          <p class="uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <a class="uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
-            <div class="uk-position-center-left number-badge-wrap">
-              <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">04</div>
-            </div>
-          </a>
-          <h3 class="uk-h4 uk-text-emphasis uk-margin-small-bottom">Etiam dictum arcu posuere</h3>
-          <p class="uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  {# CTAs x3 #}
-  <section class="">
-    <div class="uk-child-width-1-3@m uk-grid-collapse uk-grid-match" uk-grid>
-      <div class="">
-        <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
-          <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_01.jpg" alt="">
-          <div class="uk-position-top-right uk-position-large">
-            <img class="" src="{{theme.link}}/assets/img/coffee/stamp.png" alt="">
-          </div>
-        </a>
+          </li>
+          <li>
+            <h3 class="uk-text-primary uk-margin-remove">Contact Info</h3>
+            <hr class="uk-divider-small primary-divider uk-margin-small-top uk-margin-medium-bottom">
+            <ul class="uk-list uk-list-large">
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: location; ratio: 1.2"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Find us:</h4>
+                    <p class="uk-margin-remove">Rio de Janeiro, RJ Brazil, 04103 Route.<br>Postcode: 1234567</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: mail; ratio: 1.2"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Email us:</h4>
+                    <p class="uk-margin-remove">info@coffeeandtea.ie</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: receiver; ratio: 1.2"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Phone us:</h4>
+                    <p class="uk-margin-remove">Help: +49078-039-23-11<br>Sales: +49078-028-55-60</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <div class="uk-position-relative overlay-wrap overlay-primary uk-light uk-flex uk-flex-middle bg-scale-up" style="background-image: url({{theme.link}}/assets/img/coffee/tea_leaf_01.jpg);">
-        <div class="uk-padding-large uk-position-relative uk-position-z-index">
-          <h2 class="uk-heading-medium"><span class="uk-text-secondary">Divine</span><br>Aroma<br>in Every Cup</h2>
-          <div class="uk-width-4-5@m">
-            <p class="uk-text-emphasis bigger-lines">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-          </div>
-          <a class="uk-button uk-button-secondary uk-button-large uk-margin-medium-top">Read More</a>
-        </div>
-      </div>
-      <div class="">
-        <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
-          <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_02.jpg" alt="">
-        </a>
+      <hr class="uk-margin-remove">
+      <div class="uk-section uk-section-small uk-container uk-container-xlarge">
+        <p>Hello</p>
       </div>
     </div>
-  </section>
-
-  {# benefits x6 #}
-  <section class="uk-section uk-section-default uk-section-large">
-    <div class="uk-container uk-container-xlarge">
-      <div class="uk-child-width-1-3@m uk-flex uk-flex-middle uk-grid-large" uk-grid>
-        <div class="uk-width-1-4">
-          <ul class="uk-list uk-list-large icon-list uk-text-left">
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span class="uk-text-primary" uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="uk-width-1-2">
-          <img src="{{theme.link}}/assets/img/coffee/cup.jpg" alt="">
-        </div>
-        <div class="uk-width-1-4">
-          <ul class="uk-list uk-list-large icon-list uk-text-right">
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand uk-flex-first">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand uk-flex-first">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                <div class="uk-width-auto">
-                  <span uk-icon="icon: check; ratio: 2"></span>
-                </div>
-                <div class="uk-width-expand uk-flex-first">
-                  <h4>Lorm Ipsum</h4>
-                  <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {# cover / CTA / video popup #}
-  <section class="">
-    <div class="uk-cover-container" uk-height-viewport>
-      <img src="https://picsum.photos/id/20/1920/800" alt="" uk-cover>
-      <div class="uk-position-cover uk-overlay uk-overlay-secondary uk-light uk-flex uk-flex-center uk-flex-middle uk-text-center">
-        <div>
-        <h2 class="uk-heading-medium"><span class="uk-text-primary">How we Prepare our Beans</span><br>Watch Video</h2>
-        <a href="#" class="uk-icon-link uk-transition-scale-up uk-transition-opaque">
-					<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
-						<circle cx="12" cy="12" r="10"></circle>
-						<polygon points="10 8 16 12 10 16 10 8"></polygon>
-					</svg>
-        </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {# numbers x4 #}
-  <section class="uk-position-relative overlay-wrap uk-section uk-section-large overlay-primary uk-light" style="background-image: url(https://picsum.photos/id/20/1920/800);">
-    <div class="uk-container uk-container-xlarge uk-position-relative uk-position-z-index">
-      <div class="uk-child-width-1-4@m uk-text-center" uk-grid>
-        <div>
-          <h3 class="uk-heading-large">37</h3>
-          <h4 class="uk-h3 uk-margin-small-top">Selected Varieties</h4>
-        </div>
-        <div>
-          <h3 class="uk-heading-large">259</h3>
-          <h4 class="uk-h3 uk-margin-small-top">Hectares of Plantations</h4>
-        </div>
-        <div>
-          <h3 class="uk-heading-large">140</h3>
-          <h4 class="uk-h3 uk-margin-small-top">Coffee Pickers</h4>
-        </div>
-        <div>
-          <h3 class="uk-heading-large">75</h3>
-          <h4 class="uk-h3 uk-margin-small-top">Consumer Countries</h4>
-        </div>
-      </div>
-    <div>
-  </section>
-
-  {# the product #}
-  <section class="uk-section uk-section-default uk-section-large">
-    <div class="uk-container uk-container-small uk-text-center uk-margin-large-bottom">
-      <h4 class="uk-text-primary uk-margin-small-bottom">Online Store</h4>
-      <h2 class="uk-margin-small-top uk-h1">Popular Products</h2>
-      <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac mi.</p>
-    </div>
-    <div class="uk-container uk-container-xlarge">
-      <div class="uk-grid-large uk-grid-column-large" uk-grid>
-        <div class="uk-width-1-2@m"><img src="https://picsum.photos/id/20/800/800" alt=""></div>
-        <div class="uk-width-2-5@m">
-          Rated: 5.00 out of 5
-          <h2>Ethiopia Arabica</h2>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-          <ul class="uk-list uk-list-striped">
-            <li>Pure Grade</li>
-            <li>Amazing Vanilla Aroma</li>
-            <li>Strong Roasting</li>
-            <li>Ultra Grinding</li>
-          </ul>
-          <div>$19.99 $16.99</div>
-          <a>add to cart</a>
-          <a>more info</a>
-        </div>
-      </div>
-      <ul class="uk-child-width-1-4@m uk-grid-medium uk-margin-xlarge-top" uk-grid>
-        <li class="uk-text-center">
-          <img src="https://picsum.photos/id/42/800/800" alt="">
-          <h3>Etiam dictum arcu posuere</h3>
-          <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <img src="https://picsum.photos/id/41/800/800" alt="">
-          <h3>Etiam dictum arcu posuere</h3>
-          <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <img src="https://picsum.photos/id/52/800/800" alt="">
-          <h3>Etiam dictum arcu posuere</h3>
-          <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-        <li class="uk-text-center">
-          <img src="https://picsum.photos/id/63/800/800" alt="">
-          <h3>Etiam dictum arcu posuere</h3>
-          <p>Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-        </li>
-      </ul>
-      <div class="uk-flex uk-flex-center uk-margin-large-top">
-        <a>shop now</a>
-      </div>
-    </div>
-  </section>
-
-  {# website footer #}
-  <footer class="uk-section uk-section-large uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url(https://picsum.photos/id/20/1920/800);">
-    <div class="uk-container uk-container-xlarge uk-position-relative uk-position-z-index">
-      <div class="uk-child-width-1-3@m uk-grid-large uk-grid-column-large" uk-grid>
-        <div>
-          <img src="https://picsum.photos/id/20/100/100" alt="">
-          <p>Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo. Vestibulum mattis, nisi ut.</p>
-          <div>
-            <a href="" class="uk-icon-button uk-margin-small-right" uk-icon="twitter"></a>
-            <a href="" class="uk-icon-button  uk-margin-small-right" uk-icon="facebook"></a>
-            <a href="" class="uk-icon-button" uk-icon="youtube"></a>
-          </div>
-        </div>
-        <div>
-          <h3 class="uk-text-primary">Contact Info</h3>
-          <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-            <div class="uk-width-auto">
-              <span class="uk-text-primary" uk-icon="icon: location; ratio: 1.2"></span>
-            </div>
-            <div class="uk-width-expand">
-              <h4 class="uk-h5 uk-text-primary uk-margin-remove">Our location:</h4>
-              <p class="uk-margin-remove">Rio de Janeiro, RJ Brazil, 04103 Route</p>
-            </div>
-          </div>
-          <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-            <div class="uk-width-auto">
-              <span class="uk-text-primary" uk-icon="icon: location; ratio: 1.2"></span>
-            </div>
-            <div class="uk-width-expand">
-              <h4 class="uk-h5 uk-text-primary uk-margin-remove">Phones:</h4>
-              <p class="uk-margin-remove">+49078-039-23-11<br>+49078-028-55-60</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="uk-text-primary">SUbscribe</h3>
-        </div>
-      </div>
-    <div>
   </footer>
   
 {% endblock %}
 
 {% block footer %}
   {# {{ parent() }} #}
+
+  {# allows .uk-navbar-toggle-animate to work on uk-toggles with #offcanvas-overlay as target. needs anim-target attribute #}
+  <script>
+    var animated_toggles = document.querySelectorAll('.uk-navbar-toggle-animate');
+    animated_toggles.forEach(item => {
+
+      if(item.getAttribute('anim-target')){
+
+        var theTarget = document.querySelector(item.getAttribute('anim-target'))
+
+        theTarget.addEventListener("show", (event) => {
+          if (event.target.id === 'offcanvas-overlay') {
+            if(item.ariaExpanded == 'false') item.ariaExpanded = 'true';
+          }
+        });
+
+        theTarget.addEventListener("hide", (event) => {
+          if (event.target.id === 'offcanvas-overlay') {
+            if(item.ariaExpanded == 'true') item.ariaExpanded = 'false';
+          }
+        });
+
+      }
+
+    });
+  </script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".four-items-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      breakpoints: {
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 30
+        }
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+
 {% endblock %}

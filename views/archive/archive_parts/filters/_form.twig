@@ -75,7 +75,7 @@
                         <input 
                         class="uk-checkbox uk-border-rounded 
                         {{ fn('is_term_active', _item.term_id, fn('get_query_var', item.altQueryKey)) or fn('is_term_parent_of_active', _item.term_id, item.altQueryKey, item.taxKey) ? 'prevent-unclick' }} 
-                        {{ fn('does_term_have_children', _item.term_id) ? 'has-children' }}"
+                        {{ fn('does_term_have_children', _item.term_id, item.taxKey) ? 'has-children' }}"
                         type="checkbox" name="{{ item.formQueryKey }}" id="{{ _item.term_id|e('esc_html') }}" value="{{ _item.slug|e('esc_html') }}"
                         {{ fn('is_term_active', _item.term_id, fn('get_query_var', item.altQueryKey)) or fn('is_term_parent_of_active', _item.term_id, item.altQueryKey, item.taxKey) ? 'checked' }}> {{ _item.name|e('esc_html') }}
                       </label>
