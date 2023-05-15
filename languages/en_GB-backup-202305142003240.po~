@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-14 20:05+0000\n"
+"PO-Revision-Date: 2023-05-14 20:01+0000\n"
 "Last-Translator: Robert\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -245,8 +245,7 @@ msgstr ""
 #: views/temp/single/custom.php:790
 msgctxt "Homepage Template: Cover Section"
 msgid "%s/assets/img/coffee/beans_bg.jpg"
-msgstr ""
-"https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg"
+msgstr "%s/assets/img/coffee/beans_bg.jpg"
 
 #: views/temp/single/custom.php:797
 msgctxt "Homepage Template: Cover Section"

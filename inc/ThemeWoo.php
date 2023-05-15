@@ -264,6 +264,15 @@ class ThemeWoo extends Theme {
     $context['base_county'] = WC()->countries->get_base_state();
     $context['base_country'] = WC()->countries->get_base_country();
 
+    $cats_terms= get_terms([
+      'taxonomy' => 'product_cat',
+      'hide_empty' => true,
+      'parent' => 0
+    ]);
+    if(!empty($cats_terms)){ // if we have terms again, loop thru & set term thumb data & link
+      $context['cats_terms'] = set_terms_thumbs($cats_terms);
+    };
+
     $context['_get'] = $_GET;
 
     return $context;

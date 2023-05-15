@@ -2,6 +2,196 @@
 
 {% block header %}
   {# {{ parent() }} #}
+  <header>
+    <nav class="main-nav uk-light uk-position-relative uk-position-z-index">
+      <div class="uk-position-top-left uk-position-small uk-visible@m">
+        {# main_nav_center_logo_center #}
+        <a class="uk-logo" href="#">
+          {% if theme.logo %}
+            {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
+            <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
+          {% else %}
+            {# {{ site.title|e('esc_html') }} #}
+            {# <div class="uk-background-primary uk-height-small uk-width-small uk-width-medium@m"></div> #}
+            <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+          {% endif %}
+        </a>
+      </div>
+      <div class="uk-position-top-center uk-position-small">
+        <a class="uk-logo uk-hidden@m" href="#">
+          {% if theme.logo %}
+            {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
+            <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
+          {% else %}
+            {# {{ site.title|e('esc_html') }} #}
+            {# <div class="uk-background-primary uk-height-small uk-width-small uk-width-medium@m"></div> #}
+            <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+          {% endif %}
+        </a>
+        {% if has_menu_main %}
+          <ul class="uk-navbar-nav main-nav-center uk-visible@l">
+            {% for item in menu_main.get_items %}
+              {% if item.get_children %}
+                <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                  <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                  <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                      {% for child in item.get_children %}
+                        <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
+                          {% if child.children %}
+                            <div uk-dropdown="pos: right-top">
+                              <ul class="uk-nav uk-dropdown-nav">
+                                {% for third in child.children %}
+                                  <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                    <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+              {% else %}
+                <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                  <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="uk-position-top-right uk-position-small">
+        <div class="uk-navbar-item main-nav-right uk-visible@l">
+          {% for item in menu_socials.get_items %}
+            <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 2.1"></a>
+          {% endfor %}
+        </div>
+        {% if has_menu_main or has_menu_mobile %}
+          <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right uk-hidden@l" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
+        {% endif %}
+      </div>
+    </nav>
+    {% if has_menu_main or has_menu_mobile %}
+      <div id="offcanvas-overlay" class="" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar uk-padding-remove">
+          <div class="uk-background-default uk-dark uk-padding-medium uk-width-1-1 uk-height-1-1">
+
+            <a class="uk-offcanvas-close uk-position-small uk-text-emphasis">
+              <span uk-icon="icon: close; ratio: 1.5"></span>
+            </a>
+
+            <div class=" uk-position-relative uk-position-z-index">
+              <a class="uk-logo" href="/">
+                <div class="uk-background-muted uk-width-xsmall uk-height-xsmall"></div>
+              </a>
+
+              {# mobile menu nav #}
+              <ul class="uk-nav-default uk-margin" uk-nav="multiple: true">
+                {% if has_menu_mobile %}
+
+                  {# mobile menu title #}
+                  <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
+                    {{ menu_mobile.title|e('esc_html') }}
+                    <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
+                  </li>
+
+                  <li class="uk-nav-divider" hidden></li>
+
+                  {# mobile menu items #}
+                  {% for item in menu_mobile.get_items %}
+                    {% if item.get_children %}
+                      <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
+                        <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
+                        <ul class="uk-nav-sub">
+                          {% for child in item.get_children %}
+                            <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                              <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
+                              {% if child.children %}
+                                <ul class="uk-nav-sub">
+                                  {% for third in child.children %}
+                                    <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                      <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                        <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+
+                {% else %}
+                  {% if has_menu_main %}
+
+                    {# mobile menu title #}
+                    <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
+                      {{ menu_main.title|e('esc_html') }}
+                      <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
+                    </li>
+
+                    <li class="uk-nav-divider" hidden></li>
+
+                    {# mobile menu items #}
+                    {% for item in menu_main.get_items %}
+                      {% if item.get_children %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
+                          <ul class="uk-nav-sub">
+                            {% for child in item.get_children %}
+                              <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                                <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
+                                {% if child.children %}
+                                  <ul class="uk-nav-sub">
+                                    {% for third in child.children %}
+                                      <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                        <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                      {% else %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+
+                  {% endif %}
+                {% endif %}
+              </ul>
+
+            </div>
+
+            <div class="uk-position-bottom uk-position-small">
+              <div class="uk-flex uk-flex-middle uk-flex-center">
+                {% for item in menu_socials.get_items %}
+                  <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 1.5"></a>
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </header>
+
+  {# <div class="uk-background-secondary" uk-height-viewport></div> #}
+
 {% endblock %}
 
 {% block styles %}
@@ -68,6 +258,11 @@
         font-size: 2.8875rem;
         line-height: 1.1;
       }
+      @media (min-width: 768px){
+        .uk-heading-medium {
+          font-size: 3.2rem;
+        }
+      }
       @media (min-width: 960px){
         .uk-heading-medium {
           font-size: 3.5rem;
@@ -79,7 +274,17 @@
         }
       }
       .uk-heading-large {
-        font-size: 5rem;
+        font-size: 4rem;
+      }
+      @media (min-width: 480px){
+        .uk-heading-large {
+          font-size: 5rem;
+        }
+      }
+      @media (min-width: 768px){
+        .uk-heading-large {
+          font-size: 6rem;
+        }
       }
       @media (min-width: 960px){
         .uk-heading-large {
@@ -87,6 +292,11 @@
         }
       }
       @media (min-width: 1200px){
+        .uk-heading-large {
+          font-size: 8rem;
+        }
+      }
+      @media (min-width: 1600px){
         .uk-heading-large {
           font-size: 9rem;
         }
@@ -139,38 +349,6 @@
 
     {# /backgrounds #}
 
-    {# geometry #}
-
-      {# float box (pull up image) height #}
-      .float-box.uk-height-small {
-        height: 80px;
-      }
-      @media (min-width: 1200px){
-        .float-box.uk-height-small {
-          height: 200px;
-        }
-      }
-
-      {# product container grid #}
-      .uk-grid-large.uk-grid-column-large {
-          margin-left: -70px;
-      }
-      @media (min-width: 1200px){
-        .uk-grid-large.uk-grid-column-large {
-          margin-left: -100px;
-        }
-      }
-      .uk-grid-large.uk-grid-column-large>* {
-        padding-left: 70px;
-      }
-      @media (min-width: 1200px){
-        .uk-grid-large.uk-grid-column-large>* {
-          padding-left: 100px;
-        }
-      }
-
-    {# /geometry #}
-
     {# buttons #}
 
       .uk-button {
@@ -180,8 +358,24 @@
       .uk-button-large {
         border-radius: 100px;
         font-size: 1rem;
-        line-height: 80px;
-        padding: 0 80px;
+        line-height: 60px;
+        padding: 0 60px;
+      }
+      @media (min-width: 960px){
+        .uk-button-large {
+          border-radius: 100px;
+          font-size: 1rem;
+          line-height: 70px;
+          padding: 0 70px;
+        }
+      }
+      @media (min-width: 1200px){
+        .uk-button-large {
+          border-radius: 100px;
+          font-size: 1rem;
+          line-height: 80px;
+          padding: 0 80px;
+        }
       }
       .uk-button-primary,
       .uk-cover-container.uk-light .uk-button-primary,
@@ -342,14 +536,22 @@
         top: calc(50% - 40px);
       }
       .number-badge {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: #fff;
         border-radius: 100%;
         position: absolute;
         opacity: 1;
+        left: 20px;
+      }
+      @media (min-width: 960px){
+        .number-badge {
+          width: 100px;
+          height: 100px;
+          font-size: 1.5rem;
+        }
       }
     {# /number #}
 
@@ -369,11 +571,19 @@
         font-size: 1.2rem;
         padding: 0px 15px;
         text-transform: capitalize;
-        min-height: 140px;
+      }
+      .main-nav-center.uk-navbar-item, .main-nav-center.uk-navbar-nav>li>a, .main-nav-center.uk-navbar-toggle {
+        min-height: 130px;
+      }
+      .main-nav-right.uk-navbar-item, .main-nav-right.uk-navbar-nav>li>a, .main-nav-right.uk-navbar-toggle {
+        min-height: 130px;
       }
       @media (min-width: 1200px){
-        .main-nav .uk-navbar-item, .main-nav .uk-navbar-nav>li>a, .main-nav .uk-navbar-toggle {
-          min-height: 200px;
+        .main-nav-center.uk-navbar-item, .main-nav-center.uk-navbar-nav>li>a, .main-nav-center.uk-navbar-toggle {
+          min-height: 130px;
+        }
+        .main-nav-right.uk-navbar-item, .main-nav-right.uk-navbar-nav>li>a, .main-nav-right.uk-navbar-toggle {
+          min-height: 130px;
         }
       }
       .uk-light .uk-navbar-nav>li>a, .uk-light .uk-navbar-toggle  {
@@ -383,8 +593,8 @@
         color: {{green_colour}};
       }
       .uk-icon-button.uk-icon-button-large {
-        height: 50px;
-        width: 50px;
+        height: 70px;
+        width: 70px;
       }
       .uk-light .uk-icon-button {
         background-color: hsla(0,0%,100%,.1);
@@ -456,300 +666,143 @@
       }
     {# /footer #}
 
-    .uk-offcanvas-bar {
-      width: 86%;
-      max-width: 450px!important;
-    }
+    {# geometry #}
 
-    .uk-width-xsmall {
-      width: 100px;
-    }
+      {# float box (pull up image) height #}
+      .float-box {
+        height: 80px;
+      }
+      @media (min-width: 480px){
+        .float-box {
+          height: 100px;
+        }
+      }
+      @media (min-width: 768px){
+        .float-box {
+          height: 120px;
+        }
+      }
+      @media (min-width: 960px){
+        .float-box {
+          height: 150px;
+        }
+      }
+      @media (min-width: 1200px){
+        .float-box {
+          height: 350px;
+        }
+      }
+      @media (min-width: 1600px){
+        .float-box {
+          height: 350px;
+        }
+      }
 
-    .uk-padding-medium {
-      padding: 20px;
-    }
+      {# product container grid #}
+      .uk-grid-large.uk-grid-column-large {
+        margin-left: -70px;
+      }
+      @media (min-width: 1200px){
+        .uk-grid-large.uk-grid-column-large {
+          margin-left: -100px;
+        }
+      }
+      .uk-grid-large.uk-grid-column-large>* {
+        padding-left: 70px;
+      }
+      @media (min-width: 1200px){
+        .uk-grid-large.uk-grid-column-large>* {
+          padding-left: 100px;
+        }
+      }
 
-    .uk-nav-default>li>a {
-      color: #333;
-    }
-    .uk-nav-default>li.uk-active>a {
-      color: {{green_colour}};
-    }
-    .uk-nav>li>a {
-      font-weight: 800;
-    }
+    {# /geometry #}
 
-    .uk-offcanvas-bar .uk-nav-default {
-      font-size: 1.1rem;
-    }
-    .uk-offcanvas-bar .uk-nav-default li>a {
-      display: block;
-    }
-    .uk-offcanvas-bar .uk-nav-default li.uk-parent>a::before {
-      content: "";
-      width: 1.4em;
-      height: 1.4em;
-      margin-left: 10px;
-      float: right;
-      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%222%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E);
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-    }
-    .uk-offcanvas-bar .uk-nav-default li.uk-parent.uk-open>a::before {
-      background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E);
-    }
+    {# more #}
+
+      .uk-padding-medium {
+        padding: 20px;
+      }
+
+      .uk-nav>li>a {
+        font-weight: 800;
+      }
+      .uk-nav-default>li>a,
+      .uk-nav-default>li>a:hover {
+        color: #333;
+      }
+      .uk-nav-default>li.uk-active>a {
+        color: {{green_colour}};
+      }
+
+      .uk-offcanvas-bar {
+        width: 86%;
+        max-width: 450px!important;
+      }
+      .uk-offcanvas-bar .uk-nav-default {
+        font-size: 1.1rem;
+      }
+      .uk-offcanvas-bar .uk-nav-default li>a {
+        display: block;
+      }
+      .uk-offcanvas-bar .uk-nav-default li.uk-parent>a::before {
+        content: "";
+        width: 1.4em;
+        height: 1.4em;
+        margin-left: 10px;
+        float: right;
+        background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%222%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+      .uk-offcanvas-bar .uk-nav-default li.uk-parent.uk-open>a::before {
+        background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E);
+      }
+
+      .uk-light .uk-background-muted {
+        background-color: #ffffff17;
+      }
+
+      .uk-width-xsmall {
+        width: 100px;
+      }
+      .uk-height-xsmall {
+        height: 100px;
+      }
+      .uk-width-small {
+        width: 160px;
+      }
+      @media (min-width: 960px){
+        .uk-width-medium\@m {
+          width: 270px;
+        }
+      }
+
+      .overlay-primary.uk-light .uk-text-primary {
+        color: #0e0e0e!important;
+      }
+
+
+    {# /more #}
 
   </style>
 {% endblock %}
 
 {% block main %}
-
-  <header class="uk-position-top uk-position-z-index uk-light">
-    <nav class="main-nav uk-navbar-container uk-navbar-transparent">
-      <div class="uk-container uk-container-expand">
-        <div uk-navbar>
-
-          {# main_nav_left_socials #}
-          {% if has_menu_socials %}
-            <div class="uk-navbar-left uk-visible@m">
-              <div class="uk-navbar-item uk-flex uk-flex-left uk-flex middle uk-padding-remove-left">
-                {% for item in menu_socials.get_items %}
-                  <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 1.5"></a>
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
-
-          {# main_nav_center_main_menu #}
-          <div class="uk-navbar-center uk-flex uk-flex-middle">
-
-            {# main_nav_center_main_menu_left #}
-            {% if has_menu_main %}
-              {% if menu_main.first_half_items is not empty %}
-                <div class="uk-flex-left uk-visible@m">
-                  <ul class="uk-navbar-nav">
-                    {% for item in menu_main.first_half_items %}
-                      {% if item.get_children %}
-                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                          <div uk-dropdown>
-                            <ul class="uk-nav uk-dropdown-nav">
-                              {% for child in item.get_children %}
-                                <li class="{{ child.classes|join(' ')|e('esc_html') }}">
-                                  <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
-                                  {% if child.children %}
-                                    <div uk-dropdown="pos: right-top">
-                                      <ul class="uk-nav uk-dropdown-nav">
-                                        {% for third in child.children %}
-                                          <li class="{{ third.classes|join(' ')|e('esc_html') }}">
-                                            <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
-                                          </li>
-                                        {% endfor %}
-                                      </ul>
-                                    </div>
-                                  {% endif %}
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        </li>
-                      {% else %}
-                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
-            {% endif %}
-
-            {# main_nav_center_logo_center #}
-            <a class="uk-navbar-item uk-logo" href="#">
-              {% if theme.logo %}
-                {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
-                <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
-              {% else %}
-                {# {{ site.title|e('esc_html') }} #}
-                <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
-              {% endif %}
-            </a>
-
-            {# main_nav_center_main_menu_right #}
-            {% if has_menu_main %}
-              {% if menu_main.second_half_items is not empty %}
-                <div class="uk-flex-right uk-visible@m">
-                  <ul class="uk-navbar-nav">
-                    {% for item in menu_main.second_half_items %}
-                      {% if item.get_children %}
-                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                          <div uk-dropdown>
-                            <ul class="uk-nav uk-dropdown-nav">
-                              {% for child in item.get_children %}
-                                <li class="{{ child.classes|join(' ')|e('esc_html') }}">
-                                  <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
-                                  {% if child.children %}
-                                    <div uk-dropdown="pos: right-top">
-                                      <ul class="uk-nav uk-dropdown-nav">
-                                        {% for third in child.children %}
-                                          <li class="{{ third.classes|join(' ')|e('esc_html') }}">
-                                            <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
-                                          </li>
-                                        {% endfor %}
-                                      </ul>
-                                    </div>
-                                  {% endif %}
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        </li>
-                      {% else %}
-                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
-            {% endif %}
-
-          </div>
-
-          {# main_nav_right_mobile_toggle #}
-          {% if has_menu_main %}
-            <div class="uk-navbar-right">
-              <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
-            </div>
-          {% endif %}
-
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  {% if has_menu_main %}
-    <div id="offcanvas-overlay" class="" uk-offcanvas="overlay: true">
-      <div class="uk-offcanvas-bar uk-padding-remove">
-        <div class="overlay-wrap overlay-default uk-dark uk-width-1-1 uk-height-1-1 uk-padding-medium" style="background-image: url(https://picsum.photos/id/20/1920/800);">
-
-          <a class="uk-offcanvas-close uk-position-small uk-text-emphasis"><span uk-icon="icon: close; ratio: 1.5"></span></a>
-
-          <div class=" uk-position-relative uk-position-z-index">
-            <a class="uk-logo" href="/">
-              {# <img src="{{ theme.link }}/assets/img/coffee/demo/light_logo.png" alt="" class="uk-width-xsmall"> #}
-            </a>
-
-            {# mobile menu nav #}
-            <ul class="uk-nav-default uk-margin" uk-nav="multiple: true">
-              {% if has_menu_main %}
-
-                {# mobile menu title #}
-                <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
-                  {{ menu_main.title|e('esc_html') }}
-                  <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
-                </li>
-
-                <li class="uk-nav-divider" hidden></li>
-
-                {# mobile menu items #}
-                {% for item in menu_main.get_items %}
-                  {% if item.get_children %}
-                    <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
-                      <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
-                      <ul class="uk-nav-sub">
-                        {% for child in item.get_children %}
-                          <li class="{{ child.classes|join(' ')|e('esc_html') }}">
-                            <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
-                            {% if child.children %}
-                              <ul class="uk-nav-sub">
-                                {% for third in child.children %}
-                                  <li class="{{ third.classes|join(' ')|e('esc_html') }}">
-                                    <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
-                                  </li>
-                                {% endfor %}
-                              </ul>
-                            {% endif %}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </li>
-                  {% else %}
-                    <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                      <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
-                    </li>
-                  {% endif %}
-                {% endfor %}
-
-              {% endif %}
-            </ul>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
-
-  {# <div class="uk-background-secondary" uk-height-viewport></div> #}
-
   <div>
 
     {# cover #}
     <section class="">
       <div class="uk-cover-container uk-light" uk-height-viewport>
-        <img src="{{theme.link}}/assets/img/coffee/beans_bg.jpg" alt="" uk-cover>
+        <img src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg', 'Homepage Section: Cover - background image url', 'base-theme')|e('esc_url') }}" alt="" uk-cover>
         <div class="uk-position-cover uk-overlay uk-overlay-secondary"></div>
-        <div class="uk-position-top uk-light" hidden>
-          <nav class="main-nav uk-navbar-container uk-navbar-transparent">
-            <div class="uk-container uk-container-expand">
-              <div uk-navbar>
-                <div class="uk-navbar-left uk-visible@m">
-                  <div class="uk-navbar-item uk-flex uk-flex-left uk-flex middle uk-padding-remove-left">
-                    <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: twitter; ratio: 1.5"></a>
-                    <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: facebook; ratio: 1.5"></a>
-                    <a href="" class="uk-icon-button uk-icon-button-large" uk-icon="icon: youtube; ratio: 1.5"></a>
-                  </div>
-                </div>
-                <div class="uk-navbar-center uk-flex uk-flex-middle">
-                  <div class="uk-flex-left uk-visible@m">
-                    <ul class="uk-navbar-nav">
-                      <li class="uk-active"><a href="#">Home</a></li>
-                      <li>
-                        <a href="#">About</a>
-                        <div class="uk-navbar-dropdown">
-                          <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li class="uk-active"><a href="#">Active</a></li>
-                            <li><a href="#">Item</a></li>
-                            <li><a href="#">Item</a></li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <a class="uk-navbar-item uk-logo" href="#">
-                    <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
-                  </a>
-                  <div class="uk-flex-right uk-visible@m">
-                    <ul class="uk-navbar-nav">
-                      <li><a href="#">Shop</a></li>
-                      <li><a href="#">Contact</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="uk-navbar-right">
-                  <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
         <div class="uk-position-center uk-position-z-index">
           <div class="uk-container uk-margin-large-bottom">
-            <h1 class="uk-heading-large uk-text-center"><span class="uk-text-primary">Quality</span><br>Coffee & Tea</h1>
+            <h1 class="uk-heading-large uk-text-center">
+              {{ _x('<span class="uk-text-primary">Quality</span><br>Coffee & Tea', 'Homepage Section: Cover - heading', 'base-theme')|e('wp_kses_post') }}
+            </h1>
             <div class="uk-flex uk-flex-center uk-margin-medium-top">
-              <a href="#" class="uk-button uk-button-large uk-button-primary">Shop Now</a>
+              {{ _x('<a href="#About" class="uk-button uk-button-large uk-button-primary" uk-scroll>Learn More</a>', 'Homepage Section: Cover - button', 'base-theme')|e('wp_kses_post') }}
             </div>
           </div>
         </div>
@@ -757,8 +810,8 @@
     </section>
 
     {# cover pull-up #}
-    <section class="uk-section uk-section-primary uk-light">
-      <div class="float-box uk-position-relative uk-height-small">
+    <section class="uk-background-primary">
+      <div class="float-box uk-position-relative">
         <div class="uk-position-bottom-center">
           <div class="coffee_bean-container uk-container uk-container-xsmall">
             <img class="coffee_bean-img uk-padding-small uk-padding-remove-vertical" src="{{ theme.link }}/assets/img/coffee/coffee_bean.png" alt="">
@@ -776,122 +829,101 @@
     </section>
 
     {# about #}
-    <section class="uk-section uk-section-large uk-section-default">
+    <section id="About" class="uk-section uk-section-large uk-section-default">
       <div class="uk-container uk-container-large">
-        <div class="uk-child-width-1-2@m uk-flex uk-flex-middle" uk-grid>
+        <div class="uk-child-width-1-2@s uk-flex uk-flex-middle" uk-grid>
           <div>
-            <h2 class="uk-h1"><span class="uk-text-primary">Arabica & Robusta</span><br>Exclusive Planted Coffee</h2>
-            <p>Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi. Maecenas dapibus mattis eros, at fermentum sapien.</p>
-            <a class="uk-button uk-button-primary uk-button-large uk-margin-right">read more</a>
-            <a class="uk-button uk-button-secondary uk-button-large">shop now</a>
+            <h2 class="uk-h1">{{ _x('<span class="uk-text-primary">Arabica & Robusta</span><br>Exclusive Planted Coffee', 'Homepage Section: About - heading', 'base-theme')|e('wp_kses_post') }}</h2>
+            <p>{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi. Maecenas dapibus mattis eros, at fermentum sapien.', 'Homepage Section: About - Message', 'base-theme')|e('wp_kses_post') }}</p>
+            {{ _x('<a href="#Categories" class="uk-button uk-button-secondary uk-button-large uk-margin-small" uk-scroll>Read More</a>', 'Homepage Section: Cover - button 1', 'base-theme')|e('wp_kses_post') }}
+            {{ _x('<a href="/shop" class="uk-button uk-button-primary uk-button-large" uk-scroll>Shop Now</a>', 'Homepage Section: Cover - button 2', 'base-theme')|e('wp_kses_post') }}
           </div>
-          <div>
-            <img src="{{ theme.link }}/assets/img/coffee/about.png" alt="">
+          <div class="uk-flex-first uk-flex-last@s">
+            <img src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/about.png', 'Homepage Section: About - image url', 'base-theme')|e('esc_url') }}" alt="">
           </div>
         </div>
       </div>
     </section>
 
-    {# features x4 #}
-    <section class="uk-section uk-section-large uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);">
-      <div class="uk-position-relative uk-position-z-index">
-        <div class="uk-container uk-text-center uk-margin-medium-bottom">
-          <h2 class="uk-h1"><span class="uk-text-primary">Coffeeandtea.ie</span><br>The Products We offer</h2>
-          <hr class="uk-divider-small">
-          <p class="uk-text-lead uk-text-bold uk-text-emphasis uk-text-center">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris <span class="uk-text-primary">semper accumsan</span>. Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.</p>
-        </div>
-        <div class="uk-container uk-container-xlarge uk-margin-large-top">
-
-          <div class="four-items-swipe swiper mySwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="uk-text-center uk-padding-small">
-                  <a class="uk-transition-toggle uk-position-relative">
-                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/beans_800.jpg" width="300" height="300" alt="">
-                    <div class="uk-position-center-left number-badge-wrap">
-                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">01</div>
+    {# cats x4 #}
+    {% if cats_terms is not empty %}
+      <section id="Categories" class="uk-section uk-section-large uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg', 'Homepage Section: Categories - background image url', 'base-theme')|e('esc_url') }});">
+        <div class="uk-position-relative uk-position-z-index">
+          <div class="uk-container uk-text-center uk-margin-medium-bottom">
+            <h2 class="uk-h2">
+              {{ _x('<span class="uk-text-primary">Coffeeandtea.ie</span><br>The Products We offer', 'Homepage Section: Categories - heading', 'base-theme')|e('wp_kses_post') }}
+            </h2>
+            <hr class="uk-divider-small">
+            <p class="uk-text-lead uk-text-bold uk-text-emphasis uk-text-center">{{ _x('Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi. Etiam dictum arcu posuere mauris <span class="uk-text-primary">semper accumsan</span>. Ut vel nibh a risus hendrerit efficitur. Integer ligula lacus, placerat et egestas vel, ultricies ac purus.', 'Homepage Section: Categories - message', 'base-theme')|e('wp_kses_post') }}</p>
+          </div>
+          <div class="uk-container uk-container-xlarge uk-margin-large-top">
+            <div class="four-items-swipe swiper mySwiper">
+              <div class="swiper-wrapper">
+                {% set last_of_loop = '' %}
+                {% for cat in cats_terms %}
+                  <div class="swiper-slide uk-position-relative">
+                    <div class="uk-height-1-1 uk-width-1-1">
+                      <div class="uk-text-center uk-padding-small">
+                        <a href="{{ cat.link|e('esc_url') }}" class="uk-transition-toggle uk-position-relative">
+                          <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{ cat.thumbnail.src|resize(300, 300)|e('esc_url') }}" width="300" height="300" alt="">
+                          <div class="uk-position-center-left number-badge-wrap">
+                            <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">{% if loop.index in range(1, 9) %}0{% endif %}{{ loop.index }}</div>
+                            {% set last_of_loop = loop.index + 1 %}
+                          </div>
+                        </a>
+                        <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">{{ cat.name|e('esc_html') }}</h3>
+                        <p class="uk-text-emphasis uk-margin-small-top">{{ cat.description|e('wp_kses_post') }}</p>
+                      </div>
                     </div>
-                  </a>
-                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Quality Coffees</h3>
-                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="uk-text-center uk-padding-small">
-                  <a class="uk-transition-toggle uk-position-relative">
-                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/leaves_800.jpg" width="300" height="300" alt="">
-                    <div class="uk-position-center-left number-badge-wrap">
-                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">02</div>
+                  </div>
+                {% endfor %}
+                {% if shop_url %}
+                  <div class="swiper-slide uk-position-relative">
+                    <div class="uk-height-1-1 uk-width-1-1">
+                    <div class="uk-text-center uk-padding-small">
+                      <a href="{{ shop_url|e('esc_url') }}" class="uk-transition-toggle uk-position-relative">
+                        <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{ configs.theme_defaults.thumbnail.src_square }}" width="300" height="300" alt="">
+                        <div class="uk-position-center-left number-badge-wrap">
+                          <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">{% if last_of_loop in range(1, 9) %}0{% endif %}{{ last_of_loop }}</div>
+                        </div>
+                      </a>
+                      <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">{{ _x('Visit Shop', 'Homepage Section: Categories - view all heading', 'base-theme')|e('esc_html') }}</h3>
+                      <p class="uk-text-emphasis uk-margin-small-top">{{ _x('Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi', 'Homepage Section: Categories - view all message', 'base-theme')|e('esc_html') }}</p>
                     </div>
-                  </a>
-                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Luxurious Teas</h3>
-                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="uk-text-center uk-padding-small">
-                  <a class="uk-transition-toggle uk-position-relative">
-                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/choc_800.jpg" width="300" height="300" alt="">
-                    <div class="uk-position-center-left number-badge-wrap">
-                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">03</div>
                     </div>
-                  </a>
-                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Delicious Chocolates</h3>
-                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-                </div>
+                  </div>
+                {% endif %}
               </div>
-              <div class="swiper-slide">
-                <div class="uk-text-center uk-padding-small">
-                  <a class="uk-transition-toggle uk-position-relative">
-                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="https://picsum.photos/id/42/800/800" width="300" height="300" alt="">
-                    <div class="uk-position-center-left number-badge-wrap">
-                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">04</div>
-                    </div>
-                  </a>
-                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">More Delicious Treats</h3>
-                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="uk-text-center uk-padding-small">
-                  <a class="uk-transition-toggle uk-position-relative">
-                    <img class="uk-transition-scale-up uk-transition-spin-round uk-transition-opaque border-rounded-full" src="{{theme.link}}/assets/img/coffee/beans_800.jpg" width="300" height="300" alt="">
-                    <div class="uk-position-center-left number-badge-wrap">
-                      <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">01</div>
-                    </div>
-                  </a>
-                  <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">Quality Coffees</h3>
-                  <p class="uk-text-emphasis uk-margin-small-top">Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi</p>
-                </div>
-              </div>
+              <div class="swiper-pagination swiper-pagination-four-items uk-position-relative"></div>
             </div>
-            <div class="swiper-pagination uk-position-relative"></div>
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
+    {% endif %}
 
     {# numbers x4 #}
-    <section class="uk-section overlay-wrap overlay-primary uk-light uk-position-relative uk-background-cover" style="background-image: url({{theme.link}}/assets/img/coffee/tea_leaf_01.jpg);">
+    <section class="uk-section overlay-wrap overlay-primary uk-light uk-position-relative uk-background-cover" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/tea_leaf_01.jpg', 'Homepage Section: Numbers - background image url', 'base-theme')|e('esc_url') }});">
       <div class="uk-container uk-container-xlarge uk-position-relative uk-position-z-index">
-        <div class="uk-child-width-1-4@m uk-text-center" uk-grid>
-          <div>
-            <h3 class="uk-heading-large">37</h3>
-            <h4 class="uk-h3 uk-margin-small-top">Selected Varieties</h4>
+        <div class="numbers-swipe swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide uk-position-relative uk-text-center">
+              <h3 class="uk-heading-large">{{ _x('37', 'Homepage Section: Numbers - number 1', 'base-theme')|e('esc_html') }}</h3>
+              <h4 class="uk-h3 uk-margin-small-top">{{ _x('Selected Varieties', 'Homepage Section: Numbers - number 1 text', 'base-theme')|e('esc_html') }}</h4>
+            </div>
+            <div class="swiper-slide uk-position-relative uk-text-center">
+              <h3 class="uk-heading-large">{{ _x('259', 'Homepage Section: Numbers - number 2', 'base-theme')|e('esc_html') }}</h3>
+              <h4 class="uk-h3 uk-margin-small-top">{{ _x('Hectares of Plantations', 'Homepage Section: Numbers - number 2 text', 'base-theme')|e('esc_html') }}</h4>
+            </div>
+            <div class="swiper-slide uk-position-relative uk-text-center">
+              <h3 class="uk-heading-large">{{ _x('140', 'Homepage Section: Numbers - number 3', 'base-theme')|e('esc_html') }}</h3>
+              <h4 class="uk-h3 uk-margin-small-top">{{ _x('Coffee Pickers', 'Homepage Section: Numbers - number 3 text', 'base-theme')|e('esc_html') }}</h4>
+            </div>
+            <div class="swiper-slide uk-position-relative uk-text-center">
+              <h3 class="uk-heading-large">{{ _x('75', 'Homepage Section: Numbers - number 4', 'base-theme')|e('esc_html') }}</h3>
+              <h4 class="uk-h3 uk-margin-small-top">{{ _x('Consumer Countries', 'Homepage Section: Numbers - number 4 text', 'base-theme')|e('esc_html') }}</h4>
+            </div>
           </div>
-          <div>
-            <h3 class="uk-heading-large">259</h3>
-            <h4 class="uk-h3 uk-margin-small-top">Hectares of Plantations</h4>
-          </div>
-          <div>
-            <h3 class="uk-heading-large">140</h3>
-            <h4 class="uk-h3 uk-margin-small-top">Coffee Pickers</h4>
-          </div>
-          <div>
-            <h3 class="uk-heading-large">75</h3>
-            <h4 class="uk-h3 uk-margin-small-top">Consumer Countries</h4>
-          </div>
+          <div class="swiper-pagination swiper-pagination-numbers uk-position-relative"></div>
         </div>
       <div>
     </section>
@@ -899,89 +931,132 @@
     {# benefits x6 #}
     <section class="uk-section uk-section-default uk-section-large" style="background-image: url({{theme.link}}/assets/img/coffee/paper_bg.jpg);">
       <div class="uk-container uk-container-small uk-text-center uk-margin-medium-bottom">
-        <h2 class="uk-h1"><span class="uk-text-primary">Coffeeandtea.ie</span><br>The benefits of shopping with us</h2>
+        <h2 class="uk-h2">
+          {{ _x('<span class="uk-text-primary">Coffeeandtea.ie</span><br>The benefits of shopping with us', 'Homepage Section: Benefits - heading', 'base-theme')|e('wp_kses_post') }}
+        </h2>
         <hr class="uk-divider-small">
-        <p class="uk-text-lead">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi.</p>
+        <p class="uk-text-lead">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi.', 'Homepage Section: Benefits - message', 'base-theme')|e('wp_kses_post') }}</p>
       </div>
       <div class="uk-container uk-container-xlarge">
-        <div class="uk-child-width-1-3@m uk-flex uk-flex-middle uk-grid-large" uk-grid>
-          <div class="uk-width-1-4">
+        <div class="uk-flex uk-flex-middle uk-grid-large uk-visible@m" uk-grid>
+          <div class="uk-width-1-4@m">
             <ul class="uk-list uk-list-xlarge icon-list uk-text-left">
               <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-delivery-truck; ratio: 5"></span>
+                {% set benefit_one %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-delivery-truck; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 1 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 1 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 1 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
                   </div>
-                  <div class="uk-width-expand">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
+                {% endset %}
+                {{ benefit_one }}
               </li>
               <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-tea-bag; ratio: 5"></span>
+                {% set benefit_two %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-tea-bag; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 2 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 2 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 2 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
                   </div>
-                  <div class="uk-width-expand">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
+                {% endset %}
+                {{ benefit_two }}
               </li>
               <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-roaster; ratio: 5"></span>
+                {% set benefit_three %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-roaster; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 3 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 3 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 3 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
                   </div>
-                  <div class="uk-width-expand">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
+                {% endset %}
+                {{ benefit_three }}
               </li>
             </ul>
           </div>
-          <div class="uk-width-1-2">
+          <div class="uk-width-1-4@m uk-flex-last@m">
+            <ul class="uk-list uk-list-xlarge icon-list uk-text-right@m">
+              <li>
+                {% set benefit_four %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-sustainable; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 4 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand uk-flex-first@m">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 4 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 4 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
+                  </div>
+                {% endset %}
+                {{ benefit_four }}
+              </li>
+              <li>
+                {% set benefit_five %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-badge; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 5 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand uk-flex-first@m">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 5 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 5 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
+                  </div>
+                {% endset %}
+                {{ benefit_five }}
+              </li>
+              <li>
+                {% set benefit_six %}
+                  <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                    <div class="uk-width-auto">
+                      {{ _x('<span class="uk-text-primary" uk-icon="icon: rmcc-cup; ratio: 5"></span>', 'Homepage Section: Benefits - benefit 6 icon', 'base-theme')|e('wp_kses_post') }}
+                    </div>
+                    <div class="uk-width-expand uk-flex-first@m">
+                      <h4 class="uk-h3 uk-margin-small-bottom">{{ _x('Lorm Ipsum', 'Homepage Section: Benefits - benefit 6 heading', 'base-theme')|e('esc_html') }}</h4>
+                      <p class="uk-margin-small-top">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: Benefits - benefit 6 message', 'base-theme')|e('esc_html') }}</p>
+                    </div>
+                  </div>
+                {% endset %}
+                {{ benefit_six }}
+              </li>
+            </ul>
+          </div>
+          <div class="uk-width-1-2@m uk-visible@m">
             <img src="{{theme.link}}/assets/img/coffee/cup.png" alt="">
           </div>
-          <div class="uk-width-1-4">
-            <ul class="uk-list uk-list-xlarge icon-list uk-text-right">
-              <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-sustainable; ratio: 5"></span>
-                  </div>
-                  <div class="uk-width-expand uk-flex-first">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-badge; ratio: 5"></span>
-                  </div>
-                  <div class="uk-width-expand uk-flex-first">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
-                  <div class="uk-width-auto">
-                    <span class="uk-text-primary" uk-icon="icon: rmcc-cup; ratio: 5"></span>
-                  </div>
-                  <div class="uk-width-expand uk-flex-first">
-                    <h4 class="uk-h3 uk-margin-small-bottom">Lorm Ipsum</h4>
-                    <p class="uk-margin-small-top">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+        </div>
+        <div class="benefits-swipe swiper mySwiper uk-hidden@m">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_one }}
+            </div>
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_two }}
+            </div>
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_three }}
+            </div>
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_four }}
+            </div>
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_five }}
+            </div>
+            <div class="swiper-slide uk-position-relative">
+              {{ benefit_six }}
+            </div>
           </div>
+          <div class="swiper-pagination swiper-pagination-benefits uk-position-relative uk-margin-top"></div>
         </div>
       </div>
     </section>
@@ -1017,7 +1092,7 @@
     {# cover / CTA / video popup #}
     <section class="">
       <div class="uk-cover-container" uk-height-viewport>
-        <img src="https://picsum.photos/id/20/1920/800" alt="" uk-cover>
+        <img src="https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg" alt="" uk-cover>
         <div class="uk-position-cover uk-overlay uk-overlay-secondary uk-light uk-flex uk-flex-center uk-flex-middle uk-text-center">
           <div>
           <h2 class="uk-heading-medium"><span class="uk-text-primary">How we Prepare our Beans</span><br>Watch Video</h2>
@@ -1033,7 +1108,7 @@
     </section>
 
     {# the product #}
-    <section class="uk-section uk-section-default uk-section-large">
+    <section class="uk-section uk-section-default uk-section-large" hidden>
       <div class="uk-container uk-container-small uk-text-center uk-margin-large-bottom">
         <h4 class="uk-text-primary uk-margin-small-bottom">Online Store</h4>
         <h2 class="uk-margin-small-top uk-h1">Popular Products</h2>
@@ -1086,6 +1161,10 @@
     </section>
 
   </div>
+{% endblock %}
+
+{% block footer %}
+  {# {{ parent() }} #}
 
   {# website footer #}
   <footer class="uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);" hidden>
@@ -1170,11 +1249,6 @@
       </div>
     </div>
   </footer>
-  
-{% endblock %}
-
-{% block footer %}
-  {# {{ parent() }} #}
 
   {# allows .uk-navbar-toggle-animate to work on uk-toggles with #offcanvas-overlay as target. needs anim-target attribute #}
   <script>
@@ -1208,14 +1282,57 @@
       slidesPerView: 1,
       spaceBetween: 0,
       breakpoints: {
-        // when window width is >= 640px
-        640: {
+        // when window width is >= 480
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        // when window width is >= 768
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        // when window width is >= 960
+        960: {
           slidesPerView: 4,
           spaceBetween: 30
         }
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination-four-items",
+        clickable: true,
+      },
+    });
+    var swiper_numbers = new Swiper(".numbers-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      breakpoints: {
+        // when window width is >= 480
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        // when window width is >= 768
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        // when window width is >= 960
+        960: {
+          slidesPerView: 4,
+          spaceBetween: 30
+        }
+      },
+      pagination: {
+        el: ".swiper-pagination-numbers",
+        clickable: true,
+      },
+    });
+    var swiper_benefits = new Swiper(".benefits-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      pagination: {
+        el: ".swiper-pagination-benefits",
         clickable: true,
       },
     });

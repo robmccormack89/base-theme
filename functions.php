@@ -45,6 +45,6 @@ if (class_exists('Timber\Timber') && class_exists('Woocommerce')) {
     $product = wc_get_product( $post->ID );
   }
   new Rmcc\ThemeWoo;
-  // require_once get_template_directory() . '/inc/woo/helpers.php';
+  require_once get_template_directory() . '/inc/woo/helpers.php';
   // require_once get_template_directory() . '/inc/woo/functions.php';
 }

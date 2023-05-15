@@ -316,6 +316,7 @@ class Theme extends Timber {
         'data'       => array(),
         'title'      => array(),
         'uk-icon'      => array(),
+        'uk-scroll'      => array(),
         'data-nanogallery2'      => array(),
       );
       $allowedposttags['form'] = $allowed_atts;
@@ -493,6 +494,7 @@ class Theme extends Timber {
   public function register_navigation_menus() {
     register_nav_menus(array(
       'main_menu' => _x( 'Main Menu', 'Menu locations', 'base-theme' ),
+      'mobile_menu' => _x( 'Mobile Menu', 'Menu locations', 'base-theme' ),
       'iconnav_menu' => _x( 'Iconnav Menu', 'Menu locations', 'base-theme' ),
       'socials_menu' => _x( 'Socials Menu', 'Menu locations', 'base-theme' ),
     ));
@@ -527,6 +529,9 @@ class Theme extends Timber {
     if($context['has_menu_main']){
       list($context['menu_main']->first_half_items, $context['menu_main']->second_half_items) = array_chunk($context['menu_main']->items, ceil(count($context['menu_main']->items) / 2));
     }
+
+    $context['menu_mobile'] = new \Timber\Menu('mobile_menu', $main_menu_args);
+    $context['has_menu_mobile'] = has_nav_menu('mobile_menu');
     
     $context['menu_iconnav'] = new \Timber\Menu('iconnav_menu', $foot_menu_args);
     $context['has_menu_iconnav'] = has_nav_menu('iconnav_menu');

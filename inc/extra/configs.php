@@ -8,8 +8,8 @@
 *
 */
 
-// $configs['maintenance_mode'] = 'all';
-// // $configs['redirect_all_traffic_to_page'] = 2;
+$configs['maintenance_mode'] = 'all';
+$configs['redirect_all_traffic_to_page'] = 2;
 // $configs['maintenance_template'] = 'coming_soon.twig'; // only applies when redirect_all_traffic_to_page doesnt exist or is set to false. defaults to maintenance.twig downstream
 
 // Global
@@ -33,7 +33,7 @@ $configs['live_search_types'] = array('product', 'page');
 // $configs['live_search_taxes'] = array('category', 'post_tag');
 $configs['live_search_taxes'] = array('product_cat', 'product_tag');
 $configs['live_search_types_in_taxes'] = array('product');
-// $configs['live_search'] = false; // disable
+$configs['live_search'] = false; // disable
 
 // Blog Filters configs
 $configs['blog_filters'] = true;
@@ -73,7 +73,8 @@ $configs['meta_galleries'] = true;
 // Theme defaults
 $configs['theme_defaults'] = (object) [
   "thumbnail" => [
-    "src" => _x( 'https://picsum.photos/1920/1200', 'Theme Featured Image - src', 'base-theme' ),
+    "src" => _x( 'https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg', 'Theme Featured Image - src', 'base-theme' ),
+    "src_square" => _x( 'https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_800.jpg', 'Theme Featured Image - src', 'base-theme' ),
     "alt" => _x( 'Alt', 'Theme Featured Image - alt', 'base-theme' ),
     "caption" => _x( 'Caption', 'Theme Featured Image - caption', 'base-theme' )
   ]
