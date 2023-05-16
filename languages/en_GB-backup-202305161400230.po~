@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-16 14:29+0000\n"
+"PO-Revision-Date: 2023-05-16 14:00+0000\n"
 "Last-Translator: Robert\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -495,6 +495,7 @@ msgctxt "Homepage Section: CTAx3 - number 2 heading"
 msgid ""
 "<span class=\"uk-text-secondary\">Divine</span><br>Aroma<br>in Every Cup"
 msgstr ""
+"<span class=\"uk-text-secondary\">Heavenly</span><br>Aroma<br>in Every Cup"
 
 #: views/temp/single/custom.php:1084
 msgctxt "Homepage Section: CTAx3 - number 2 message"
@@ -554,24 +555,6 @@ msgstr ""
 #: views/temp/single/custom.php:928
 msgctxt "Homepage Section: Numbers - number 4 text"
 msgid "Consumer Countries"
-msgstr ""
-
-#: views/temp/single/custom.php:1102
-msgctxt "Homepage Section: Video Popup - bg image url"
-msgid ""
-"https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg"
-msgstr ""
-
-#: views/temp/single/custom.php:1098
-msgctxt "Homepage Section: Video Popup - embed video url"
-msgid "https://www.youtube-nocookie.com/embed/c2pz2mlSfXA"
-msgstr ""
-
-#: views/temp/single/custom.php:1106
-msgctxt "Homepage Section: Video Popup - heading"
-msgid ""
-"<span class=\"uk-text-primary\">How we Prepare our Beans</span><br>Watch "
-"Video"
 msgstr ""
 
 #: views/temp/maintenance.php:1

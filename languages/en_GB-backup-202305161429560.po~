@@ -565,7 +565,7 @@ msgstr ""
 #: views/temp/single/custom.php:1098
 msgctxt "Homepage Section: Video Popup - embed video url"
 msgid "https://www.youtube-nocookie.com/embed/c2pz2mlSfXA"
-msgstr ""
+msgstr "#"
 
 #: views/temp/single/custom.php:1106
 msgctxt "Homepage Section: Video Popup - heading"

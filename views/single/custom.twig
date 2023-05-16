@@ -33,7 +33,7 @@
             {% for item in menu_main.get_items %}
               {% if item.get_children %}
                 <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                  <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                  <a class="uk-button uk-button-text" href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                   <div uk-dropdown>
                     <ul class="uk-nav uk-dropdown-nav">
                       {% for child in item.get_children %}
@@ -57,7 +57,7 @@
                 </li>
               {% else %}
                 <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                  <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                  <a class="uk-button uk-button-text" href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
                 </li>
               {% endif %}
             {% endfor %}
@@ -189,9 +189,7 @@
       </div>
     {% endif %}
   </header>
-
   {# <div class="uk-background-secondary" uk-height-viewport></div> #}
-
 {% endblock %}
 
 {% block styles %}
@@ -204,8 +202,8 @@
   <style>
 
     {# vars #}
-      {% set green_colour = '#608853' %}
-      {% set green_colour_seethru = '#608853e6' %}
+      {% set green_colour = '#217042' %}
+      {% set green_colour_seethru = '#217042e6' %}
       {% set black_colour = '#000000' %}
       {% set black_colour_seethru = '#000000cc' %}
       {% set white_colour = '#ffffff' %}
@@ -601,8 +599,34 @@
         color: hsla(0,0%,100%,1);
       }
       .uk-light .uk-icon-button:hover {
-        background-color: #3e845b;
+        background-color: {{green_colour}};
         color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-navbar-nav>li:hover>a {
+        color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-navbar-nav>li.uk-active>a {
+        color: {{green_colour}};
+      }
+
+      .uk-button-text {
+        font-weight: 500;
+      }
+      .uk-button-text:before {
+        border-bottom: 3px solid;
+        bottom: 35%;
+        content: "";
+        left: 15px;
+        position: absolute;
+        right: 100%;
+        transition: right .3s ease-out;
+      }
+      .uk-light .uk-button-text:before {
+        border-bottom-color: {{green_colour}};
+      }
+      .uk-button-text:hover:before,
+      .uk-active>.uk-button-text:before {
+        right: 15px;
       }
     {# /nav #}
 
@@ -623,14 +647,14 @@
 
     {# dividers #}
       .uk-divider-small:after {
-        border-top: 8px solid #608853;
+        border-top: 8px solid #217042;
         border-radius: 100px;
         width: 60px;
       }
       .primary-divider:after {
         width: 250px;
         border-radius: 0;
-        border-color: #608853!important;
+        border-color: #217042!important;
         border-width: medium;
       }
     {# /dividers #}
@@ -648,21 +672,23 @@
         background: #fff;
       }
       .swiper-pagination-bullet-active {
-        background: #608853!important;
+        background: #217042!important;
       }
     {# /Swiper styles #}
 
     {# footer #}
       footer .uk-logo .uk-width-medium {
-        width: 250px;
+        width: 220px;
       }
       .footer-nav {
         column-count: 2;
         column-gap: 10px;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
-      .footer-nav>* {
-        padding-left: 20px;
+
+      .site-footer .uk-section-small {
+        padding-top: 20px;
+        padding-bottom: 20px;
       }
     {# /footer #}
 
@@ -783,6 +809,13 @@
       }
 
 
+      @media (max-width: 767px){
+        .remove-margin-mobile {
+          margin: 0!important;
+        }
+      }
+
+
     {# /more #}
 
   </style>
@@ -792,7 +825,7 @@
   <div>
 
     {# cover #}
-    <section class="">
+    <section id="Cover" class="">
       <div class="uk-cover-container uk-light" uk-height-viewport>
         <img src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg', 'Homepage Section: Cover - background image url', 'base-theme')|e('esc_url') }}" alt="" uk-cover>
         <div class="uk-position-cover uk-overlay uk-overlay-secondary"></div>
@@ -810,7 +843,7 @@
     </section>
 
     {# cover pull-up #}
-    <section class="uk-background-primary">
+    <section id="CoverPullUp" class="uk-background-primary">
       <div class="float-box uk-position-relative">
         <div class="uk-position-bottom-center">
           <div class="coffee_bean-container uk-container uk-container-xsmall">
@@ -835,8 +868,8 @@
           <div>
             <h2 class="uk-h1">{{ _x('<span class="uk-text-primary">Arabica & Robusta</span><br>Exclusive Planted Coffee', 'Homepage Section: About - heading', 'base-theme')|e('wp_kses_post') }}</h2>
             <p>{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros. Aliquam eget sapien sed orci accumsan interdum at ac m lorem ut ante pulvinar finibus non non metusi. Maecenas dapibus mattis eros, at fermentum sapien.', 'Homepage Section: About - Message', 'base-theme')|e('wp_kses_post') }}</p>
-            {{ _x('<a href="#Categories" class="uk-button uk-button-secondary uk-button-large uk-margin-small" uk-scroll>Read More</a>', 'Homepage Section: Cover - button 1', 'base-theme')|e('wp_kses_post') }}
-            {{ _x('<a href="/shop" class="uk-button uk-button-primary uk-button-large" uk-scroll>Shop Now</a>', 'Homepage Section: Cover - button 2', 'base-theme')|e('wp_kses_post') }}
+            {{ _x('<a href="#Categories" class="uk-button uk-button-secondary uk-button-large uk-margin-small" uk-scroll>Read More</a>', 'Homepage Section: About - button 1', 'base-theme')|e('wp_kses_post') }}
+            {{ _x('<a href="/shop" class="uk-button uk-button-primary uk-button-large" uk-scroll>Shop Now</a>', 'Homepage Section: About - button 2', 'base-theme')|e('wp_kses_post') }}
           </div>
           <div class="uk-flex-first uk-flex-last@s">
             <img src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/about.png', 'Homepage Section: About - image url', 'base-theme')|e('esc_url') }}" alt="">
@@ -887,8 +920,8 @@
                           <div class="uk-background-primary uk-light uk-flex uk-flex-middle uk-flex-center uk-transition-scale-up scale-up-bigger number-badge">{% if last_of_loop in range(1, 9) %}0{% endif %}{{ last_of_loop }}</div>
                         </div>
                       </a>
-                      <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">{{ _x('Visit Shop', 'Homepage Section: Categories - view all heading', 'base-theme')|e('esc_html') }}</h3>
-                      <p class="uk-text-emphasis uk-margin-small-top">{{ _x('Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi', 'Homepage Section: Categories - view all message', 'base-theme')|e('esc_html') }}</p>
+                      <h3 class="uk-h3 uk-text-emphasis uk-margin-small-bottom uk-text-primary">{{ _x('Visit Shop', 'Homepage Section: Categories - visit shop heading', 'base-theme')|e('esc_html') }}</h3>
+                      <p class="uk-text-emphasis uk-margin-small-top">{{ _x('Morbi eu varius neque, a ultricies sem. Fusce vitae convallis mi', 'Homepage Section: Categories - visit shop message', 'base-theme')|e('esc_html') }}</p>
                     </div>
                     </div>
                   </div>
@@ -902,7 +935,7 @@
     {% endif %}
 
     {# numbers x4 #}
-    <section class="uk-section overlay-wrap overlay-primary uk-light uk-position-relative uk-background-cover" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/tea_leaf_01.jpg', 'Homepage Section: Numbers - background image url', 'base-theme')|e('esc_url') }});">
+    <section id="Numbers" class="uk-section overlay-wrap overlay-primary uk-light uk-position-relative uk-background-cover" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/tea_leaf_01.jpg', 'Homepage Section: Numbers - background image url', 'base-theme')|e('esc_url') }});">
       <div class="uk-container uk-container-xlarge uk-position-relative uk-position-z-index">
         <div class="numbers-swipe swiper mySwiper">
           <div class="swiper-wrapper">
@@ -929,7 +962,7 @@
     </section>
 
     {# benefits x6 #}
-    <section class="uk-section uk-section-default uk-section-large" style="background-image: url({{theme.link}}/assets/img/coffee/paper_bg.jpg);">
+    <section id="Benefits" class="uk-section uk-section-default uk-section-large" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/paper_bg.jpg', 'Homepage Section: Benefits - background image url', 'base-theme')|e('esc_url') }});">
       <div class="uk-container uk-container-small uk-text-center uk-margin-medium-bottom">
         <h2 class="uk-h2">
           {{ _x('<span class="uk-text-primary">Coffeeandtea.ie</span><br>The benefits of shopping with us', 'Homepage Section: Benefits - heading', 'base-theme')|e('wp_kses_post') }}
@@ -1061,48 +1094,59 @@
       </div>
     </section>
 
+    {# cover / CTA / video popup #}
+    {% set embed_url = _x('https://www.youtube-nocookie.com/embed/c2pz2mlSfXA', 'Homepage Section: Video Popup - embed video url', 'base-theme') %}
+    {% if embed_url != '#' %}
+      <section id="VideoPopup" class="">
+        <div class="uk-cover-container" uk-height-viewport>
+          <img src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg', 'Homepage Section: Video Popup - bg image url', 'base-theme')|e('esc_url') }}" alt="" uk-cover>
+          <div class="uk-position-cover uk-overlay uk-overlay-secondary uk-light uk-flex uk-flex-center uk-flex-middle uk-text-center">
+            <div>
+            <h2 class="uk-heading-medium">
+              {{ _x('<span class="uk-text-primary">How we Prepare our Beans</span><br>Watch Video', 'Homepage Section: Video Popup - heading', 'base-theme')|e('wp_kses_post') }}
+            </h2>
+            <a href="#modal-media-youtube" class="uk-icon-link uk-transition-scale-up uk-transition-opaque" uk-toggle>
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+            </a>
+            <div id="modal-media-youtube" class="uk-flex-top" uk-modal>
+              <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <iframe src="{{ embed_url|e('esc_url') }}" width="1920" height="1080" uk-video uk-responsive></iframe>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
     {# CTAs x3 #}
-    <section class="">
+    <section id="CTAx3" class="">
       <div class="uk-child-width-1-3@m uk-grid-collapse uk-grid-match" uk-grid>
-        <div class="">
+        <div class="uk-visible@m">
           <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_01.jpg" alt="">
+            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/aroma_01.jpg', 'Homepage Section: CTAx3 - number 1 bg image url', 'base-theme')|e('esc_url') }}" alt="">
             <div class="uk-position-top-right uk-position-large">
               <img class="" src="{{theme.link}}/assets/img/coffee/stamp.png" alt="">
             </div>
           </a>
         </div>
-        <div class="uk-position-relative overlay-wrap overlay-primary uk-light uk-flex uk-flex-middle uk-background-cover" style="background-image: url({{theme.link}}/assets/img/coffee/leaves_overlay_bg_small.png);">
-          <div class="uk-padding-large uk-position-relative uk-position-z-index">
-            <h2 class="uk-heading-medium"><span class="uk-text-secondary">Divine</span><br>Aroma<br>in Every Cup</h2>
+        <div class="uk-position-relative overlay-wrap overlay-primary uk-light uk-flex uk-flex-middle uk-background-cover" style="background-image: url({{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/leaves_overlay_bg_small.png', 'Homepage Section: CTAx3 - number 2 bg image url', 'base-theme')|e('esc_url') }});">
+          <div class="uk-padding-large uk-position-relative uk-position-z-index uk-text-center uk-text-left@m">
+            <h2 class="uk-heading-medium">{{ _x('<span class="uk-text-secondary">Divine</span><br>Aroma<br>in Every Cup', 'Homepage Section: CTAx3 - number 2 heading', 'base-theme')|e('wp_kses_post') }}</h2>
             <div class="uk-width-4-5@m">
-              <p class="uk-text-emphasis bigger-lines">Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.</p>
+              <p class="uk-text-emphasis bigger-lines">{{ _x('Maecenas dapibus mattis eros, at fermentum sapien malesuada sit amet. Quisque in sollicitudin eros.', 'Homepage Section: CTAx3 - number 2 message', 'base-theme')|e('esc_html') }}</p>
             </div>
-            <a class="uk-button uk-button-secondary uk-button-large uk-margin-medium-top">Read More</a>
+            <a href="{{ _x('#', 'Homepage Section: CTAx3 - number 2 button url', 'base-theme')|e('esc_url') }}" class="uk-button uk-button-secondary uk-button-large uk-margin-medium-top remove-margin-mobile">{{ _x('Read More', 'Homepage Section: CTAx3 - number 2 button text', 'base-theme')|e('esc_html') }}</a>
           </div>
         </div>
-        <div class="">
+        <div class="uk-visible@m">
           <a class="uk-inline-clip uk-transition-toggle uk-position-relative">
-            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{theme.link}}/assets/img/coffee/aroma_02.jpg" alt="">
+            <img class="uk-transition-scale-up uk-transition-opaque scale-up-bigger uk-height-1-1" src="{{ _x('https://test.com/wp-content/themes/base-theme/assets/img/coffee/aroma_02.jpg', 'Homepage Section: CTAx3 - number 3 bg image url', 'base-theme')|e('esc_url') }}" alt="">
           </a>
-        </div>
-      </div>
-    </section>
-
-    {# cover / CTA / video popup #}
-    <section class="">
-      <div class="uk-cover-container" uk-height-viewport>
-        <img src="https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg" alt="" uk-cover>
-        <div class="uk-position-cover uk-overlay uk-overlay-secondary uk-light uk-flex uk-flex-center uk-flex-middle uk-text-center">
-          <div>
-          <h2 class="uk-heading-medium"><span class="uk-text-primary">How we Prepare our Beans</span><br>Watch Video</h2>
-          <a href="#" class="uk-icon-link uk-transition-scale-up uk-transition-opaque">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-          </a>
-          </div>
         </div>
       </div>
     </section>
@@ -1167,9 +1211,9 @@
   {# {{ parent() }} #}
 
   {# website footer #}
-  <footer class="uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);" hidden>
+  <footer class="site-footer uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);">
     <div class="uk-position-relative uk-position-z-index">
-      <div class="uk-section uk-section-large uk-container uk-container-xlarge">
+      <div class="uk-section uk-container uk-container-xlarge">
         <ul class="uk-child-width-1-3@m uk-grid-large uk-grid-column-large" uk-grid>
           <li>
             <div class="large-right">
@@ -1178,9 +1222,9 @@
               </a>
               <p>Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo. Vestibulum mattis, nisi ut.</p>
               <div class="uk-flex uk-flex-left uk-flex middle">
-                <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: twitter; ratio: 1.5"></a>
-                <a href="" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: facebook; ratio: 1.5"></a>
-                <a href="" class="uk-icon-button uk-icon-button-large" uk-icon="icon: youtube; ratio: 1.5"></a>
+                <a href="" class="uk-icon-button uk-margin-small-right" uk-icon="icon: twitter; ratio: 1"></a>
+                <a href="" class="uk-icon-button uk-margin-small-right" uk-icon="icon: facebook; ratio: 1"></a>
+                <a href="" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1"></a>
               </div>
             </div>
           </li>
@@ -1188,7 +1232,7 @@
             <div class="large-right">
               <h3 class="uk-text-primary uk-margin-remove">Navigation</h3>
               <hr class="uk-divider-small primary-divider uk-margin-small-top uk-margin-medium-bottom">
-              <ul class="footer-nav uk-list uk-list-hyphen">
+              <ul class="footer-nav uk-list">
                 <li>Homepage</li>
                 <li>About us</li>
                 <li>Coffee</li>
@@ -1209,7 +1253,7 @@
               <li>
                 <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
                   <div class="uk-width-auto">
-                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: location; ratio: 1.2"></span>
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: location; ratio: 1"></span>
                   </div>
                   <div class="uk-width-expand">
                     <h4 class="uk-h4 uk-text-primary uk-margin-remove">Find us:</h4>
@@ -1220,7 +1264,7 @@
               <li>
                 <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
                   <div class="uk-width-auto">
-                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: mail; ratio: 1.2"></span>
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: mail; ratio: 1"></span>
                   </div>
                   <div class="uk-width-expand">
                     <h4 class="uk-h4 uk-text-primary uk-margin-remove">Email us:</h4>
@@ -1231,7 +1275,7 @@
               <li>
                 <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
                   <div class="uk-width-auto">
-                    <span class="uk-icon uk-icon-button uk-background-primary uk-icon-button-large" uk-icon="icon: receiver; ratio: 1.2"></span>
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: receiver; ratio: 1"></span>
                   </div>
                   <div class="uk-width-expand">
                     <h4 class="uk-h4 uk-text-primary uk-margin-remove">Phone us:</h4>
@@ -1245,7 +1289,16 @@
       </div>
       <hr class="uk-margin-remove">
       <div class="uk-section uk-section-small uk-container uk-container-xlarge">
-        <p>Hello</p>
+        <ul class="uk-grid-collapse uk-grid-match uk-text-small uk-text-center uk-text-left@m" uk-grid>
+          <li class="uk-width-expand@m">
+            <div>
+              {{ _x('© All Rights Reserved %s', 'Footer: copyright', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}" uk-tooltip="{{ _x('Return to Homepage', 'Footer: back to home', 'base-theme')|e('esc_html') }}">{{ site.title|e('esc_html') }}</a>
+            </div>
+          </li>
+          <li class="uk-width-auto@m">
+            <div>Made by <a href="https://github.com/robmccormack89/" uk-tooltip="Check me out on github" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a></div>
+          </li>
+        </ul>
       </div>
     </div>
   </footer>

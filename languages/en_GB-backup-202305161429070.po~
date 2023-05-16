@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-16 14:29+0000\n"
+"PO-Revision-Date: 2023-05-16 14:28+0000\n"
 "Last-Translator: Robert\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -565,7 +565,7 @@ msgstr ""
 #: views/temp/single/custom.php:1098
 msgctxt "Homepage Section: Video Popup - embed video url"
 msgid "https://www.youtube-nocookie.com/embed/c2pz2mlSfXA"
-msgstr ""
+msgstr " "
 
 #: views/temp/single/custom.php:1106
 msgctxt "Homepage Section: Video Popup - heading"
