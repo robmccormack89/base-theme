@@ -1,48 +1,1147 @@
 {% extends 'base.twig' %}
 
+{% block header %}
+  {# {{ parent() }} #}
+  <header>
+    <nav class="uk-navbar-container uk-navbar-transparent uk-light uk-position-z-index uk-position-top">
+      <div class="uk-container uk-container-expand">
+        <div uk-navbar="" class="uk-navbar">
+        
+          <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="#">Logo</a>
+            <ul class="uk-navbar-nav">
+              <li class="uk-active"><a href="#">Active</a></li>
+              <li>
+                <a href="#" role="button" aria-haspopup="true">Parent</a>
+                <div class="uk-navbar-dropdown uk-drop" style="max-width: 1873px; top: 80px; left: 156.609px;">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <li class="uk-active"><a href="#">Active</a></li>
+                    <li class="uk-parent">
+                      <a href="#">Parent</a>
+                      <ul class="uk-nav-sub">
+                        <li><a href="#">Sub item</a></li>
+                        <li><a href="#">Sub item</a></li>
+                      </ul>
+                    </li>
+                    <li class="uk-nav-header">Header</li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="#">Item</a></li>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+
+          <div class="uk-navbar-right">
+
+            <ul class="uk-navbar-nav">
+              <li class="uk-active"><a href="#">Active</a></li>
+              <li>
+                <a href="#" role="button" aria-haspopup="true">Parent</a>
+                <div class="uk-navbar-dropdown uk-drop">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <li class="uk-active"><a href="#">Active</a></li>
+                    <li class="uk-parent">
+                      <a href="#">Parent</a>
+                      <ul class="uk-nav-sub">
+                        <li><a href="#">Sub item</a></li>
+                        <li><a href="#">Sub item</a></li>
+                      </ul>
+                    </li>
+                    <li class="uk-nav-header">Header</li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="#">Item</a></li>
+            </ul>
+
+            <a class="uk-navbar-toggle uk-navbar-toggle-animate uk-icon uk-navbar-toggle-icon" uk-navbar-toggle-icon="" href="#" role="button" aria-label="Open menu" aria-haspopup="true"><svg width="20" height="20" viewBox="0 0 20 20"><style>.uk-navbar-toggle-animate svg&gt;[class*="line-"]{transition:0.2s ease-in-out;transition-property:transform, opacity;transform-origin:center;opacity:1}.uk-navbar-toggle svg&gt;.line-3{opacity:0}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-3{opacity:1}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-2{transform:rotate(45deg)}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-3{transform:rotate(-45deg)}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-1,.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-4{opacity:0}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-1{transform:translateY(6px) scaleX(0)}.uk-navbar-toggle-animate[aria-expanded="true"] svg&gt;.line-4{transform:translateY(-6px) scaleX(0)}</style><rect class="line-1" y="3" width="20" height="2"></rect><rect class="line-2" y="9" width="20" height="2"></rect><rect class="line-3" y="9" width="20" height="2"></rect><rect class="line-4" y="15" width="20" height="2"></rect></svg></a>
+            <div class="uk-navbar-dropdown uk-drop" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !.uk-navbar; stretch: x; flip: false">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li class="uk-active"><a href="#">Active</a></li>
+                <li class="uk-parent">
+                  <a href="#">Parent</a>
+                  <ul class="uk-nav-sub">
+                    <li><a href="#">Sub item</a></li>
+                    <li><a href="#">Sub item</a></li>
+                  </ul>
+                </li>
+                <li class="uk-nav-header">Header</li>
+                <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+                <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </nav>
+    <nav class="main-nav uk-light uk-position-relative uk-position-z-index" hidden>
+      <div class="uk-position-top-left uk-position-small uk-visible@m">
+        {# main_nav_center_logo_center #}
+        <a class="uk-logo" href="#">
+          {% if theme.logo %}
+            {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
+            <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
+          {% else %}
+            {# {{ site.title|e('esc_html') }} #}
+            {# <div class="uk-background-primary uk-height-small uk-width-small uk-width-medium@m"></div> #}
+            <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+          {% endif %}
+        </a>
+      </div>
+      <div class="uk-position-top-center uk-position-small">
+        <a class="uk-logo uk-hidden@m" href="#">
+          {% if theme.logo %}
+            {# <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m" hidden> #}
+            <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
+          {% else %}
+            {# {{ site.title|e('esc_html') }} #}
+            {# <div class="uk-background-primary uk-height-small uk-width-small uk-width-medium@m"></div> #}
+            <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-small uk-width-medium@m">
+          {% endif %}
+        </a>
+        {% if has_menu_main %}
+          <ul class="uk-navbar-nav main-nav-center uk-visible@l">
+            {% for item in menu_main.get_items %}
+              {% if item.get_children %}
+                <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                  <a class="uk-button uk-button-text" href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                  <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                      {% for child in item.get_children %}
+                        <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
+                          {% if child.children %}
+                            <div uk-dropdown="pos: right-top">
+                              <ul class="uk-nav uk-dropdown-nav">
+                                {% for third in child.children %}
+                                  <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                    <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+              {% else %}
+                <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                  <a class="uk-button uk-button-text" href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="uk-position-top-right uk-position-small">
+        <div class="uk-navbar-item main-nav-right uk-visible@l">
+          {% for item in menu_socials.get_items %}
+            <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 2.1"></a>
+          {% endfor %}
+        </div>
+        {% if has_menu_main or has_menu_mobile %}
+          <button class="uk-navbar-toggle uk-navbar-toggle-animate uk-padding-remove-right uk-hidden@l" uk-navbar-toggle-icon aria-expanded="false" type="button" uk-toggle="target: #offcanvas-overlay" anim-target="#offcanvas-overlay"></button>
+        {% endif %}
+      </div>
+    </nav>
+    {% if has_menu_main or has_menu_mobile %}
+      <div id="offcanvas-overlay" class="" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar uk-padding-remove">
+          <div class="uk-background-default uk-dark uk-padding-medium uk-width-1-1 uk-height-1-1">
+
+            <a class="uk-offcanvas-close uk-position-small uk-text-emphasis">
+              <span uk-icon="icon: close; ratio: 1.5"></span>
+            </a>
+
+            <div class=" uk-position-relative uk-position-z-index">
+              <a class="uk-logo" href="/">
+                <div class="uk-background-muted uk-width-xsmall uk-height-xsmall"></div>
+              </a>
+
+              {# mobile menu nav #}
+              <ul class="uk-nav-default uk-margin" uk-nav="multiple: true">
+                {% if has_menu_mobile %}
+
+                  {# mobile menu title #}
+                  <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
+                    {{ menu_mobile.title|e('esc_html') }}
+                    <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
+                  </li>
+
+                  <li class="uk-nav-divider" hidden></li>
+
+                  {# mobile menu items #}
+                  {% for item in menu_mobile.get_items %}
+                    {% if item.get_children %}
+                      <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
+                        <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
+                        <ul class="uk-nav-sub">
+                          {% for child in item.get_children %}
+                            <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                              <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
+                              {% if child.children %}
+                                <ul class="uk-nav-sub">
+                                  {% for third in child.children %}
+                                    <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                      <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                        <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+
+                {% else %}
+                  {% if has_menu_main %}
+
+                    {# mobile menu title #}
+                    <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize" hidden>
+                      {{ menu_main.title|e('esc_html') }}
+                      <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
+                    </li>
+
+                    <li class="uk-nav-divider" hidden></li>
+
+                    {# mobile menu items #}
+                    {% for item in menu_main.get_items %}
+                      {% if item.get_children %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
+                          <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}} <span class="uk-icon uk-nav-parent-icon" uk-icon="icon: check; ratio: 2" hidden></span></a>
+                          <ul class="uk-nav-sub">
+                            {% for child in item.get_children %}
+                              <li class="{{ child.classes|join(' ')|e('esc_html') }}">
+                                <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
+                                {% if child.children %}
+                                  <ul class="uk-nav-sub">
+                                    {% for third in child.children %}
+                                      <li class="{{ third.classes|join(' ')|e('esc_html') }}">
+                                        <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                      {% else %}
+                        <li class="{{ item.classes|join(' ')|e('esc_html') }}">
+                          <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+
+                  {% endif %}
+                {% endif %}
+              </ul>
+
+            </div>
+
+            <div class="uk-position-bottom uk-position-small">
+              <div class="uk-flex uk-flex-middle uk-flex-center">
+                {% for item in menu_socials.get_items %}
+                  <a href="{{ item.get_link|e('esc_url') }}" class="uk-icon-button uk-icon-button-large uk-margin-small-right" uk-icon="icon: {{ item.title|lower|e('esc_html')}}; ratio: 1.5"></a>
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </header>
+  {# <div class="uk-background-secondary" uk-height-viewport></div> #}
+{% endblock %}
+
 {% block styles %}
   {{ parent() }}
-  
+
   {# gutenburg styles #}
   <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
+
+  {# google_fonts #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  {# /google_fonts #}
+
+  <style>
+
+    {# vars #}
+      {% set green_colour = '#217042' %}
+      {% set green_colour_seethru = '#217042e6' %}
+      {% set black_colour = '#000000' %}
+      {% set black_colour_seethru = '#000000cc' %}
+      {% set white_colour = '#ffffff' %}
+      {% set white_colour_seethru = '#ffffffcc' %}
+      {% set yellow_colour = '#e4e400' %}
+    {# /vars #}
+
+    {# text #}
+
+      html {
+        background: #fff;
+        color: #666;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        font-family: 'Mulish', sans-serif;
+      }
+      .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {
+        color: #333;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        font-weight: 900;
+        font-family: 'Mulish', sans-serif;
+      }
+
+      .uk-light .uk-text-emphasis {
+        color: #ffffff;
+      }
+
+      {# primary: red #}
+      .uk-text-primary, .uk-light .uk-text-primary, .uk-section-primary.uk-light .uk-text-primary {
+        color: {{green_colour}}!important;
+      }
+      {# secondary: black #}
+      .uk-text-emphasis, .uk-light .uk-text-secondary {
+        color: {{black_colour}}!important;
+      }
+      {# youtube popup icon #}
+      .uk-light .uk-icon-link {
+        color: hsla(0,0%,100%,1);
+        transition: .1s ease-in-out;
+        transition-property: color;
+      }
+      .uk-light .uk-icon-link:hover {
+        color: {{green_colour}};
+      }
+
+      {# BIG headings #}
+      .uk-heading-medium {
+        font-size: 2.8875rem;
+        line-height: 1.1;
+      }
+      @media (min-width: 768px){
+        .uk-heading-medium {
+          font-size: 3.2rem;
+        }
+      }
+      @media (min-width: 960px){
+        .uk-heading-medium {
+          font-size: 3.5rem;
+        }
+      }
+      @media (min-width: 1200px){
+        .uk-heading-medium {
+          font-size: 4.5rem;
+        }
+      }
+      .uk-heading-large {
+        font-size: 4rem;
+      }
+      @media (min-width: 480px){
+        .uk-heading-large {
+          font-size: 5rem;
+        }
+      }
+      @media (min-width: 768px){
+        .uk-heading-large {
+          font-size: 6rem;
+        }
+      }
+      @media (min-width: 960px){
+        .uk-heading-large {
+          font-size: 7rem;
+        }
+      }
+      @media (min-width: 1200px){
+        .uk-heading-large {
+          font-size: 8rem;
+        }
+      }
+      @media (min-width: 1600px){
+        .uk-heading-large {
+          font-size: 9rem;
+        }
+      }
+
+      {# text effect/s #}
+      .bigger-lines {
+        line-height: 1.9rem;
+      }
+
+      {# leads #}
+      .uk-text-lead {
+        font-size: 1.2rem;
+        line-height: 1.2;
+      }
+      @media (min-width: 1200px){
+        .uk-text-lead {
+          font-size: 1.5rem;
+          line-height: 1.5;
+        }
+      }
+
+    {# /text #}
+
+    {# backgrounds #}
+
+      {# primary: red #}
+      .uk-background-primary, .uk-section-primary {
+        background-color: {{green_colour}};
+      }
+      .overlay-primary:after {
+        background-color: {{green_colour_seethru}};
+      }
+      .uk-overlay-primary {
+        background: {{green_colour_seethru}};
+      }
+      {# secondary: black #}
+      .uk-section-secondary, .uk-background-secondary, .black-bg {
+        background-color: {{black_colour}};
+      }
+      .overlay-secondary:after {
+        background-color: {{black_colour_seethru}};
+      }
+      .uk-overlay-secondary {
+        background: {{black_colour_seethru}};
+      }
+      .overlay-default:after {
+        background-color: {{white_colour_seethru}};
+      }
+
+    {# /backgrounds #}
+
+    {# buttons #}
+
+      .uk-button {
+        text-transform: capitalize;
+        font-weight: 700;
+      }
+      .uk-button-large {
+        border-radius: 100px;
+        font-size: 1rem;
+        line-height: 60px;
+        padding: 0 60px;
+      }
+      @media (min-width: 960px){
+        .uk-button-large {
+          border-radius: 100px;
+          font-size: 1rem;
+          line-height: 70px;
+          padding: 0 70px;
+        }
+      }
+      @media (min-width: 1200px){
+        .uk-button-large {
+          border-radius: 100px;
+          font-size: 1rem;
+          line-height: 80px;
+          padding: 0 80px;
+        }
+      }
+      .uk-button-primary,
+      .uk-cover-container.uk-light .uk-button-primary,
+      .uk-icon-button.uk-background-primary {
+        background-color: {{green_colour}}!important;
+        color: {{white_colour}};
+      }
+      .uk-button-secondary {
+        background-color: {{black_colour}};
+      }
+      .uk-light .uk-button-secondary {
+        background-color: {{black_colour}};
+        color: {{white_colour}};
+      }
+
+    {# /buttons #}
+
+    {# borders #}
+      .border-rounded-full {
+        border-radius: 100%;
+      }
+    {# /borders #}
+
+    {# transitions  & effects #}
+      [class*=uk-transition-spin] {
+        transition: .3s ease-out;
+        transition-property: transform;
+      }
+      .uk-transition-active.uk-active .uk-transition-spin-round, .uk-transition-toggle .uk-transition-spin-round:focus-within, .uk-transition-toggle:focus .uk-transition-spin-round, .uk-transition-toggle:hover .uk-transition-spin-round {
+        transform: rotate(30deg);
+      }
+      .uk-transition-active.uk-active .scale-up-bigger, .uk-transition-toggle .scale-up-bigger:focus-within, .uk-transition-toggle:focus .scale-up-bigger, .uk-transition-toggle:hover .scale-up-bigger {
+        --uk-scale-x: 1.10;
+        --uk-scale-y: 1.10;
+      }
+      .bg-scale-up {
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: background-size .3s ease-out;
+      }
+      .bg-scale-up:hover {
+        background-size: auto 110%!important;
+      }
+      .uk-navbar-toggle-animate svg[class*="line-"] {
+        transition:0.2s ease-in-out;
+        transition-property:transform, opacity;
+        transform-origin:center;
+        opacity:1
+      }
+      .uk-navbar-toggle svg.line-3 {
+        opacity:0
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-3 {
+        opacity:1
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-2 {
+        transform:rotate(45deg)
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-3 {
+        transform:rotate(-45deg)
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-1,
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-4 {
+        opacity:0
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-1 {
+        transform:translateY(6px) scaleX(0)
+      }
+      .uk-navbar-toggle-animate[aria-expanded="true"] svg.line-4 {
+        transform:translateY(-6px) scaleX(0)
+      }
+      .uk-navbar-toggle-animate svg {
+        width: 32px;
+        height: 32px;
+      }
+      .lte-effect-smoke {
+        position: relative;
+        pointer-events: none;
+      }
+      .lte-effect-smoke img {
+        zoom: 1;
+        filter: alpha(opacity=0);
+        -webkit-opacity: 0;
+        -moz-opacity: 0;
+        opacity: 0;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        margin: 0 0 300px;
+        -webkit-transform: translate(-50%, 0px);
+        -moz-transform: translate(-50%, 0px);
+        -ms-transform: translate(-50%, 0px);
+        -o-transform: translate(-50%, 0px);
+        transform: translate(-50%, 0px);
+        -webkit-animation: lte-smoke-1 12s infinite;
+        -moz-animation: lte-smoke-1 12s infinite;
+        -o-animation: lte-smoke-1 12s infinite;
+        animation: lte-smoke-1 12s infinite;
+      }
+      .lte-effect-smoke .lte-effect-item-2 {
+        animation-delay: 2s;
+      }
+      .lte-effect-smoke .lte-effect-item-3 {
+        animation-delay: 4s;
+      }
+      .lte-effect-smoke .lte-effect-item-4 {
+        animation-delay: 6s;
+      }
+      .lte-effect-smoke .lte-effect-item-5 {
+        animation-delay: 8s;
+      }
+      .lte-effect-smoke .lte-effect-item-6 {
+        animation-delay: 10s;
+      }
+      .lte-effect-smoke .lte-effect-item-2 img {
+        animation-delay: 2s;
+        -webkit-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+      .lte-effect-smoke .lte-effect-item-4 img {
+        animation-delay: 6s;
+        -webkit-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+      .lte-effect-smoke .lte-effect-item-6 img {
+        animation-delay: 10s;
+        -webkit-transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
+      @keyframes lte-smoke-1 {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, 650px);
+        }
+        50% {
+          opacity: .5;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-50%, 0px);
+        }
+      }
+    {# /transitions #}
+
+    {# number badges: custom element #}
+      .number-badge-wrap {
+        left: -40px;
+        top: calc(50% - 40px);
+      }
+      .number-badge {
+        width: 70px;
+        height: 70px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #fff;
+        border-radius: 100%;
+        position: absolute;
+        opacity: 1;
+        left: 20px;
+      }
+      @media (min-width: 960px){
+        .number-badge {
+          width: 100px;
+          height: 100px;
+          font-size: 1.5rem;
+        }
+      }
+    {# /number #}
+
+    {# cover & pull-up wrap #}
+      .coffee_bean-container {
+        max-width: 500px;
+      }
+      @media (min-width: 1200px){
+        .coffee_bean-container {
+          max-width: none;
+        }
+      }
+    {# /cover #}
+
+    {# nav/bar: main #}
+      .main-nav .uk-navbar-item, .main-nav .uk-navbar-nav>li>a, .main-nav .uk-navbar-toggle {
+        font-size: 1.2rem;
+        padding: 0px 15px;
+        text-transform: capitalize;
+      }
+      .main-nav-center.uk-navbar-item, .main-nav-center.uk-navbar-nav>li>a, .main-nav-center.uk-navbar-toggle {
+        min-height: 130px;
+      }
+      .main-nav-right.uk-navbar-item, .main-nav-right.uk-navbar-nav>li>a, .main-nav-right.uk-navbar-toggle {
+        min-height: 130px;
+      }
+      @media (min-width: 1200px){
+        .main-nav-center.uk-navbar-item, .main-nav-center.uk-navbar-nav>li>a, .main-nav-center.uk-navbar-toggle {
+          min-height: 130px;
+        }
+        .main-nav-right.uk-navbar-item, .main-nav-right.uk-navbar-nav>li>a, .main-nav-right.uk-navbar-toggle {
+          min-height: 130px;
+        }
+      }
+      .uk-light .uk-navbar-nav>li>a, .uk-light .uk-navbar-toggle  {
+        color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-navbar-nav>li.uk-active>a {
+        color: {{green_colour}};
+      }
+      .uk-icon-button.uk-icon-button-large {
+        height: 70px;
+        width: 70px;
+      }
+      .uk-light .uk-icon-button {
+        background-color: hsla(0,0%,100%,.1);
+        color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-icon-button:hover {
+        background-color: {{green_colour}};
+        color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-navbar-nav>li:hover>a {
+        color: hsla(0,0%,100%,1);
+      }
+      .uk-light .uk-navbar-nav>li.uk-active>a {
+        color: {{green_colour}};
+      }
+
+      .uk-button-text {
+        font-weight: 500;
+      }
+      .uk-button-text:before {
+        border-bottom: 3px solid;
+        bottom: 35%;
+        content: "";
+        left: 15px;
+        position: absolute;
+        right: 100%;
+        transition: right .3s ease-out;
+      }
+      .uk-light .uk-button-text:before {
+        border-bottom-color: {{green_colour}};
+      }
+      .uk-button-text:hover:before,
+      .uk-active>.uk-button-text:before {
+        right: 15px;
+      }
+    {# /nav #}
+
+    {# util #}
+      .large-right {
+        padding-right: 100px;
+      }
+      .full-height-viewport {
+        height: 100vh;
+      }
+    {# /util #}
+
+    {# lists #}
+      .uk-list-xlarge>*>ul, .uk-list-xlarge>:nth-child(n+2) {
+        margin-top: 50px;
+      }
+    {# /lists #}
+
+    {# dividers #}
+      .uk-divider-small:after {
+        border-top: 8px solid #217042;
+        border-radius: 100px;
+        width: 60px;
+      }
+      .primary-divider:after {
+        width: 250px;
+        border-radius: 0;
+        border-color: #217042!important;
+        border-width: medium;
+      }
+    {# /dividers #}
+
+    {# Swiper styles #}
+      .swiper, swiper-container {
+        padding: 0;
+      }
+      @media (min-width: 640px){
+        .swiper, swiper-container {
+          padding: 0 20px;
+        }
+      }
+      .uk-light .swiper-pagination-bullet {
+        background: #fff;
+      }
+      .swiper-pagination-bullet-active {
+        background: #217042!important;
+      }
+    {# /Swiper styles #}
+
+    {# footer #}
+      footer .uk-logo .uk-width-medium {
+        width: 220px;
+      }
+      .footer-nav {
+        column-count: 2;
+        column-gap: 10px;
+        font-size: 1rem;
+      }
+
+      .site-footer .uk-section-small {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+    {# /footer #}
+
+    {# geometry #}
+
+      {# float box (pull up image) height #}
+      .float-box {
+        height: 80px;
+      }
+      @media (min-width: 480px){
+        .float-box {
+          height: 100px;
+        }
+      }
+      @media (min-width: 768px){
+        .float-box {
+          height: 120px;
+        }
+      }
+      @media (min-width: 960px){
+        .float-box {
+          height: 150px;
+        }
+      }
+      @media (min-width: 1200px){
+        .float-box {
+          height: 350px;
+        }
+      }
+      @media (min-width: 1600px){
+        .float-box {
+          height: 350px;
+        }
+      }
+
+      {# product container grid #}
+      .uk-grid-large.uk-grid-column-large {
+        margin-left: -70px;
+      }
+      @media (min-width: 1200px){
+        .uk-grid-large.uk-grid-column-large {
+          margin-left: -100px;
+        }
+      }
+      .uk-grid-large.uk-grid-column-large>* {
+        padding-left: 70px;
+      }
+      @media (min-width: 1200px){
+        .uk-grid-large.uk-grid-column-large>* {
+          padding-left: 100px;
+        }
+      }
+
+    {# /geometry #}
+
+    {# more #}
+
+      .uk-padding-medium {
+        padding: 20px;
+      }
+
+      .uk-nav>li>a {
+        font-weight: 800;
+      }
+      .uk-nav-default>li>a,
+      .uk-nav-default>li>a:hover {
+        color: #333;
+      }
+      .uk-nav-default>li.uk-active>a {
+        color: {{green_colour}};
+      }
+
+      .uk-offcanvas-bar {
+        width: 86%;
+        max-width: 450px!important;
+      }
+      .uk-offcanvas-bar .uk-nav-default {
+        font-size: 1.1rem;
+      }
+      .uk-offcanvas-bar .uk-nav-default li>a {
+        display: block;
+      }
+      .uk-offcanvas-bar .uk-nav-default li.uk-parent>a::before {
+        content: "";
+        width: 1.4em;
+        height: 1.4em;
+        margin-left: 10px;
+        float: right;
+        background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%222%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+      .uk-offcanvas-bar .uk-nav-default li.uk-parent.uk-open>a::before {
+        background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%222%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E);
+      }
+
+      .uk-light .uk-background-muted {
+        background-color: #ffffff17;
+      }
+
+      .uk-width-xsmall {
+        width: 100px;
+      }
+      .uk-height-xsmall {
+        height: 100px;
+      }
+      .uk-width-small {
+        width: 160px;
+      }
+      @media (min-width: 960px){
+        .uk-width-medium\@m {
+          width: 270px;
+        }
+      }
+
+      .overlay-primary.uk-light .uk-text-primary {
+        color: #0e0e0e!important;
+      }
+
+
+      @media (max-width: 767px){
+        .remove-margin-mobile {
+          margin: 0!important;
+        }
+      }
+
+
+    {# /more #}
+
+    .breads .uk-text-small {
+      font-size: 1rem;
+    }
+    .breads a {
+      color: #217042;
+      font-weight: 900;
+    }
+
+  </style>
 {% endblock %}
 
 {% block main %}
-  <article id="{{ post.id|e('esc_html') }}" class="uk-article {{ post.class|e('esc_html') }}" data-template="single.twig">
+  {# <article id="{{ post.id|e('esc_html') }}" class="uk-article {{ post.class|e('esc_html') }}" data-template="single.twig"> #}
+  <article id="{{ post.id|e('esc_html') }}" class="{{ post.class|e('esc_html') }}" data-template="single.twig">
 
     {# single header #}
     {% block single_header %}
-      {% include 'single_parts/header.twig' %}
+      {# {% include 'single_parts/header.twig' %} #}
+      <header class="uk-section uk-section-large uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url(https://test.com/wp-content/themes/base-theme/assets/img/coffee/beans_bg.jpg);">
+        <div class="uk-position-relative uk-position-z-index">
+          <div class="uk-container uk-text-center uk-margin-large-top">
+            <h2 class="uk-h1">{{ post.title|e('esc_html') }}</h2>
+            {% block breads %}
+              {% if fn('yoast_breadcrumb_enabled') and not fn('is_front_page') %}
+                <div class="breads">
+                  {% include '_breads.twig' %}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </header>
     {% endblock %}
 
     {# single content #}
     {% block single_content %}
-      <div class="single-content uk-background-default uk-section uk-section-small">
-
-        {# the content leader. uses post->post_excerpt & adds a dropcap #}
-        {% block single_content_lead %}
-          {% if post.post_excerpt and (post.post_type == 'post' or configs.enable_page_excerpts == true) %}
-            <div class="single-excerpt uk-container uk-container-xsmall uk-margin-bottom">
-              <p class="uk-text-lead uk-dropcap">{{ post.post_excerpt|e('esc_html') }}</p>
-              <hr class="uk-divider-small">
-            </div>
-          {% endif %}
-        {% endblock %}
-        
+      <div class="single-content uk-section uk-section-large uk-section-default">
         {# the actual post content. with gutenberg-friendly wrapper #}
         {% block single_content_editor %}
           <div class="content-editor gutenberg-editor">
             {{ post.content|e('wp_kses_post') }}
           </div>
         {% endblock %}
-        
       </div>
     {% endblock %}
 
     {# single footer #}
     {% block single_footer %}
-      {% include 'single_parts/footer.twig' %}
+      {# {% include 'single_parts/footer.twig' %} #}
     {% endblock %}
 
   </article>
+{% endblock %}
+
+{% block footer %}
+  {# {{ parent() }} #}
+
+  {# website footer #}
+  <footer class="site-footer uk-position-relative overlay-wrap overlay-secondary uk-light" style="background-image: url({{theme.link}}/assets/img/coffee/beans_bg.jpg);">
+    <div class="uk-position-relative uk-position-z-index">
+      <div class="uk-section uk-container uk-container-xlarge">
+        <ul class="uk-child-width-1-3@m uk-grid-large uk-grid-column-large" uk-grid>
+          <li>
+            <div class="large-right">
+              <a class="uk-logo" href="/">
+                <img src="{{ theme.link }}/assets/img/coffee/logo/3D_white_green.png" alt="" class="uk-width-medium">
+              </a>
+              <p>Etiam consequat sem ullamcorper, euismod metus sit amet, tristique justo. Vestibulum mattis, nisi ut.</p>
+              <div class="uk-flex uk-flex-left uk-flex middle">
+                <a href="" class="uk-icon-button uk-margin-small-right" uk-icon="icon: twitter; ratio: 1"></a>
+                <a href="" class="uk-icon-button uk-margin-small-right" uk-icon="icon: facebook; ratio: 1"></a>
+                <a href="" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1"></a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="large-right">
+              <h3 class="uk-text-primary uk-margin-remove">Navigation</h3>
+              <hr class="uk-divider-small primary-divider uk-margin-small-top uk-margin-medium-bottom">
+              <ul class="footer-nav uk-list">
+                <li>Homepage</li>
+                <li>About us</li>
+                <li>Coffee</li>
+                <li>Chocolate</li>
+                <li>Tea</li>
+                <li>Shop</li>
+                <li>Contact</li>
+                <li>Basket</li>
+                <li>Checkout</li>
+                <li>Account</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <h3 class="uk-text-primary uk-margin-remove">Contact Info</h3>
+            <hr class="uk-divider-small primary-divider uk-margin-small-top uk-margin-medium-bottom">
+            <ul class="uk-list uk-list-large">
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: location; ratio: 1"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Find us:</h4>
+                    <p class="uk-margin-remove">Rio de Janeiro, RJ Brazil, 04103 Route.<br>Postcode: 1234567</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: mail; ratio: 1"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Email us:</h4>
+                    <p class="uk-margin-remove">info@coffeeandtea.ie</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="icon-card uk-grid-small uk-flex uk-flex-top" uk-grid>
+                  <div class="uk-width-auto">
+                    <span class="uk-icon uk-icon-button uk-background-primary" uk-icon="icon: receiver; ratio: 1"></span>
+                  </div>
+                  <div class="uk-width-expand">
+                    <h4 class="uk-h4 uk-text-primary uk-margin-remove">Phone us:</h4>
+                    <p class="uk-margin-remove">Help: +49078-039-23-11<br>Sales: +49078-028-55-60</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <hr class="uk-margin-remove">
+      <div class="uk-section uk-section-small uk-container uk-container-xlarge">
+        <ul class="uk-grid-collapse uk-grid-match uk-text-small uk-text-center uk-text-left@m" uk-grid>
+          <li class="uk-width-expand@m">
+            <div>
+              {{ _x('© All Rights Reserved %s', 'Footer: copyright', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}" uk-tooltip="{{ _x('Return to Homepage', 'Footer: back to home', 'base-theme')|e('esc_html') }}">{{ site.title|e('esc_html') }}</a>
+            </div>
+          </li>
+          <li class="uk-width-auto@m">
+            <div>Made by <a href="https://github.com/robmccormack89/" uk-tooltip="Check me out on github" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  {# allows .uk-navbar-toggle-animate to work on uk-toggles with #offcanvas-overlay as target. needs anim-target attribute #}
+  <script>
+    var animated_toggles = document.querySelectorAll('.uk-navbar-toggle-animate');
+    animated_toggles.forEach(item => {
+
+      if(item.getAttribute('anim-target')){
+
+        var theTarget = document.querySelector(item.getAttribute('anim-target'))
+
+        theTarget.addEventListener("show", (event) => {
+          if (event.target.id === 'offcanvas-overlay') {
+            if(item.ariaExpanded == 'false') item.ariaExpanded = 'true';
+          }
+        });
+
+        theTarget.addEventListener("hide", (event) => {
+          if (event.target.id === 'offcanvas-overlay') {
+            if(item.ariaExpanded == 'true') item.ariaExpanded = 'false';
+          }
+        });
+
+      }
+
+    });
+  </script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".four-items-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      breakpoints: {
+        // when window width is >= 480
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        // when window width is >= 768
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        // when window width is >= 960
+        960: {
+          slidesPerView: 4,
+          spaceBetween: 30
+        }
+      },
+      pagination: {
+        el: ".swiper-pagination-four-items",
+        clickable: true,
+      },
+    });
+    var swiper_numbers = new Swiper(".numbers-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      breakpoints: {
+        // when window width is >= 480
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        // when window width is >= 768
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        // when window width is >= 960
+        960: {
+          slidesPerView: 4,
+          spaceBetween: 30
+        }
+      },
+      pagination: {
+        el: ".swiper-pagination-numbers",
+        clickable: true,
+      },
+    });
+    var swiper_benefits = new Swiper(".benefits-swipe", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      pagination: {
+        el: ".swiper-pagination-benefits",
+        clickable: true,
+      },
+    });
+  </script>
 {% endblock %}

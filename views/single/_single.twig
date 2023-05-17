@@ -1,0 +1,48 @@
+{% extends 'base.twig' %}
+
+{% block styles %}
+  {{ parent() }}
+  
+  {# gutenburg styles #}
+  <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
+{% endblock %}
+
+{% block main %}
+  <article id="{{ post.id|e('esc_html') }}" class="uk-article {{ post.class|e('esc_html') }}" data-template="single.twig">
+
+    {# single header #}
+    {% block single_header %}
+      {% include 'single_parts/header.twig' %}
+    {% endblock %}
+
+    {# single content #}
+    {% block single_content %}
+      <div class="single-content uk-background-default uk-section uk-section-small">
+
+        {# the content leader. uses post->post_excerpt & adds a dropcap #}
+        {% block single_content_lead %}
+          {% if post.post_excerpt and (post.post_type == 'post' or configs.enable_page_excerpts == true) %}
+            <div class="single-excerpt uk-container uk-container-xsmall uk-margin-bottom">
+              <p class="uk-text-lead uk-dropcap">{{ post.post_excerpt|e('esc_html') }}</p>
+              <hr class="uk-divider-small">
+            </div>
+          {% endif %}
+        {% endblock %}
+        
+        {# the actual post content. with gutenberg-friendly wrapper #}
+        {% block single_content_editor %}
+          <div class="content-editor gutenberg-editor">
+            {{ post.content|e('wp_kses_post') }}
+          </div>
+        {% endblock %}
+        
+      </div>
+    {% endblock %}
+
+    {# single footer #}
+    {% block single_footer %}
+      {% include 'single_parts/footer.twig' %}
+    {% endblock %}
+
+  </article>
+{% endblock %}
