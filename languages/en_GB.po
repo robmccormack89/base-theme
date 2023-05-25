@@ -16,12 +16,12 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-16 14:29+0000\n"
+"PO-Revision-Date: 2023-05-17 18:03+0000\n"
 "Last-Translator: Robert\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.4; wp-6.1.1"
+"X-Loco-Version: 2.6.4; wp-6.2.1"
 
 #: 404.php:21, archive.php:23, index.php:20, singular.php:25,
 #: templates/custom.php:45
@@ -465,7 +465,7 @@ msgstr ""
 #: views/temp/single/custom.php:807
 msgctxt "Homepage Section: Cover - heading"
 msgid "<span class=\"uk-text-primary\">Quality</span><br>Coffee & Tea"
-msgstr ""
+msgstr "<span class=\"uk-text-primary\">Premium</span><br>Coffee & Tea"
 
 #: views/temp/single/custom.php:1074
 msgctxt "Homepage Section: CTAx3 - number 1 bg image url"
