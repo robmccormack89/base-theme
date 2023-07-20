@@ -20,15 +20,6 @@
 // Variables
 // ========================================================================
 
-$tooltip-z-index:                                $global-z-index + 30 !default;
-$tooltip-margin:                                 10px !default;
-$tooltip-max-width:                              200px !default;
-$tooltip-padding-vertical:                       3px !default;
-$tooltip-padding-horizontal:                     6px !default;
-$tooltip-background:                             #666 !default;
-$tooltip-border-radius:                          2px !default;
-$tooltip-color:                                  $global-inverse-color !default;
-$tooltip-font-size:                              12px !default;
 
 
 
@@ -51,6 +42,7 @@ $tooltip-font-size:                              12px !default;
     position: absolute;
     z-index: $tooltip-z-index;
     --uk-position-offset: #{$tooltip-margin};
+    --uk-position-viewport-offset: 10;
     /* 3 */
     top: 0;
     /* 4 */

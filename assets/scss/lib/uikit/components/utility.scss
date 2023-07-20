@@ -31,30 +31,12 @@
 // Variables
 // ========================================================================
 
-$panel-scrollable-height:                        170px !default;
-$panel-scrollable-padding:                       10px !default;
-$panel-scrollable-border-width:                  $global-border-width !default;
-$panel-scrollable-border:                        $global-border !default;
 
-$border-rounded-border-radius:                   5px !default;
 
-$box-shadow-duration:                            0.1s !default;
 
-$box-shadow-bottom-height:                       30px !default;
-$box-shadow-bottom-bottom:                       (-$box-shadow-bottom-height) !default;
-$box-shadow-bottom-border-radius:                100% !default;
-$box-shadow-bottom-background:                   #444 !default;
-$box-shadow-bottom-blur:                         20px !default;
 
-$dropcap-margin-right:                           10px !default;
-$dropcap-font-size:                              (($global-line-height * 3) * 1em) !default;
 
-$logo-font-size:                                 $global-large-font-size !default;
-$logo-font-family:                               $global-font-family !default;
-$logo-color:                                     $global-emphasis-color !default;
-$logo-hover-color:                               $global-emphasis-color !default;
 
-$dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) !default;
 
 
 /* ========================================================================
@@ -87,7 +69,6 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
     padding: $panel-scrollable-padding;
     border: $panel-scrollable-border-width solid $panel-scrollable-border;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
     resize: both;
     @if(mixin-exists(hook-panel-scrollable)) {@include hook-panel-scrollable();}
 }
@@ -137,21 +118,25 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
 
 /*
  * Enable scrollbars if content is clipped
- * Note: Firefox ignores `padding-bottom` for the scrollable overflow https://bugzilla.mozilla.org/show_bug.cgi?id=748518
  */
 
-.uk-overflow-auto {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-}
+.uk-overflow-auto { overflow: auto; }
 
 .uk-overflow-auto > :last-child { margin-bottom: 0; }
+
+
+/* Box Sizing
+ ========================================================================== */
+
+.uk-box-sizing-content { box-sizing: content-box; }
+.uk-box-sizing-border { box-sizing: border-box; }
 
 
 /* Resize
  ========================================================================== */
 
 .uk-resize { resize: both; }
+.uk-resize-horizontal { resize: horizontal; }
 .uk-resize-vertical { resize: vertical; }
 
 
@@ -261,7 +246,7 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
 .uk-object-none { object-fit: none; }
 .uk-object-scale-down { object-fit: scale-down; }
 
-/* 
+/*
  * Position
  */
 
@@ -384,16 +369,25 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
  ========================================================================== */
 
 /*
- * 1. Required for `a`
+ * 1. Style
+ * 2. Required for `a`
+ * 3. Behave like image but can be overridden through flex utility classes
  */
 
 .uk-logo {
+    /* 1 */
     font-size: $logo-font-size;
     font-family: $logo-font-family;
     color: $logo-color;
-    /* 1 */
+    /* 2 */
     text-decoration: none;
     @if(mixin-exists(hook-logo)) {@include hook-logo();}
+}
+
+/* 3 */
+:where(.uk-logo) {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Hover */
@@ -404,7 +398,7 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
     @if(mixin-exists(hook-logo-hover)) {@include hook-logo-hover();}
 }
 
-.uk-logo > :where(img, svg, video) { display: block; }
+.uk-logo :where(img, svg, video) { display: block; }
 
 .uk-logo-inverse { display: none; }
 
@@ -496,8 +490,6 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
 // Inverse
 // ========================================================================
 
-$inverse-logo-color:                            $inverse-global-emphasis-color !default;
-$inverse-logo-hover-color:                      $inverse-global-emphasis-color !default;
 
 
 

@@ -1,0 +1,295 @@
+{% extends 'single.twig' %}
+
+{% block main %}
+
+  <section class="uk-section uk-section-large uk-section-primary uk-background-cover uk-position-relative uk-light" style="background-image: url(https://customdriveways.ie/wp-content/themes/customdriveways/assets/images/landscape.jpg)">
+
+    {# overlay #}
+    <div class="uk-overlay-primary uk-position-cover"></div>
+
+    {# content #}
+    <div class="uk-container uk-text-center uk-position-relative uk-position-z-index">
+      <div uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
+        <div>
+          <h1 class="uk-margin-remove-top uk-heading-medium">
+            <span class="merri-sans uk-h5">Welcome To</span>
+            <br>Custom Pattern Imprinted Concrete Driveways
+          </h1>
+          <p class="subtitle-text">Our Imprinted Concrete gives Driveways, Patios, Pathways & Steps/Kerbs a new lease of life & is much easier to maintain than other materials. 
+          </p>
+          <a href="#" title="Learn More" class="uk-button uk-button-primary uk-border-pill" uk-scrollspy-class="uk-animation-fade" hidden>LEARN MORE</a>
+        </div>
+      </div>
+    </div>
+
+    {# scroll down #}
+    <div class="uk-position-bottom-center uk-position-medium uk-position-z-index uk-text-center uk-light uk-animation-fade">
+      <div class="uk-animation-toggle" tabindex="0">
+        <a href="#content" class="uk-animation-slide-top-small uk-animation-fast" uk-scroll="duration: 500" uk-icon="icon: arrow-down; ratio: 2"></a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- tabbed content section -->
+  <section id="content" class="uk-section uk-section-default">
+    <div class="uk-container">
+      <div class="uk-section uk-section-xsmall uk-padding-remove-top">
+        <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center" uk-switcher="connect: .uk-switcher; animation: uk-animation-fade">
+          <li><a class="uk-border-pill" href="#">Services</a></li>
+          <li><a class="uk-border-pill" href="#">Custom Design</a></li>
+          <li><a class="uk-border-pill" href="#">Award-Winning</a></li>
+        </ul>
+      </div>
+      <ul class="uk-switcher uk-margin">
+        <li>
+          <div class="uk-grid uk-child-width-1-2@l uk-grid-large uk-flex-middle" uk-grid uk-scrollspy="target: > div; cls: uk-animation-slide-left-medium">
+            <div>
+              {{ fn('do_shortcode', '[meta_gallery id="galleryFive" cats="driveways" gallerysorting="random" layout="justified" gallerymaxrows=3]') }}
+            </div>
+            <div uk-scrollspy-class="uk-animation-slide-right-medium">
+              <h6 class="meta-heading uk-text-primary uk-margin-small merri-sans">What we Offer</h6>
+              <h2 class="uk-margin-small">Services</h2>
+              <p class="subtitle-text">
+                Our Imprinted Concrete gives Driveways, Patios, Pathways & Steps/Kerbs a new lease of life & is much easier to maintain than other materials.
+              </p>
+              <div class="uk-grid uk-grid-small uk-child-width-1-2@s" uk-grid>
+                <div>
+                  <h4 class="uk-margin-small">Driveways</h4>
+                  <p class="uk-margin-small">Pattern Imprinted Concrete Driveways are an affordable, durable & low-maintenance alternative to other driveway surfaces.</p>
+                  <a href="/pattern-imprinted-concrete-driveways" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+                <div>
+                  <h4 class="uk-margin-small">Patios</h4>
+                  <p class="uk-margin-small">Pattern Imprinted Concrete Patios have become very popular in Ireland in recent years, especially in the Dublin & the surrounding area.</p>
+                  <a href="/pattern-imprinted-concrete-patios" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+                <div>
+                  <h4 class="uk-margin-small">Pathways</h4>
+                  <p class="uk-margin-small">Pattern Imprinted concrete Pathways provide flexibility to homeowners to completely rejuvenate any area of their backyard or garden.</p>
+                  <a href="/pattern-imprinted-concrete-pathways" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+                <div>
+                  <h4 class="uk-margin-small">Steps & Kerbs</h4>
+                  <p class="uk-margin-small">Pattern Imprinted Concrete Steps & Kerbs are a great alternative to traditional brick steps for their attractiveness, durability & safety.</p>
+                  <a href="/pattern-imprinted-concrete-steps-kerbs" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="uk-grid uk-child-width-1-2@l uk-grid-large uk-flex-middle" uk-grid uk-scrollspy="target: > div; cls: uk-animation-slide-left-medium">
+            <div>
+              {{ fn('do_shortcode', '[meta_gallery id="galleryFive" cats="driveways" gallerysorting="random" layout="justified" gallerymaxrows=3]') }}
+            </div>
+            <div uk-scrollspy-class="uk-animation-slide-right-medium">
+              <h6 class="meta-heading uk-text-primary uk-margin-small merri-sans">What We Offer</h6>
+              <h2 class="uk-margin-small">Custom Design</h2>
+              <p class="subtitle-text">
+                Pattern Imprinted Concrete offers the homeowner total flexibility in the high quality finished look they wish to create for their installation. A Pattern Imprinted Concrete installation can be customised in many different ways, depending on the taste and requirements of the customer; giving you a completely unique & custom design. 
+              </p>
+              <div class="uk-grid uk-grid-small uk-child-width-1-2@s" uk-grid>
+                <div>
+                  <h4 class="uk-margin-small">Colours</h4>
+                  <p class="uk-margin-small">Custom Driveways offers our customers a selection of coloured concrete in various shades and designs. We can create something that is unique to you & your tastes.</p>
+                  <a href="/coloured-concrete" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+                <div>
+                  <h4 class="uk-margin-small">Patterns</h4>
+                  <p class="uk-margin-small">Pattern Imprinted Concrete is created by the effect of a pattern being stamped onto poured concrete. We offer a large range of patterns for our customers to choose from.</p>
+                  <a href="/stamped-concrete-patterns" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+                <div>
+                  <h4 class="uk-margin-small">Special Features</h4>
+                  <p class="uk-margin-small">At Custom Driveways we can offer our customers a wide range of interesting special features which you may like to add to your Pattern Imprinted Concrete installation.</p>
+                  <a href="/features" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="uk-grid uk-child-width-1-2@l uk-grid-large uk-flex-middle" uk-grid uk-scrollspy="target: > div; cls: uk-animation-slide-left-medium">
+            <div>
+              <iframe src="https://www.youtube.com/embed/pflccN-9JOs?enablejsapi=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true"></iframe>
+            </div>
+            <div uk-scrollspy-class="uk-animation-slide-right-medium">
+              <h6 class="meta-heading uk-text-primary uk-margin-small merri-sans">About us</h6>
+              <h2 class="uk-margin-small">Award-winning</h2>
+              <p class="subtitle-text">We were Proud Winners of the 2017, 2019 & 2020 PICS Golden Trowel Awards (International Decorative Concrete Project).</p>
+              <p>The Golden Trowel Awards review entries from the decorative concrete industry & award the best entries with a coveted Golden Trowel trophy based on imagination & skill displayed from concrete installers & contractors </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- left content, right imge section -->
+  <section id="ViewOurGalleries" class="uk-section uk-section-secondary uk-section-large">
+    <div class="uk-container">
+      <div class="uk-grid uk-child-width-1-2@l uk-flex-middle">
+        <div>
+          <h6 class="meta-heading uk-text-primary uk-margin-small merri-sans">Galleries</h6>
+          <h2 class="uk-margin-small-top uk-h1">How we can tranform your home & garden.</h2>
+          <p class="subtitle-text">
+            View our website’s galleries for updated photos to see what Pattern Imprinted Concrete can bring to your home/garden-area. Pattern Imprinted Concrete is multipurpose, affordable & durable
+          </p>
+          <a href="/galleries" class="uk-button uk-button-primary uk-border-pill uk-margin-bottom" uk-icon="arrow-right">Browse all galleries</a>
+        </div>
+        <div uk-scrollspy="cls: uk-animation-fade">
+          <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+
+            <ul class="uk-slideshow-items">
+                <li>
+                    <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Driveway-L-27.jpg" alt="" uk-cover>
+                </li>
+                <li>
+                    <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Driveway-L-27.jpg" alt="" uk-cover>
+                </li>
+                <li>
+                    <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Driveway-L-27.jpg" alt="" uk-cover>
+                </li>
+            </ul>
+        
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- blockquote carousel over cover section -->
+  <section id="ShortTestimonials" class="uk-cover-container">
+    <img src="/wp-content/uploads/2023/07/new-driveways-44.jpg" 
+    data-srcset="/wp-content/uploads/2023/07/new-driveways-44.jpg 640w,
+    /wp-content/uploads/2023/07/new-driveways-44.jpg 960w,
+    /wp-content/uploads/2023/07/new-driveways-44.jpg 1200w,
+    /wp-content/uploads/2023/07/new-driveways-44.jpg 2000w"
+    data-sizes="100vw"
+    data-src="/wp-content/uploads/2023/07/new-driveways-44.jpg" 
+    alt="" uk-cover uk-img>
+    <div class="uk-position-cover uk-overlay uk-overlay-primary"></div>
+    <div class="uk-container uk-position-z-index uk-position-relative uk-section uk-section-large uk-light">
+      <div class="uk-grid uk-flex-right">
+        <div class="uk-width-2-5@m" uk-parallax="y: 50,-50; easing: 0; media:@l">
+          <h6 class="meta-heading uk-text-primary uk-margin-small merri-sans">What our customers say</h6>
+          <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="easing: cubic-bezier(.16,.75,.47,1)">
+            <ul class="uk-slider-items uk-child-width-1-1">
+              <li>
+                <div uk-slider-parallax="opacity: 0.2,1,0.2">
+                  <h2 class="uk-margin-small-top">"I do not exaggerate when I say; the difference this has made to our home is dramatic and we continuously receive complements to the end"</h2>
+                  <p class="uk-text-meta">Sally in Edenderry, Offaly</p>
+                </div>
+              </li>
+              <li>
+                <div uk-slider-parallax="opacity: 0.2,1,0.2">
+                  <h2 class="uk-margin-small-top">"I would encourage anyone thinking of updating their home to speak with Al and Custom Driveways team to discuss the options, you will be impressed"</h2>
+                  <p class="uk-text-meta">Ronan in Lucan, Dublin</p>
+                </div>
+              </li>
+            </ul>
+            <ul class="uk-slider-nav uk-dotnav uk-margin-top">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- content grid with icons/images section -->
+  <section id="QualityControl" class="uk-section uk-section-muted">
+    <div class="uk-container uk-container-xsmall uk-text-center uk-section uk-padding-remove-top">
+      <h5 class="meta-heading uk-text-primary uk-margin-small merri-sans">Quality</h5>
+      <h2 class="uk-margin-remove uk-h1">Know our committment to providing quality to our customers.</h2>
+    </div>
+    <div class="uk-container">
+      <div class="uk-grid uuuk-grid-large uk-child-width-1-3@m uk-flex-center" uk-grid="masonry: true" uk-scrollspy="target: > div; delay: 150; cls: uk-animation-slide-bottom-medium">
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Driveway-L-14-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Contractor Credentials</h3>
+              <p>It is extremely important for homeowners to be able to check the credentials of the concrete contractor providing their driveway installation service.</p>
+              <a href="/concrete-contractor-credentials" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Pathway-P-01-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Product Quality</h3>
+              <p>We use only high quality product manufactured by PICS Ltd, a long standing member/contributor to the Concrete Society, in facilities accredited to BS ISO 9001</p>
+              <a href="/product-quality" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Patio-P-09-e1475963464374-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Process Quality</h3>
+              <p>Operating as specialist installers of printed concreted surfaces, Custom Driveways have established a reputation of top-quality concrete contractor work.</p>
+              <a href="/process-quality" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/SF-P-08-e1475969457128-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Steps in our Process</h3>
+              <p>We provide a comprehensive breakdown of all the steps in our process, from site visit/inspection & consultaion, stright thru to the after-care process.</p>
+              <a href="/our-process" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Step-P-01-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Aftercare Tips</h3>
+              <p>Printed Concrete lends itself ideally to rejuvenation some years after its initial installation. This is done through the application of sealer products.</p>
+              <a href="/concrete-sealer-tips" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-default uk-card-small">
+            <div class="uk-card-media-top">
+              <img src="https://customdriveways.ie/wp-content/uploads/2016/10/Driveway-L-14-400x284.jpg" width="1800" height="1200" alt="">
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title">Frequently Asked Questions</h3>
+              <p>We answer any question you might have regarding either our installtion process or the product itself, including maintenance & durability over time</p>
+              <a href="/faqs" class="">Learn more<span class="uk-margin-small-left" uk-icon="arrow-right"></span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

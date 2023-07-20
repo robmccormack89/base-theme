@@ -12,6 +12,64 @@
       <div id="Preloader" class="preloader"></div>
     {% endif %}
 
+    <style>
+      .quick-call-nav .uk-grid-small>.uk-grid-margin {
+        margin-top: 5px;
+      }
+      .quick-call-nav .uk-grid-small>* {
+        padding-left: 10px;
+      }
+      .quick-call-nav .uk-icon-button {
+        color: #fff;
+        width: 50px;
+        height: 50px;
+      }
+      .quick-call-nav .uk-icon-button.mail {
+        background-color: #df0c0c;
+      }
+      .quick-call-nav .uk-icon-button.mail svg polyline {
+        stroke-width: 1.6px;
+      }
+      .quick-call-nav .uk-icon-button.mail svg path {
+        stroke-width: 0.6px;
+        stroke: #fff;
+      }
+      .quick-call-nav .uk-icon-button.receiver {
+        background-color: #9b51e0;
+      }
+      .quick-call-nav .uk-icon-button.receiver svg path {
+        stroke-width: 1.6px;
+      }
+      .quick-call-nav .uk-icon-button.whatsapp {
+        background-color: #26cd42;
+      }
+      .quick-call-nav .uk-icon-button.close {
+        background-color: #3c3c3c;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        right: -30px;
+      }
+      .quick-call-nav.quick-call-nav-mobile .uk-icon-button.close {
+        right: -20px;
+        top: -5px;
+      }
+      .quick-call-nav .uk-icon-button svg {
+        width: 35px;
+      }
+      .quick-call-nav .uk-icon-button.close svg {
+        width: 20px;
+      }
+      .quick-call-nav .uk-icon-button.close svg path {
+        stroke-width: 3px;
+      }
+
+      .uk-box-shadow-small {
+        box-shadow: 0 2px 8px rgb(0 0 0 / 53%);
+      }
+    </style>
+
     {% block header %}
       {% include 'header.twig' %}
     {% endblock %}
@@ -49,7 +107,7 @@
 
     {# dark light js init #}
     <script>
-      var darkLightCookie = getCookie("darklightswitch");
+      {# var darkLightCookie = getCookie("darklightswitch");
       if (darkLightCookie) {
         setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
       } else {
@@ -67,7 +125,68 @@
             setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
           }
         })
-      })
+      }) #}
+    </script>
+
+    {# quickcall markup, hidden by default #}
+    <div id="QuickCallDesktop" class="quick-call-nav uk-position-center-left uk-position-fixed uk-position-small uk-position-z-index uk-animation-fade uk-visible@m" hidden>
+      <ul class="uk-grid-small uk-child-width-1-1" uk-grid>
+        <li class="uk-animation-toggle" tabindex="0"><a class="uk-icon-button close quickcall-close uk-box-shadow-small uk-animation-scale-up" uk-icon="close"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="mailto:customdriveways100@gmail.com" class="uk-icon-button mail uk-box-shadow-small uk-animation-shake" uk-tooltip="title: customdriveways100@gmail.com; pos: right" uk-icon="mail"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="tel:+353831448855" class="uk-icon-button receiver uk-box-shadow-small uk-animation-shake" uk-tooltip="title: 083 144 8855; pos: right" uk-icon="receiver"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="https://wa.me/353831448855?text=Hello,%20Custom%20Driveways" class="uk-icon-button whatsapp uk-box-shadow-small uk-animation-shake" uk-tooltip="title: Message us on whatsapp; pos: right" uk-icon="whatsapp"></a></li>
+      </ul>
+    </div>
+    <div id="QuickCallMobile" class="quick-call-nav quick-call-nav-mobile uk-position-bottom-left uk-position-fixed uk-position-small uk-position-z-index uk-animation-fade uk-hidden@m" hidden>
+      <ul class="uk-grid-small uk-child-width-1-1" uk-grid>
+        <li class="uk-animation-toggle" tabindex="0"><a class="uk-icon-button close quickcall-close uk-box-shadow-small uk-animation-scale-up" uk-icon="close"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="mailto:customdriveways100@gmail.com" class="uk-icon-button mail uk-box-shadow-small uk-animation-shake" uk-icon="mail"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="tel:+353831448855" class="uk-icon-button receiver uk-box-shadow-small uk-animation-shake" uk-icon="receiver"></a></li>
+        <li class="uk-animation-toggle" tabindex="0"><a href="https://wa.me/353831448855?text=Hello,%20Custom%20Driveways" class="uk-icon-button whatsapp uk-box-shadow-small uk-animation-shake" uk-icon="whatsapp"></a></li>
+      </ul>
+    </div>
+    <!-- quickcall enable/disable via cookies -->
+    <script>
+
+      if(document.getElementById('QuickCallDesktop')){
+
+        let disableQuickcall = getCookie("disablequickcallcookie");
+
+        // if no disabling cookie already, enable the quickcall...
+        if (!disableQuickcall) {
+          enableQuickcall('QuickCallDesktop');
+          enableQuickcall('QuickCallMobile');
+        }
+
+        // on mousedown events on the close button, create the disablequickcallcookie (expires after a day) & disable the quickcall
+        document.querySelectorAll('.quickcall-close').forEach(item => {
+
+          item.addEventListener('mousedown', event => {
+
+            event.preventDefault();
+
+            let disableQuickcall = getCookie("disablequickcallcookie");
+
+            if (disableQuickcall == "" || disableQuickcall == null) {
+
+              setCookie('disablequickcallcookie', true, 1); // set the disablequickcallcookie
+
+              document.getElementById('QuickCallDesktop').classList.add('uk-transition-slide-left-medium'); // add transition to the element
+              document.getElementById('QuickCallMobile').classList.add('uk-transition-slide-left-medium'); // add transition to the element
+
+              // then hide the element proper after 300 milliseconds, the duration of the animation
+              setTimeout(function() {
+                disableQuickCall('QuickCallDesktop');
+                disableQuickCall('QuickCallMobile');
+              }, 300);
+
+            }
+
+          })
+
+        })
+      }
+
     </script>
 
     {% if configs.animated_preloader %}

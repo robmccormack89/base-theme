@@ -1,0 +1,550 @@
+<!-- hanging nav -->
+<header hidden>
+	<div class="uk-section-secondary uk-light uk-padding-small uk-text-center uk-flex uk-flex-center uk-flex-middle" hidden>
+		<a class="uuuk-logo" title="Logo" alt="Logo" href="#">
+			<img src="{{theme.link}}/assets/img/logo/dark/matte_white.png" width="300">
+		</a>
+	</div>
+	<nav class="uk-navbar-container" hidden>
+		<div class="uk-container">
+			<div uk-navbar="" class="uk-navbar">
+				<div class="uk-navbar-left">
+					<a class="uk-navbar-item uk-logo" href="#">Logo</a>
+					<ul class="uk-navbar-nav">
+						<li class="uk-active"><a href="#">Active</a></li>
+						<li>
+							<a href="#" role="button" aria-haspopup="true">Parent</a>
+							<div class="uk-navbar-dropdown uk-drop" style="max-width: 1873px; top: 80px; left: 156.609px;">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li class="uk-active"><a href="#">Active</a></li>
+									<li class="uk-parent">
+										<a href="#">Parent</a>
+										<ul class="uk-nav-sub">
+											<li><a href="#">Sub item</a></li>
+											<li><a href="#">Sub item</a></li>
+										</ul>
+									</li>
+									<li class="uk-nav-header">Header</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+											Item
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+											Item
+										</a>
+									</li>
+									<li class="uk-nav-divider"></li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span>
+											Item
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="#">Item</a></li>
+						<li><a href="#">Item</a></li>
+					</ul>
+				</div>
+				<div class="uk-navbar-right">
+					<ul class="uk-navbar-nav">
+						<li class="uk-active"><a href="#">Active</a></li>
+						<li>
+							<a href="#" role="button" aria-haspopup="true">Parent</a>
+							<div class="uk-navbar-dropdown uk-drop" style="top: 80px; left: 903.203px; max-width: 1873px;">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li class="uk-active"><a href="#">Active</a></li>
+									<li class="uk-parent">
+										<a href="#">Parent</a>
+										<ul class="uk-nav-sub">
+											<li><a href="#">Sub item</a></li>
+											<li><a href="#">Sub item</a></li>
+										</ul>
+									</li>
+									<li class="uk-nav-header">Header</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+											Item
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+											Item
+										</a>
+									</li>
+									<li class="uk-nav-divider"></li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></svg>
+											</span>
+											Item
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="#">Item</a></li>
+					</ul>
+					<div class="uk-navbar-item">
+						<ul class="uk-iconnav">
+							<li>
+								<a href="#" uk-icon="icon: user" class="uk-icon"></a>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: bag" class="uk-icon"></a>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: heart" class="uk-icon"></a>
+							</li>
+						</ul>
+					</div>
+					<a class="uk-navbar-toggle uk-navbar-toggle-animate uk-icon uk-navbar-toggle-icon" uk-navbar-toggle-icon="" href="#" role="button" aria-label="Open menu" aria-haspopup="true"></a>
+					<div class="uk-navbar-dropdown uk-drop" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !.uk-navbar; stretch: x; flip: false">
+						<ul class="uk-nav uk-navbar-dropdown-nav">
+							<li class="uk-active"><a href="#">Active</a></li>
+							<li class="uk-parent">
+								<a href="#">Parent</a>
+								<ul class="uk-nav-sub">
+									<li><a href="#">Sub item</a></li>
+									<li><a href="#">Sub item</a></li>
+								</ul>
+							</li>
+							<li class="uk-nav-header">Header</li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+									Item
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+									Item
+								</a>
+							</li>
+							<li class="uk-nav-divider"></li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span>
+									Item
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="inactive-sticky-nav" uk-sticky="cls-active: uk-background-secondary uk-box-shadow-medium; top: 100vh; animation: uk-animation-slide-top; cls-inactive: inactive-sticky-nav">
+		<div class="sticky-nav-wrap uk-position-top uk-light uk-padding-small uk-padding-remove-horizontal">
+			<!-- sticky -->
+			<div class="uk-container uk-container-expand uk-position-relative uk-position-z-index">
+
+				<!-- main site navbar -->
+				<nav class="uk-navbar uk-navbar-container uk-navbar-transparent" uk-navbar>
+					<div class="uk-navbar-left">
+						<div class="uk-navbar-item uk-padding-remove-horizontal">
+							<a class="uk-logo" title="Logo" href="">
+								<!-- <img src="{{theme.link}}/assets/img/marketing-logo.svg" height="38" alt="Logo"> -->
+								<img class="uk-width-small uk-width-medium@m" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+							</a>
+						</div>
+					</div>
+					<div class="uk-navbar-right">
+						<ul class="uk-navbar-nav uk-visible@s">
+							<!-- <li class="uk-active uk-visible@m"><a href="" uk-icon="home"></a></li> -->
+							<li><a href="">Home</a></li>
+							<li>
+								<a href="#" uk-icon="icon: chevron-down; ratio: .8">Services</a>
+								<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+										<li><a href="#">Big Data</a></li>
+										<li><a href="#">Marketing</a></li>
+										<li><a href="#">Analytics</a></li>
+										<li><a href="#">AI Lab</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: chevron-down; ratio: .8">Custom Design</a>
+								<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+										<li><a href="#">Big Data</a></li>
+										<li><a href="#">Marketing</a></li>
+										<li><a href="#">Analytics</a></li>
+										<li><a href="#">AI Lab</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: chevron-down; ratio: .8">Quality Committment</a>
+								<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+										<li><a href="#">Big Data</a></li>
+										<li><a href="#">Marketing</a></li>
+										<li><a href="#">Analytics</a></li>
+										<li><a href="#">AI Lab</a></li>
+									</ul>
+								</div>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: chevron-down; ratio: .8">Gallery</a>
+								<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+										<li><a href="#">Big Data</a></li>
+										<li><a href="#">Marketing</a></li>
+										<li><a href="#">Analytics</a></li>img/
+										<li><a href="#">AI Lab</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">Contact Us</a></li>
+						</ul>
+						<a class="uk-navbar-toggle uk-navbar-item uk-hidden@s" uk-toggle uk-navbar-toggle-icon href="#offcanvas-nav"></a>
+					</div>
+				</nav>
+
+				<nav class="uk-navbar-container uk-navbar-transparent" hidden>
+					<div class="uk-container">
+						<div uk-navbar>
+							<div class="uk-navbar-center">
+								<div class="uk-navbar-center-left">
+									<ul class="uk-navbar-nav">
+										<li class="uk-active"><a href="#">Active</a></li>
+										<li>
+											<a href="#">Parent</a>
+											<div class="uk-navbar-dropdown">
+												<ul class="uk-nav uk-navbar-dropdown-nav">
+													<li class="uk-active"><a href="#">Active</a></li>
+													<li><a href="#">Item</a></li>
+													<li><a href="#">Item</a></li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<!-- <a class="uk-navbar-item uk-logo" href="#">Logo</a> -->
+								<a class="uk-navbar-item uk-logo" title="Logo" href="">
+									<!-- <img src="{{theme.link}}/assets/img/marketing-logo.svg" height="38" alt="Logo"> -->
+									<img class="uk-width-medium" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+								</a>
+								<div class="uk-navbar-center-right">
+									<ul class="uk-navbar-nav">
+										<li><a href="#">Item</a></li>
+										<li><a href="#">Item</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+
+				<!-- offcanvas -->
+				<div id="offcanvas-nav" uk-offcanvas="flip: true; overlay: false">
+					<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+						<button class="uk-offcanvas-close uk-close uk-icon" type="button" uk-close></button>
+						<ul class="uk-nav uk-nav-default">
+							<li class="uk-active"><a href="#">Active</a></li>
+							<li class="uk-parent">
+								<a href="#">Parent</a>
+								<ul class="uk-nav-sub">
+									<li><a href="#">Sub item</a></li>
+									<li><a href="#">Sub item</a></li>
+								</ul>
+							</li>
+							<li class="uk-nav-header">Header</li>
+							<li><a href="#js-options"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+							<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+							<li class="uk-nav-divider"></li>
+							<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li>
+						</ul>
+						<h3>Title</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- normal nav -->
+<header>
+	<div class="uk-section-secondary uk-light uk-padding-small uk-text-center uk-flex uk-flex-center uk-flex-middle" hidden>
+		<a class="uuuk-logo" title="Logo" alt="Logo" href="#">
+			<img src="{{theme.link}}/assets/img/logo/dark/matte_white.png" width="300">
+		</a>
+	</div>
+	<nav class="uk-navbar-container" hidden>
+		<div class="uk-container">
+			<div uk-navbar="" class="uk-navbar">
+				<div class="uk-navbar-left">
+					<a class="uk-navbar-item uk-logo" href="#">Logo</a>
+					<ul class="uk-navbar-nav">
+						<li class="uk-active"><a href="#">Active</a></li>
+						<li>
+							<a href="#" role="button" aria-haspopup="true">Parent</a>
+							<div class="uk-navbar-dropdown uk-drop" style="max-width: 1873px; top: 80px; left: 156.609px;">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li class="uk-active"><a href="#">Active</a></li>
+									<li class="uk-parent">
+										<a href="#">Parent</a>
+										<ul class="uk-nav-sub">
+											<li><a href="#">Sub item</a></li>
+											<li><a href="#">Sub item</a></li>
+										</ul>
+									</li>
+									<li class="uk-nav-header">Header</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+											Item
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+											Item
+										</a>
+									</li>
+									<li class="uk-nav-divider"></li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span>
+											Item
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="#">Item</a></li>
+						<li><a href="#">Item</a></li>
+					</ul>
+				</div>
+				<div class="uk-navbar-right">
+					<ul class="uk-navbar-nav">
+						<li class="uk-active"><a href="#">Active</a></li>
+						<li>
+							<a href="#" role="button" aria-haspopup="true">Parent</a>
+							<div class="uk-navbar-dropdown uk-drop" style="top: 80px; left: 903.203px; max-width: 1873px;">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li class="uk-active"><a href="#">Active</a></li>
+									<li class="uk-parent">
+										<a href="#">Parent</a>
+										<ul class="uk-nav-sub">
+											<li><a href="#">Sub item</a></li>
+											<li><a href="#">Sub item</a></li>
+										</ul>
+									</li>
+									<li class="uk-nav-header">Header</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+											Item
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+											Item
+										</a>
+									</li>
+									<li class="uk-nav-divider"></li>
+									<li>
+										<a href="#">
+											<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></svg>
+											</span>
+											Item
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="#">Item</a></li>
+					</ul>
+					<div class="uk-navbar-item">
+						<ul class="uk-iconnav">
+							<li>
+								<a href="#" uk-icon="icon: user" class="uk-icon"></a>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: bag" class="uk-icon"></a>
+							</li>
+							<li>
+								<a href="#" uk-icon="icon: heart" class="uk-icon"></a>
+							</li>
+						</ul>
+					</div>
+					<a class="uk-navbar-toggle uk-navbar-toggle-animate uk-icon uk-navbar-toggle-icon" uk-navbar-toggle-icon="" href="#" role="button" aria-label="Open menu" aria-haspopup="true"></a>
+					<div class="uk-navbar-dropdown uk-drop" uk-drop="mode: click; cls-drop: uk-navbar-dropdown; boundary: !.uk-navbar; stretch: x; flip: false">
+						<ul class="uk-nav uk-navbar-dropdown-nav">
+							<li class="uk-active"><a href="#">Active</a></li>
+							<li class="uk-parent">
+								<a href="#">Parent</a>
+								<ul class="uk-nav-sub">
+									<li><a href="#">Sub item</a></li>
+									<li><a href="#">Sub item</a></li>
+								</ul>
+							</li>
+							<li class="uk-nav-header">Header</li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span>
+									Item
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span>
+									Item
+								</a>
+							</li>
+							<li class="uk-nav-divider"></li>
+							<li>
+								<a href="#">
+									<span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span>
+									Item
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="uk-section-secondary uk-light uk-padding-small uk-padding-remove-horizontal" uk-sticky="cls-active: uk-box-shadow-medium; top: 100vh; animation: uk-animation-slide-top; cls-inactive: inactive-sticky-nav">
+		<div class="uk-container uk-container-expand">
+
+			<!-- main site navbar -->
+			<nav class="uk-navbar uk-navbar-container uk-navbar-transparent" uk-navbar>
+				<div class="uk-navbar-left">
+					<div class="uk-navbar-item uk-padding-remove-horizontal">
+						<a class="uk-logo" title="Logo" href="">
+							<!-- <img src="{{theme.link}}/assets/img/marketing-logo.svg" height="38" alt="Logo"> -->
+							<img class="uk-width-small uk-width-medium@m" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+						</a>
+					</div>
+				</div>
+				<div class="uk-navbar-right">
+					<ul class="uk-navbar-nav uk-visible@s">
+						<!-- <li class="uk-active uk-visible@m"><a href="" uk-icon="home"></a></li> -->
+						<li><a href="">Home</a></li>
+						<li>
+							<a href="#" uk-icon="icon: chevron-down; ratio: .8">Services</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li><a href="#">Big Data</a></li>
+									<li><a href="#">Marketing</a></li>
+									<li><a href="#">Analytics</a></li>
+									<li><a href="#">AI Lab</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" uk-icon="icon: chevron-down; ratio: .8">Custom Design</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li><a href="#">Big Data</a></li>
+									<li><a href="#">Marketing</a></li>
+									<li><a href="#">Analytics</a></li>
+									<li><a href="#">AI Lab</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" uk-icon="icon: chevron-down; ratio: .8">Quality Committment</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li><a href="#">Big Data</a></li>
+									<li><a href="#">Marketing</a></li>
+									<li><a href="#">Analytics</a></li>
+									<li><a href="#">AI Lab</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" uk-icon="icon: chevron-down; ratio: .8">Gallery</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li><a href="#">Big Data</a></li>
+									<li><a href="#">Marketing</a></li>
+									<li><a href="#">Analytics</a></li>img/
+									<li><a href="#">AI Lab</a></li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="">Contact Us</a></li>
+					</ul>
+					<a class="uk-navbar-toggle uk-navbar-item uk-hidden@s" uk-toggle uk-navbar-toggle-icon href="#offcanvas-nav"></a>
+				</div>
+			</nav>
+
+			<nav class="uk-navbar-container uk-navbar-transparent" hidden>
+				<div class="uk-container">
+					<div uk-navbar>
+						<div class="uk-navbar-center">
+							<div class="uk-navbar-center-left">
+								<ul class="uk-navbar-nav">
+									<li class="uk-active"><a href="#">Active</a></li>
+									<li>
+										<a href="#">Parent</a>
+										<div class="uk-navbar-dropdown">
+											<ul class="uk-nav uk-navbar-dropdown-nav">
+												<li class="uk-active"><a href="#">Active</a></li>
+												<li><a href="#">Item</a></li>
+												<li><a href="#">Item</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- <a class="uk-navbar-item uk-logo" href="#">Logo</a> -->
+							<a class="uk-navbar-item uk-logo" title="Logo" href="">
+								<!-- <img src="{{theme.link}}/assets/img/marketing-logo.svg" height="38" alt="Logo"> -->
+								<img class="uk-width-medium" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+							</a>
+							<div class="uk-navbar-center-right">
+								<ul class="uk-navbar-nav">
+									<li><a href="#">Item</a></li>
+									<li><a href="#">Item</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</div>
+</header>
+
+<!-- offcanvas -->
+<div id="offcanvas-nav" uk-offcanvas="flip: true; overlay: false">
+	<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+		<button class="uk-offcanvas-close uk-close uk-icon" type="button" uk-close></button>
+		<ul class="uk-nav uk-nav-default">
+			<li class="uk-active"><a href="#">Active</a></li>
+			<li class="uk-parent">
+				<a href="#">Parent</a>
+				<ul class="uk-nav-sub">
+					<li><a href="#">Sub item</a></li>
+					<li><a href="#">Sub item</a></li>
+				</ul>
+			</li>
+			<li class="uk-nav-header">Header</li>
+			<li><a href="#js-options"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+			<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+			<li class="uk-nav-divider"></li>
+			<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li>
+		</ul>
+		<h3>Title</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	</div>
+</div>

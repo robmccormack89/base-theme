@@ -288,6 +288,8 @@ class Theme extends Timber {
     // allowed html for wp kses post
     add_action('init', function(){
       global $allowedposttags;
+      // global $allowedentitynames;
+      // print_r($allowedentitynames);
       $allowed_atts = array (
         'align'      => array(),
         'class'      => array(),
@@ -315,7 +317,25 @@ class Theme extends Timber {
         'height'     => array(),
         'data'       => array(),
         'title'      => array(),
+        'fuck'      => array(),
+        'uk-accordion'      => array(),
         'uk-icon'      => array(),
+        'uk-slider'      => array(),
+        'uk-grid' => array(),
+        'uk-form' => array(),
+        'hidden' => array(),
+        'role' => array(),
+        'aria-live' => array(),
+        'aria-atomic' => array(),
+        'data-status' => array(),
+        'aria-required' => array(),
+        'aria-invalid' => array(),
+        'aria-describedby' => array(),
+        'data-name' => array(),
+        'size' => array(),
+        'role' => array(),
+        'role' => array(),
+        'uk-slider-parallax'      => array(),
         'data-nanogallery2'      => array(),
       );
       $allowedposttags['form'] = $allowed_atts;

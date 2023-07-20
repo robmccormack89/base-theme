@@ -21,6 +21,7 @@ $context['title'] = _x( 'Error: Page not found', '404/Error pages', 'base-theme'
 $context['description'] = _x( 'Sorry, there has been an error locating a resource for your query. Try finding what you want using the search form below.', '404/Error pages', 'base-theme' );
 
 if(is_home()) array_unshift($templates, 'archive.twig'); // if is the main blog posts page, front_page or not. static front_page's will go thru the singular.php route instead
+if(is_front_page()) array_unshift($templates, 'index.twig'); // if is the main blog posts page, front_page or not. static front_page's will go thru the singular.php route instead
 
 // set the title for the blog page
 $post = new Post();

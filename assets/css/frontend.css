@@ -74,7 +74,7 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  position: fixed!important;
+  /* position: fixed!important; */
 }
 
 .swiper-button-prev, .swiper-rtl .swiper-button-next {

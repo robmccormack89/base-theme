@@ -1,32 +1,27 @@
 <header class="single-header">
 
-  {# singluar title & meta information about the post #}
-  {% block single_title_metas %}
-    <div class="single-title-meta uk-section uk-section-muted uk-section-small uk-padding-remove-top">
-      <div class="uk-container uk-container-xsmall uk-margin-small-top uk-text-left uk-text-center@s">
+  <div class="uk-section uk-background-cover uk-position-relative uk-light" style="background-image: url({{ (post.thumbnail) ? post.thumbnail.src|resize(1920, 450, 'center')|e('esc_url') : 'https://customdriveways.ie/wp-content/themes/customdriveways/assets/images/landscape.jpg' }})">
 
-        {# title #}
-        <h1 class="uk-article-title">{{ post.title|e('esc_html') }}</h1>
+    {# overlay #}
+    <div class="uk-overlay-primary uk-position-cover"></div>
 
-        {# the meta info #}
-        {% block single_metas %}
-          {% if (post.author or post.date or post.categories) and (post.post_type == 'post') %}
-            {% include 'single_parts/_meta.twig' %}
-          {% endif %}
-        {% endblock %}
-
+    {# content #}
+    <div class="uk-container uk-text-center uk-position-relative uk-position-z-index">
+      <div uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
+        <div>
+          <h1 class="uk-article-title">{{ post.title|e('esc_html') }}</h1>
+          {# the meta info #}
+          {# {% block single_metas %}
+            {% if (post.author or post.date or post.categories) and (post.post_type == 'post') %}
+              {% include 'single_parts/_meta.twig' %}
+            {% endif %}
+          {% endblock %} #}
+        </div>
       </div>
     </div>
-  {% endblock %}
 
-  {# singular featured image (wide) #}
-  {% block single_thumb %}
-    {% if post.thumbnail %}
-      {% include 'single_parts/_thumb.twig' %}
-    {% endif %}
-  {% endblock %}
+  </div>
 
-  {# the breadcrumbs. a global part #}
   {% block breads %}
     {% if fn('yoast_breadcrumb_enabled') and not fn('is_front_page') %}
       {% include '_breads.twig' %}

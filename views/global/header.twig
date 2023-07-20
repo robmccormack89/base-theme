@@ -1,204 +1,152 @@
-{# main header #}
-<header class="site-header uk-background-muted" data-template="header.twig">
-  <nav class="uk-navbar-container uk-navbar-transparent">
-    <div class="uk-container">
+{# site header #}
+<header class="uk-section-secondary uk-padding-small uk-padding-remove-horizontal" uk-sticky="cls-active: uk-box-shadow-medium; top: 100vh; animation: uk-animation-slide-top; cls-inactive: inactive-sticky-nav">
+	<div class="uk-container uk-container-expand">
+		<nav class="uk-navbar uk-navbar-container uk-navbar-transparent" uk-navbar>
 
-      {# main navbar with logo, menus & icons #}
-      <div class="uk-navbar" uk-navbar>
+			{# logo #}
+			<div class="uk-navbar-left">
+				<div class="uk-navbar-item uk-padding-remove-horizontal">
+					<a class="uk-logo" title="Logo" href="/">
+						<img class="uk-width-small uk-width-medium@m" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+					</a>
+				</div>
+			</div>
 
-        {# logo #}
-        <div class="uk-navbar-left nav-overlay">
-          <a class="uk-navbar-item uk-logo" href="{{ site.link|e('esc_url') }}">
-            {% if theme.logo %}
-              <img src="{{ theme.logo.src|e('esc_url') }}" width="{{ theme.logo.w }}" height="{{ theme.logo.h }}" alt="{{ theme.logo.alt|e('esc_html') }}">
-            {% else %}
-              {{ site.title|e('esc_html') }}
-            {% endif %}
-          </a>
-        </div>
+			{# menu #}
+			<div class="uk-navbar-right">
+				<ul class="uk-navbar-nav uk-visible@s">
+					<!-- <li class="uk-active uk-visible@m"><a href="" uk-icon="home"></a></li> -->
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="#" uk-icon="icon: chevron-down; ratio: .8">Services</a>
+						<div class="uk-navbar-dropdown">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="/pattern-imprinted-concrete-driveways">Driveways</a></li>
+								<li><a href="/pattern-imprinted-concrete-patios">Patios</a></li>
+								<li><a href="/pattern-imprinted-concrete-pathways">Pathways</a></li>
+								<li><a href="/pattern-imprinted-concrete-steps-kerbs">Steps & Kerbs</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="#" uk-icon="icon: chevron-down; ratio: .8">Custom Design</a>
+						<div class="uk-navbar-dropdown">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="/coloured-concrete">Colours</a></li>
+								<li><a href="/stamped-concrete-patterns">Patterns</a></li>
+								<li><a href="/features">Pattern Imprinted Concrete Features</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="#" uk-icon="icon: chevron-down; ratio: .8">Quality Committment</a>
+						<div class="uk-navbar-dropdown">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="/concrete-contractor-credentials">Contractor Credentials</a></li>
+								<li><a href="/product-quality">Product Quality</a></li>
+								<li><a href="/process-quality">Process Quality</a></li>
+								<li><a href="/our-process">Steps in our Process</a></li>
+								<li><a href="/concrete-sealer-tips">Aftercare Tips</a></li>
+								<li><a href="/testimonials">Testimonials</a></li>
+								<li><a href="/faqs">FAQs</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="/gallery" uk-icon="icon: chevron-down; ratio: .8">Galleries</a>
+						<div class="uk-navbar-dropdown">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li><a href="/gallery-driveways">Driveways</a></li>
+								<li><a href="/gallery-pathways">Pathways</a></li>
+								<li><a href="/gallery-patios">Patios</a></li>
+								<li><a href="/patterns-gallery">Patterns</a></li>
+								<li><a href="/gallery-special-features">Special Features</a></li>
+								<li><a href="/gallery-steps-kerbs">Steps & Kerbs</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="/contact-us">Contact Us</a></li>
+				</ul>
+				<a class="uk-navbar-toggle uk-navbar-item uk-hidden@s" uk-toggle uk-navbar-toggle-icon href="#offcanvas-nav"></a>
+			</div>
 
-        {# main menu, search & offcanvas toggles #}
-        <div class="uk-navbar-right nav-overlay">
-          <ul class="uk-navbar-nav uk-navbar-nav-primary">
-
-            {# main menu #}
-            {% if has_menu_main %}
-              {% for item in menu_main.get_items %}
-                {% if item.get_children %}
-                  <li class="uk-visible@m {{ item.classes|join(' ')|e('esc_html') }}">
-                    <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                    <div uk-dropdown>
-                      <ul class="uk-nav uk-dropdown-nav">
-                        {% for child in item.get_children %}
-                          <li class="{{ child.classes|join(' ')|e('esc_html') }}">
-                            <a href="{{ child.get_link|e('esc_url') }}">{{ child.title|e('esc_html') }}</a>
-                            {% if child.children %}
-                              <div uk-dropdown="pos: right-top">
-                                <ul class="uk-nav uk-dropdown-nav">
-                                  {% for third in child.children %}
-                                    <li class="{{ third.classes|join(' ')|e('esc_html') }}">
-                                      <a href="{{ third.get_link|e('esc_url') }}">{{ third.title|e('esc_html') }}</a>
-                                    </li>
-                                  {% endfor %}
-                                </ul>
-                              </div>
-                            {% endif %}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </li>
-                {% else %}
-                  <li class="uk-visible@m {{ item.classes|join(' ')|e('esc_html') }}">
-                    <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html') }}</a>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-
-            {# search popup toggle #}
-            <li class="search-icon">
-              <a id="CloseSearchNav" class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
-            </li>
-
-            {# mobile menu toggle #}
-            {% if has_menu_main %}
-              <li class="uk-hidden@m">
-                <a class="uk-navbar-toggle uk-navbar-toggle-animate uk-icon uk-navbar-toggle-icon" href="#" uk-navbar-toggle-icon uk-toggle="target: #SlideInMenuLeft"></a>
-              </li>
-            {% endif %}
-
-          </ul>
-          <div class="dark-light-switcher uk-navbar-item">
-            <a id="DarkSwitch" class="dark-light-link moon-link pull-up-2 darklight-switch">
-              <img src="{{theme.link|e('esc_url')}}/assets/img/moon.svg" uk-svg>
-            </a>
-            <a id="LightSwitch" class="dark-light-link sun-link pull-up-2 darklight-switch">
-              <img src="{{theme.link|e('esc_url')}}/assets/img/sun.svg" uk-svg>
-            </a>
-          </div>
-        </div>
-
-        {# search form (with live search components) #}
-        <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
-          <div class="uk-navbar-item uk-width-expand">
-            <form id="form_validate_search" class="form_search_main uk-search uk-search-navbar uk-width-1-1 uk-position-relative uk-inline uk-flex uk-flex-center" role="search" method="get" action="{{ site.url|e('esc_url') }}" accept-charset="utf-8" novalidate="novalidate">
-              <div class="uk-width-1-1 uk-position-relative">
-
-                {# animated spinner #}
-                {% if configs.live_search %}
-                  <div id="loaderSearchToggle" class="uk-position-bottom-left" style="display:none;">
-                    <div id="loaderSearch"></div>
-                  </div>
-                {% endif %}
-                
-                {# reset close button #}
-                {% if configs.live_search %}
-                  <button id="LiveSearchReset" type="reset" class="uk-search-icon-flip uk-icon uk-search-icon" style="display:none;">
-                    <span uk-icon="icon: refresh; ratio: 1"></span>
-                  </button>
-                {% endif %}
-
-                {# search text input #}
-                <input id="input_search" class="uk-search-input" type="text" name="s" maxlength="300" pattern=".*\S+.*" placeholder="{{ configs.live_search ? _x('Start typing...', 'Search: form', 'base-theme')|e('esc_html') : _x('Start typing & press enter...', 'Search: form', 'base-theme')|e('esc_html') }}" required autocomplete="off" value>
-
-              </div>
-
-              {# the results will go here via ajax #}
-              {% if configs.live_search %}
-                <div id="response_search_results" class="search-results-ajax uk-height-max-medium uk-overflow-auto"></div>
-              {% endif %}
-
-            </form>
-          </div>
-          <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
-        </div>
-
-      </div>
-
-    </div>
-  </nav>
+		</nav>
+	</div>
 </header>
 
-{# mobile offcanvas #}
-{% if has_menu_main %}
-  <nav id="SlideInMenuLeft" class="mobile-slide-navbar" uk-offcanvas="mode: slide; overlay: true">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide uk-padding-small">
+{# offcanvas #}
+<div id="offcanvas-nav" uk-offcanvas="flip: false; overlay: true">
+	<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide uk-light">
+		<button class="uk-offcanvas-close uk-close uk-icon" type="button" uk-close></button>
+		<a class="uk-logo uk-margin-bottom" title="Logo" href="/">
+			<img class="uk-width-small uk-width-medium@m" src="{{theme.link}}/assets/img/logo/dark/matte_white.png">
+		</a>
+		<ul class="uk-nav uk-nav-default" uk-nav="multiple: true">
 
-      {# mobile menu nav #}
-      <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true">
-        {% if has_menu_main %}
+			<li>
+				<a href="/">Home</a>
+			</li>
 
-          {# mobile menu title #}
-          <li class="uk-nav-header uk-padding-remove uk-margin-small-bottom uk-text-capitalize">
-            {{ menu_main.title|e('esc_html') }}
-            <a class="uk-offcanvas-close uk-position-top-right uk-position-small uk-padding-remove"><span uk-icon="icon: close; ratio: .9"></span></a>
-          </li>
+			<li class="uk-parent">
+				<a href="#">Services <span uk-nav-parent-icon></span></a>
+				<ul class="uk-nav-sub">
+					<li><a href="/pattern-imprinted-concrete-driveways">Driveways</a></li>
+					<li><a href="/pattern-imprinted-concrete-patios">Patios</a></li>
+					<li><a href="/pattern-imprinted-concrete-pathways">Pathways</a></li>
+					<li><a href="/pattern-imprinted-concrete-steps-kerbs">Steps & Kerbs</a></li>
+				</ul>
+			</li>
 
-          <li class="uk-nav-divider"></li>
+			<li class="uk-parent">
+				<a href="#">Custom Design <span uk-nav-parent-icon></span></a>
+				<ul class="uk-nav-sub">
+					<li><a href="/coloured-concrete">Colours</a></li>
+					<li><a href="/stamped-concrete-patterns">Patterns</a></li>
+					<li><a href="/features">Pattern Imprinted Concrete Features</a></li>
+				</ul>
+			</li>
 
-          {# mobile menu items #}
-          {% for item in menu_main.get_items %}
-            {% if item.get_children %}
-              <li class="{{ item.classes|join(' ')|e('esc_html') }} uk-parent">
-                <a href="{{ item.link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
-                <ul class="uk-nav-sub">
-                  {% for child in item.get_children %}
-                    <li class="{{ child.classes|join(' ')|e('esc_html') }}">
-                      <a href="{{ child.get_link|e('esc_url') }}">- {{ child.title|e('esc_html')}}</a>
-                      {% if child.children %}
-                        <ul class="uk-nav-sub">
-                          {% for third in child.children %}
-                            <li class="{{ third.classes|join(' ')|e('esc_html') }}">
-                              <a href="{{ third.get_link|e('esc_url') }}">- {{ third.title|e('esc_html')}}</a>
-                            </li>
-                          {% endfor %}
-                        </ul>
-                      {% endif %}
-                    </li>
-                  {% endfor %}
-                </ul>
-              </li>
-            {% else %}
-              <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-                <a href="{{ item.get_link|e('esc_url') }}">{{ item.title|e('esc_html')}}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
+			<li class="uk-parent">
+				<a href="#">Quality Committment <span uk-nav-parent-icon></span></a>
+				<ul class="uk-nav-sub">
+					<li><a href="/concrete-contractor-credentials">Contractor Credentials</a></li>
+					<li><a href="/product-quality">Product Quality</a></li>
+					<li><a href="/process-quality">Process Quality</a></li>
+					<li><a href="/our-process">Steps in our Process</a></li>
+					<li><a href="/concrete-sealer-tips">Aftercare Tips</a></li>
+					<li><a href="/testimonials">Testimonials</a></li>
+					<li><a href="/faqs">FAQs</a></li>
+				</ul>
+			</li>
 
-        {% endif %}
-      </ul>
+			<li class="uk-parent">
+				<a href="/gallery">Gallery <span uk-nav-parent-icon></span></a>
+				<ul class="uk-nav-sub">
+					<li><a href="/gallery-driveways">Driveways</a></li>
+					<li><a href="/gallery-pathways">Pathways</a></li>
+					<li><a href="/gallery-patios">Patios</a></li>
+					<li><a href="/patterns-gallery">Patterns</a></li>
+					<li><a href="/gallery-special-features">Special Features</a></li>
+					<li><a href="/gallery-steps-kerbs">Steps & Kerbs</a></li>
+				</ul>
+			</li>
 
-      {# mobile menu credits & copyrights #}
-      <div class="uk-position-bottom uk-position-small">
-        <p class="uk-text-center uk-text-small uk-margin-remove">
-          {{ _x('© All Rights Reserved %s', 'Footer: copyright', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}">{{ site.title|e('esc_html') }}</a>
-          <br>
-          Made by <a href="https://github.com/robmccormack89/" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a>
-        </p>
-      </div>
+			<li>
+				<a href="/contact-us">Contact Us</a>
+			</li>
+			
+			{# <li class="uk-nav-header">Header</li>
+			<li><a href="#js-options"><span class="uk-margin-small-right uk-icon" uk-icon="icon: table"></span> Item</a></li>
+			<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: thumbnails"></span> Item</a></li>
+			<li class="uk-nav-divider"></li>
+			<li><a href="#"><span class="uk-margin-small-right uk-icon" uk-icon="icon: trash"></span> Item</a></li> #}
 
-    </div>
-  </nav>
-{% endif %}
+		</ul>
 
-{# search modal #}
-{% if not configs.live_search %}
-  <div id="ModalSearch" class="uk-modal-full uk-modal" uk-modal>
-    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+		<h4>About Custom Driveways</h4>
+		<p class="uk-text-small">Custom Driveways are the one of the best concrete contractors in Ireland. Our Imprinted Concrete gives Driveways, Patios, Pathways &amp; Steps/Kerbs a new lease of life &amp; is much easier to maintain than other materials.</p>
 
-      <a class="uk-modal-close-full uk-close-large" type="button" uk-close></a>
-
-      {# popup search form #}
-      <form class="uk-search uk-search-large" role="search" method="get" action="{{ site.url|e('esc_url') }}">
-
-        {# search input with hidden post_type = 'post' #}
-        <input id="header-search" class="uk-search-input uk-text-center" type="search" name="s" placeholder="{{ _x('Start typing...', 'Search: form', 'base-theme')|e('esc_html') }}"
-        required maxlength="100" pattern=".*\S+.*" autocomplete="off" autofocus>
-        <input type="hidden" name="post_type" value="post" />
-
-      </form>
-      
-    </div>
-  </div>
-{% endif %}
+	</div>
+</div>

@@ -1,37 +1,60 @@
-<footer class="site-footer uk-background-muted" data-template="footer.twig">
-  <div class="uk-container uk-padding">
+<!-- site footer -->
+<footer class="uk-section uk-section-secondary uk-light uk-padding-remove-bottom">
 
-    {# footer socials/icon nav: if available #}
-    {% if has_menu_iconnav %}
+	<div class="uk-container uk-position-relative uk-position-z-index">
+		<div class="uk-grid uk-grid-large" uk-grid>
+			<div class="uk-width-1-3@m">
+				<a class="uk-logo" title="Logo" alt="Logo" href="/">
+					<img src="{{theme.link}}/assets/img/logo/dark/matte_white.png" width="300">
+				</a>
+				<p>Custom Driveways are the one of the best concrete contractors in Ireland. Our Imprinted Concrete gives Driveways, Patios, Pathways & Steps/Kerbs a new lease of life & is much easier to maintain than other materials.</p>
+			</div>
+			<div class="uk-width-1-6@m">
+				<h4 class="merri-sans">Navigation</h4>
+				<ul class="uk-list">
+					<li><a href="/">Home</a></li>
+					<li><a href="/faqs">FAQs</a></li>
+					<li><a href="/gallery">Galleries</a></li>
+					<li><a href="/testimonials">Testimonials</a></li>
+				</ul>
+			</div>
+			<div class="uk-width-1-6@m">
+				<h4 class="merri-sans">Services</h4>
+				<ul class="uk-list">
+					<li><a href="/pattern-imprinted-concrete-driveways">Diveways</a></li>
+					<li><a href="/pattern-imprinted-concrete-pathways/">Pathways</a></li>
+					<li><a href="/pattern-imprinted-concrete-patios/">Patios</a></li>
+					<li><a href="/pattern-imprinted-concrete-steps-kerbs/">Steps & Kerbs</a></li>
+				</ul>
+			</div>
+			<div class="uk-width-1-3@m">
+				<h4 class="merri-sans">Contact us</h4>
+				<ul class="uk-list">
+					<li><strong>Cutsom Pattern Imprinted Concrete Driveways</strong><br>Portnashangan, Multyfarnham, Mullingar, Co. Westmeath</li>
+					<li>
+						<strong>Landline:</strong> 044 93 82051
+						<br><strong>Mobile:</strong> 083 144 8855
+						<br><strong>Email:</strong> customdriveways100@gmail.com
+					</li>
+					<li><strong>Hours:</strong> Mon-Fri 8:00 to 19:00</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-      {# socials/icon nav: title #}
-      <h4 class="uk-text-center uk-margin-small">{{ menu_iconnav.title|e('esc_html') }}</h4>
+	<div class="uk-text-center uk-padding">
+		<span class="uk-text-small uk-text-muted"><a href="/">Custom Driveways</a> {{ _x('© All Rights Reserved %s', 'Footer: copyright', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - Created by <a href="https://github.com/robmccormack89">robmccormack89 <span uk-icon="icon: github"></span></a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" uk-tooltip><span uk-icon="uikit"></span></a></span>
+	</div>
 
-      {# socials/icon nav: items #}
-      <ul class="uk-iconnav uk-flex uk-flex-center">
-        {% for item in menu_iconnav.get_items %}
-          <li class="{{ item.classes|join(' ')|e('esc_html') }}">
-            <a href="{{ item.get_link|e('esc_url') }}" target="_blank">
-              {{ item.title|e('wp_kses_post')}}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      <hr class="uk-divider-small uk-text-center">
-
-    {% endif %}
-
-    {# footer scroll to top button #}
-    <div class="uk-flex uk-flex-center">
-      <a href="#" uk-totop uk-scroll uk-tooltip="{{ _x('Scroll to Top', 'Footer: to top', 'base-theme')|e('esc_html') }}"></a>
-    </div>
-
-    {# footer copyrights & credits #}
-    <p class="uk-text-center uk-text-small">
-      {{ _x('© All Rights Reserved %s', 'Footer: copyright', 'base-theme')|format(now|date('Y'))|e('esc_html') }} - <a href="{{ site.link|e('esc_url') }}" uk-tooltip="{{ _x('Return to Homepage', 'Footer: back to home', 'base-theme')|e('esc_html') }}">{{ site.title|e('esc_html') }}</a>
-      <br>
-      Made by <a href="https://github.com/robmccormack89/" uk-tooltip="Check me out on github" target="_blank">robmccormack89 <span uk-icon="icon: github"></span></a>
-    </p>
-
-  </div>
 </footer>
+
+{# quickcall nav (mobiles) #}
+<div id="qqqQuickCallEnquiryContainer" class="rmcc-box-shadow-top" hidden>
+	<a class="close quickcall-close" uk-toggle="target: #QuickCallEnquiryContainer">x</a>
+	<a href="tel:00353831448855" id="CallNowButton" style="width:50%;display:inline-block;float:left">
+		<span uk-icon="icon: receiver"></span> Call us
+	</a>
+	<a href="https://wa.me/353831448855?text=Hello,%20Custom%20Driveways" id="CallNowButton" style="width:50%;display:inline-block;float:right;background-color:#25D366;">
+		<span uk-icon="icon: whatsapp"></span> Whatsapp
+	</a>
+</div>

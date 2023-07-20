@@ -37,6 +37,11 @@ if(get_post_status($context['post']->ID) != 'private') {
 		array_unshift($templates, 'single_protected.twig');
 	} else {
 		array_unshift($templates, 'single-' . $context['post']->ID . '.twig', 'single-' . $context['post']->slug . '.twig', 'single-' . $context['post']->post_type . '.twig', 'single.twig');
+
+		if($context['post']->slug == 'contact' || $context['post']->slug == 'contact-us') {
+			array_unshift($templates, 'contact.twig');
+		}
+
 	}
 
 }

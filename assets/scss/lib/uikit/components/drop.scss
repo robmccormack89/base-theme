@@ -3,11 +3,9 @@
 //
 // Component:       `uk-drop`
 //
-// Modifiers:       `uk-drop-top-*`
-//                  `uk-drop-bottom-*`
-//                  `uk-drop-left-*`
-//                  `uk-drop-right-*`
-//                  `uk-drop-stack`
+// Sub-objects:     `uk-drop-parent-icon`
+//
+// Modifiers:       `uk-drop-stack`
 //                  `uk-drop-grid`
 //
 // States:          `uk-open`
@@ -20,9 +18,7 @@
 // Variables
 // ========================================================================
 
-$drop-z-index:                               $global-z-index + 20 !default;
-$drop-margin:                                $global-margin !default;
-$drop-width:                                 300px !default;
+
 
 
 /* ========================================================================
@@ -42,10 +38,10 @@ $drop-width:                                 300px !default;
     position: absolute;
     z-index: $drop-z-index;
     --uk-position-offset: #{$drop-margin};
+    --uk-position-viewport-offset: #{$drop-viewport-margin};
     /* 3 */
     box-sizing: border-box;
     width: $drop-width;
-    max-width: 100vw;
 }
 
 /* Show */
@@ -56,6 +52,17 @@ $drop-width:                                 300px !default;
  ========================================================================== */
 
 .uk-drop-stack .uk-drop-grid > * { width: 100% !important; }
+
+
+/* Parent icon
+ ========================================================================== */
+
+.uk-drop-parent-icon {
+    margin-left: $drop-parent-icon-margin-left;
+    transition: transform 0.3s ease-out;
+}
+
+[aria-expanded="true"] > .uk-drop-parent-icon { transform: rotateX(180deg); }
 
 
 // Hooks

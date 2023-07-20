@@ -1,3 +1,25 @@
+window.setCookie = function(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+};
+window.unsetCookie = function(name) {
+	document.cookie =  name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+};
+window.getCookie = function(name) {
+	var value = "; " + document.cookie;
+	var parts = value.split("; " + name + "=");
+	if (parts.length == 2) return parts.pop().split(";").shift();
+	else return null;
+};
+window.enableQuickcall = function(target_id) {
+	document.getElementById(target_id).removeAttribute("hidden");
+};
+window.disableQuickCall = function(target_id) {
+	document.getElementById(target_id).setAttribute("hidden", "");
+};
+
 // Function called before the popup for media info is displayed. Content and title can be changed. used in nano-gallery: justified 
 function my_popup_info(item, title, content){
 
@@ -424,29 +446,6 @@ function addQuickLoadToDataLinkAttrs(){
 		};
 	});
 }
-
-//
-// dark/light cookie'd
-//
-
-// global theme functions
-
-// setting & getting cookies
-window.setCookie = function(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-};
-window.unsetCookie = function(name) {
-  document.cookie =  name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-};
-window.getCookie = function(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-  else return null;
-};
 
 // sets the dark style by adding the provided classes to the body
 window.setDarkStyle = function(darkClass, showID, hideID) {

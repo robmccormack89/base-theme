@@ -15,26 +15,26 @@
 // Global
 $configs['animated_preloader'] = true;
 $configs['enable_page_excerpts'] = true;
-$configs['disable_post_tags'] = false;
+$configs['disable_post_tags'] = true;
 
 // Singular
-$configs['enable_post_comments'] = true;
+$configs['enable_post_comments'] = false;
 $configs['enable_post_sharing'] = true;
 $configs['enable_post_paging'] = true;
 $configs['enable_post_author'] = true;
 
 // Archives
-$configs['infinite_pagination'] = true;
+$configs['infinite_pagination'] = false;
 
 // Live Search configs
-$configs['live_search'] = true;
+$configs['live_search'] = false;
 $configs['live_search_types'] = array('post', 'page');
 $configs['live_search_taxes'] = array('category', 'post_tag');
 $configs['live_search_types_in_taxes'] = array('post');
 // $configs['live_search'] = false; // disable
 
 // Blog Filters configs
-$configs['blog_filters'] = true;
+$configs['blog_filters'] = false;
 $configs['blog_filters_properties'] = (object) [
   "types" => array(
     (object) [
@@ -58,6 +58,11 @@ $configs['blog_filters_properties'] = (object) [
 
 // Meta gallerys config (uses nanogallery)
 $configs['meta_galleries'] = true;
+
+$configs['acf_local_json'] = true;
+$configs['acf_blocks'] = true;
+$configs['acf_template_settings'] = false;
+$configs['acf_options_page'] = false;
 
 // Theme defaults
 $configs['theme_defaults'] = (object) [

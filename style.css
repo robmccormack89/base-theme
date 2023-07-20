@@ -18,3 +18,222 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Base Theme is built using Timber WP https://github.com/timber/timber
 */
+
+/* 
+
+BASE (OLD)
+
+*/
+
+.nav {
+  position: absolute;
+  top: 15px;
+  z-index: 99;
+  left: 0;
+  right: 0;
+}
+.top-wrap::before, .oooverlay-wrap::before {
+  position: absolute;
+  top:0;
+  right:0;
+  left: 0;
+  bottom: 0;
+  content: '';
+  z-index: 1;
+  background-color: rgba(0,0,0,0.5);
+}
+.top-wrap-height {
+  height: 80vh;
+  min-height: 460px;
+  transition: height 0.25s;
+}
+.uk-subnav-pill > * > :first-child {
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.top-container {
+  z-index: 2;
+}
+.subtitle-text {
+  font-size: 1.2em;
+  opacity: 0.7;
+  font-weight: 300;
+}
+.logos-grid img {
+  display: block;
+  width: 60px;
+  margin: 0 auto;
+  filter:  grayscale(100%);
+  transition: filter 0.25s;
+}
+.logos-grid img:hover {
+  display: block;
+  width: 60px;
+  margin: 0 auto;
+  filter:  grayscale(0);
+}
+
+/* 
+
+MARGINS
+
+*/
+
+.inactive-sticky-nav>.sticky-nav-wrap {
+  margin-top: 15px!important;
+}
+
+/* 
+
+BACKGROUNDS
+
+*/
+
+.uk-overlay-primary {
+  background-color: rgba(0,0,0,0.5);
+}
+.uk-background-secondary>.sticky-nav-wrap {
+  background-color: #222;
+}
+.uk-background-primary>.sticky-nav-wrap {
+  background-color: #1e87f0;
+}
+.uk-background-secondary, .uk-section-secondary {
+  background-color: #303440;
+}
+
+/* 
+
+FONTS/TEXT
+
+*/
+
+html {
+  font-family: 'Headland One', serif;
+}
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  font-family: 'Headland One', serif;
+  letter-spacing: .05rem;
+}
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+  font-family: 'Headland One', serif;
+  text-transform: capitalize;
+}
+
+/* 
+
+LINKS
+
+*/
+
+.uk-light b, .uk-light strong {
+  color: #fff!important;
+}
+.uk-light .uk-navbar-nav>li>a {
+  color: rgba(255,255,255,.7);
+}
+
+/* 
+
+LOGO
+
+*/
+
+.uk-logo .uk-width-small {
+  width: 210px
+}
+@media (min-width: 960px){
+  .uk-logo .uk-width-medium\@m {
+    width: 300px;
+  }
+}
+
+/* 
+
+NAVS/MENUS 
+
+*/
+
+.uk-section-secondary .uk-navbar-dropdown {
+  background: #303440!important;
+  box-shadow: 0 5px 12px rgba(0,0,0,.45);
+}
+.uk-offcanvas-bar {
+  left: -360px;
+  width: 360px;
+  padding: 20px 20px;
+  background: #303440;
+}
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.25em;
+  min-height: 80px;
+  font-size: 1rem;
+}
+
+/* 
+
+QUICKCALL 
+
+*/
+
+#QuickCallEnquiryContainer {
+  text-align: center;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  z-index: 999;
+  bottom: 0;
+  background: #f0506e;
+  color: #fff;
+}
+#QuickCallEnquiryContainer a {
+  color: #fff;
+}
+#QuickCallEnquiryContainer a.close {
+  position: absolute;
+  float: left;
+  top: -15px;
+  left: 0;
+  z-index: 99;
+  font-weight: 700;
+  font-size: 16px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 1px 6px 5px 7px;
+  line-height: 1em;
+  text-align: center;
+  background: #303440;
+  border: 4px solid #fff;
+  cursor: pointer;
+}
+#CallNowButton {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+@media screen and (min-width: 960px) {
+  #QuickCallEnquiryContainer {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+.uk-text-medium {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}

@@ -1,0 +1,72 @@
+{# base
+
+#}
+
+{% macro nothing_here() %}{{ _x('Sorry, nothing to display here...', 'Base', 'base-theme') }}{% endmacro %}
+{% macro all() %}{{ _x('All', 'Base', 'base-theme') }}{% endmacro %}
+
+{# Blocks
+
+#}
+
+{% macro swiper_script_text() %}{{ _x('Your swiper script has been placed here. This text is only visible in preview mode.', 'Swiper block', 'base-theme') }}{% endmacro %}
+
+{# header
+
+#}
+
+{% macro header_top_left() %}{{ _x('<i uk-icon="icon: location" class="uk-margin-small-right"></i>We provide Service & Repairs of Domestic appliances & cover all of Leinster', 'Header', 'base-theme') }}{% endmacro %}
+
+{# footer
+
+#}
+
+{% macro back_to_home() %}{{ _x('Back to Homepage', 'Footer', 'base-theme') }}{% endmacro %}
+{% macro go_to_top() %}{{ _x('Go to Top', 'Footer', 'base-theme') }}{% endmacro %}
+{% macro _copyright() %}{{ _x('©', 'Footer', 'base-theme') }}{% endmacro %}
+{% macro copyright() %}{{ _x('© %s <span class="uk-text-bold uk-text-emphasis">%s</span>. All rights reserved.', 'Footer', 'base-theme') }}{% endmacro %}
+
+{# archive
+
+#}
+
+{% macro no_posts() %}{{ _x('No posts found...', 'Archive', 'base-theme') }}{% endmacro %}
+
+{# password protect form
+
+#}
+
+{% macro pword_protect_text() %}{{ _x('This content is password protected. To view it please enter your password below:', 'Password-protected content', 'base-theme') }}{% endmacro %}
+{% macro pword_protect_label() %}{{ _x('Password', 'Password-protected content', 'base-theme') }}{% endmacro %}
+{% macro pword_protect_enter_text() %}{{ _x('Enter', 'Password-protected content', 'base-theme') }}{% endmacro %}
+
+{# pagination 
+
+#}
+
+{% macro prev_page() %}{{ _x('Newer posts', 'Archive', 'base-theme') }}{% endmacro %}
+{% macro next_page() %}{{ _x('Older posts', 'Archive', 'base-theme') }}{% endmacro %}
+{% macro prev_post() %}{{ _x('Newer Article', 'Single', 'base-theme') }}{% endmacro %}
+{% macro next_post() %}{{ _x('Older Article', 'Single', 'base-theme') }}{% endmacro %}
+
+{# post meta (single & tease)
+
+#}
+
+{% macro written_on() %}{{ _x('Written on %s.', 'Single', 'base-theme') }}{% endmacro %}
+{% macro posted_in() %}{{ _x('Posted in %s.', 'Single', 'base-theme') }}{% endmacro %}
+
+{# search form 
+
+#}
+
+{% macro search_form_msg() %}{{ _x('Try using the search form below to search this website for something else.', 'Search form', 'base-theme') }}{% endmacro %}
+{% macro search_form_placeholder() %}{{ _x('Start typing...', 'Search form', 'base-theme') }}{% endmacro %}
+{% macro search_btn_text() %}{{ _x('Submit', 'Search form', 'base-theme') }}{% endmacro %}
+
+
+{# tease 
+
+#}
+
+{% macro read_more() %}{{ _x('Read more', 'Tease', 'base-theme') }}{% endmacro %}

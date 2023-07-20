@@ -2,9 +2,102 @@
 
 {% block styles %}
   {{ parent() }}
-  
   {# gutenburg styles #}
   <link rel='stylesheet' href='{{theme.link}}/assets/css/editor.css' type='text/css' media='all' />
+  <style>
+    .fa-spinner {
+      display: none;
+      animation: fa-spin 1s linear infinite;
+    }
+    .fa-spinner.display {
+      display: inline-block;
+    }
+    
+    @media (min-width: 1200px) {
+      .contact-details-left-main {
+        margin-right: 70px;
+      }
+    }
+  </style>
+  <!-- form inputs -->
+  <style>
+    /* input & select inputs */
+    .uk-input, .uk-select, .uk-textarea {
+      background-color: #f8f8f8;
+      border: none;
+      transition: .1s ease-in-out;
+      transition-property: background-color,border-color;
+    }
+    
+    /* input & select inputs: hover & focus */
+    .uk-input:focus, .uk-input:hover, 
+    .uk-select:focus, .uk-select:hover,
+    .uk-textarea:focus, .uk-textarea:hover {
+      background-color: #f3f3f3;
+    }
+    
+    /* input & select inputs: uk-light */
+    .uk-light .uk-input, 
+    .uk-light .uk-select,
+    .uk-light .uk-textarea {
+      background-color: rgba(255,255,255,.05);
+    }
+    
+    /* uk-form-large size */
+    .uk-form-large:not(textarea):not([multiple]):not([size]) {
+      height: 45px;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    textarea.uk-form-large {
+      padding: 10px 12px 10px 12px;
+    }
+    .uk-form-large {
+      font-size: 1rem;
+    }
+    
+    /* placeholder text color */
+    ::placeholder {
+      color: #777777!important;
+      opacity: 1!important;
+    }
+    :-ms-input-placeholder {
+      color: #777777;
+    }
+    ::-ms-input-placeholder {
+      color: #777777;
+    }
+    
+    /* search inputs */
+    .uk-search-default .uk-search-input {
+      background-color: #f8f8f8;
+      border: none;
+      transition: .1s ease-in-out;
+      transition-property: background-color,border-color;
+    }
+    .uk-search-default .uk-search-input:focus, .uk-search-default .uk-search-input:hover {
+      background-color: #f3f3f3;
+    }
+    .uk-light .uk-search-default .uk-search-input {
+      background-color: rgba(255,255,255,.05);
+    }
+    .uk-search .uk-search-icon {
+      color: #17161a;
+    }
+    .uk-search .uk-form-large:not(textarea):not([multiple]):not([size]) {
+      height: 50px;
+      padding-left: 15px;
+      padding-right: 35px;
+    }
+    
+    /* hide data list dropdown icon for autopopulated suggestions inputs */
+    input::-webkit-calendar-picker-indicator {
+      display: none!important;
+    }
+    [list]::-webkit-calendar-picker-indicator {
+      display: none!important;
+    }
+  </style>
 {% endblock %}
 
 {% block main %}
