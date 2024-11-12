@@ -1,75 +1,10 @@
 <?php
 
-function meta_gallery($atts) {
-  $context = Timber::context();
-  $template = 'meta_gallery.twig';
-  $context['gallery'] = null;
-
-  if(is_array($atts)){
-
-    if(array_key_exists('cats', $atts)) {
-
-      // dealing with the input string for the cats. can be one cat e.g "driveways", or comma-separated string e.g "driveways,patios"
-      $terms = $atts['cats']; 
-			$sep = ',';
-			if(strpos($terms, $sep) !== false) {
-				$exploded_array = explode($sep, $terms);
-				$terms = $exploded_array;
-			}
-
-      // get the gallery posts (media attachments)
-			$args = array(
-				'post_type' => 'attachment',
-				'post_mime_type' => 'image', // Only bring back attachments that are images
-				'posts_per_page' => -1, // Show us the first three results
-				'post_status' => 'inherit', // Attachments default to "inherit", rather than published. Use "inherit" or "any".
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'media_category',
-						'field'    => 'slug',
-						'terms'    => $terms,
-					),
-				)
-		
-			);
-			$gallery_posts = \Timber::get_posts($args);
-
-			if(!empty($gallery_posts)){
-        $gallery = array();
-        $context['gallery'] = (object) [];
-				foreach($gallery_posts as $item){
-					$img_obj = new \Timber\Image($item->id);
-					$gallery[] = $img_obj;
-				};
-        $context['gallery']->images = $gallery;
-			}
-
-    }
-
-    // assign all the other attributes for outputs, but only when we have images for the gallery
-    if($context['gallery'] && property_exists($context['gallery'], 'images')){
-
-      if(array_key_exists('id', $atts)) $context['gallery']->id = $atts['id']; 
-      if(array_key_exists('container', $atts)) $context['gallery']->container = $atts['container']; 
-      if(array_key_exists('layout', $atts)) $context['gallery']->layout = $atts['layout']; 
-
-      // nano settings
-      if(array_key_exists('gallerydisplaymode', $atts)) $context['gallery']->gallerydisplaymode = $atts['gallerydisplaymode'];
-      if(array_key_exists('gallerymaxrows', $atts)) $context['gallery']->gallerymaxrows = $atts['gallerymaxrows'];
-      if(array_key_exists('gallerysorting', $atts)) $context['gallery']->gallerysorting = $atts['gallerysorting'];
-      if(array_key_exists('gallerydisplaymorestep', $atts)) $context['gallery']->gallerydisplaymorestep = $atts['gallerydisplaymorestep'];
-      if(array_key_exists('thumbnailheight', $atts)) $context['gallery']->thumbnailheight = $atts['thumbnailheight'];
-      if(array_key_exists('thumbnailwidth', $atts)) $context['gallery']->thumbnailwidth = $atts['thumbnailwidth'];
-      if(array_key_exists('thumbnailalignment', $atts)) $context['gallery']->thumbnailalignment = $atts['thumbnailalignment'];
-      if(array_key_exists('thumbnailgutterwidth', $atts)) $context['gallery']->thumbnailgutterwidth = $atts['thumbnailgutterwidth'];
-      if(array_key_exists('thumbnailgutterheight', $atts)) $context['gallery']->thumbnailgutterheight = $atts['thumbnailgutterheight'];
-    }
-    
-  }
-
-  $out = Timber::compile($template, $context);
-  return $out;
-}
+/*
+Breadcrumb
+Stuff
+Theme.php
+*/
 
 // check if yoast_breadcrumbs are enabled
 function yoast_breadcrumb_enabled() {
@@ -85,6 +20,12 @@ function yoast_breadcrumb_enabled() {
 function filter_wpseo_breadcrumb_separator($this_options_breadcrumbs_sep) {
   return '<i uk-icon="icon: chevron-right; ratio: .6"></i>';
 }
+
+/*
+SVG
+Stuff
+Theme.php
+*/
 
 // add svg support
 function check_filetype($data, $file, $filename, $mimes) {
@@ -106,6 +47,12 @@ function cc_mime_types( $mimes ){
 function fix_svg() {
   echo '<style type="text/css"> .attachment-266x266, .thumbnail img { width: 100%!important; height: auto!important; } </style>';
 }
+
+/*
+Disabling Comments
+Stuff
+Theme.php
+*/
 
 // Disable Wordpress comments from backend & posts etc
 function disable_comments_hide_existing_comments($comments) {
@@ -130,6 +77,12 @@ function disable_comments_admin_bar() {
   }
 }
 
+/*
+Menus
+Stuff
+Theme.php
+*/
+
 // Add uk-active class to wordpress'active menu items
 function uikit_active_menu_items($classes, $item) {
   if (in_array('current-menu-item', $classes) ){
@@ -137,6 +90,11 @@ function uikit_active_menu_items($classes, $item) {
   }
   return $classes;
 }
+
+/*
+Utility
+Stuff
+*/
 
 // get a post (or page) object using the slug
 function get_page_by_slug($slug, $post_type = 'page', $unique = true){

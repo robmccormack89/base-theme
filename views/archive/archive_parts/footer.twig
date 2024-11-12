@@ -1,6 +1,0 @@
-{% set posts = archive.posts %}
-{% if (posts.pagination.next or posts.pagination.prev) %}
-  <footer class="archive-footer">
-    {% include 'archive_parts/_pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}), container_class: 'uk-section-small uk-padding-remove-bottom uk-margin-remove' } %}
-  </footer>
-{% endif %}

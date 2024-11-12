@@ -17,8 +17,10 @@ use Twig\Extra\String\StringExtension;
 Timber::$dirname = array(
   'views',
   'views/archive',
+  'views/archive/parts',
   'views/single',
-  'views/global',
+  'views/single/parts',
+  'views/parts',
   'views/shortcodes',
 );
 
@@ -315,10 +317,36 @@ class Theme extends Timber {
         'height'     => array(),
         'data'       => array(),
         'title'      => array(),
+        'fuck'      => array(),
+        'uk-accordion'      => array(),
         'uk-icon'      => array(),
+        'uk-slider'      => array(),
+        'uk-grid' => array(),
+        'uk-form' => array(),
+        'hidden' => array(),
+        'role' => array(),
+        'aria-live' => array(),
+        'aria-atomic' => array(),
+        'data-status' => array(),
+        'aria-required' => array(),
+        'aria-invalid' => array(),
+        'aria-describedby' => array(),
+        'data-name' => array(),
+        'size' => array(),
+        'role' => array(),
+        'aria-hidden' => array(),
+        'focusable' => array(),
+        'role' => array(),
+        'viewBox' => array(),
+        'fill' => array(),
+        'd' => array(),
+        'uk-slider-parallax'      => array(),
         'data-nanogallery2'      => array(),
       );
       $allowedposttags['form'] = $allowed_atts;
+      $allowedposttags['cite'] = $allowed_atts;
+      $allowedposttags['svg'] = $allowed_atts;
+      $allowedposttags['path'] = $allowed_atts;
       $allowedposttags['label'] = $allowed_atts;
       $allowedposttags['input'] = $allowed_atts;
       $allowedposttags['textarea'] = $allowed_atts;

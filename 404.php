@@ -2,7 +2,9 @@
 
 /**
 *
-* The 404 template
+* The 404 template.
+*
+* as simple as it gets
 *
 * @package Rmcc_Theme
 *
@@ -12,7 +14,7 @@
 namespace Rmcc;
 
 // set templates variable as an array
-$templates = array('404.twig', 'base.twig');
+$templates = array('base.twig');
 
 // set the context
 $context = Theme::context();

@@ -1,0 +1,18 @@
+<div id="Term-{{ term.term_id|e('esc_html') }}">
+  <div class="term-card uk-card uk-card-default uk-card-small uk-text-center uk-padding-small uk-position-relative">
+    
+    {% if term.thumbnail.src %}
+      <div class="uk-card-media-top">
+        <img data-src="{{ term.thumbnail.src|resize(215, 150, 'center')|e('esc_url') }}" width="215" height="150" alt="{{ term.thumbnail.alt|e('esc_html') }}" uk-img>
+        <a class="stretch-me" data-link="{{ term.link|e('esc_url') }}"></a>
+      </div>
+    {% endif %}
+    
+    <div class="uk-card-body uk-padding-remove">
+      <div class="uk-text-emphasis uk-margin-small-top uk-margin-remove">
+        <a class="dont-underline uk-h4" data-link="{{ term.link|e('esc_url') }}">{{ term.name|e('esc_html') }}</a>
+      </div>
+    </div>
+    
+  </div>
+</div> 

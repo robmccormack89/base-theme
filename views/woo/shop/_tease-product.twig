@@ -1,0 +1,35 @@
+{{fn('timber_set_product', post)}}
+
+<article id="{{post.id|e('esc_html')}}" class="{{post.class|e('esc_html')}}" data-product-id="{{post.id|e('esc_html')}}">
+  
+  {% do action('woocommerce_before_shop_loop_item') %}
+  
+  {% if post.thumbnail %}
+    <div class="tease-image uk-position-relative">
+      <a href="{{post.link|e('esc_url')}}">
+        {% do action('woocommerce_before_shop_loop_item_title') %}
+        <img data-src="{{post.thumbnail.src|resize(900, 600, 'center')|e('esc_url')}}" alt="{{post.thumbnail.alt|e('esc_html')}}" uk-img>
+      </a>
+    </div>
+  {% endif %}
+
+  <div class="tease-details uk-margin-small-top">
+    
+    <div class="tease-title">
+      {% do action('woocommerce_shop_loop_item_title') %}
+      <h3 class="uk-h5 uk-text-boldest uk-margin-small-bottom">
+        <a class="uk-link-heading" href="{{post.link|e('esc_url')}}">{{post.title|e('esc_html')}}</a>
+      </h3>
+    </div>
+    
+    <div class="tease-price-rating uk-margin-small-bottom">
+      {% do action('woocommerce_after_shop_loop_item_title') %}
+    </div>
+    
+    <div class="tease-buttons">
+      {% do action( 'woocommerce_after_shop_loop_item' ) %}
+    </div>
+    
+  </div>
+  
+</article>

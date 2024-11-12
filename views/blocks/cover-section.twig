@@ -6,7 +6,7 @@
  */
 #}
 
-{% extends "_block.twig" %}
+{% extends "block.twig" %}
 
 {% block block_content %}
   {# image logic #}
@@ -18,7 +18,7 @@
   
   {# block html #}
   <div class="uk-background-cover" {{ bg_img_style_attrs }}>
-    <div class="uk-position-relative" {{ bg_colour_style_attrs }}>
+    <div class="uk-position-relative" style="background-color: {{ block.style.color.background }}">
       <div class="uk-container uk-section uk-section-small {{ custom_classes|e('esc_html') }} {{ fullheight_class }}">
         <div class="cover-block-content">
           <InnerBlocks />

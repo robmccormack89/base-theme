@@ -1,0 +1,16 @@
+{% import "_snippets.twig" as snippets %}
+
+<h3>{{ cross_sells_title|e('esc_html') }}</h3>
+
+<div id="slideshow_cross" class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for post in cross_sells %}
+      <div class="swiper-slide">
+        {% include '_tease-product.twig' %}
+      </div>
+    {% endfor %}
+  </div>
+  {% if not cross_sells > 4 %}
+    <div class="swiper-pagination"></div>
+  {% endif %}
+</div>

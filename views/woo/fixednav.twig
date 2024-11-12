@@ -1,0 +1,44 @@
+{% import "_snippets.twig" as snippets %}
+
+<div class="shop-fixednav-wrap uk-hidden@m" style="position:fixed;width:100%;bottom:0;">
+  <div class="shop-fixednav shop-fixednav-label-show uk-background-default uk-padding-small uk-padding-remove-horizontal">
+    <div class="uk-container">
+      <div class="uk-child-width-1-4 uk-grid-small uk-text-center" uk-grid>
+        
+        {# shop link #}
+        <div class="shop-link">
+          <a class="uk-link-text" href="{{ shop_url|e('esc_url') }}">
+            {{ snippets.shop_icon() }}
+            <div class="uk-text-small">{{ snippets.shop_page_txt|e('esc_html') }}</div>
+          </a>
+        </div>
+        
+        {# contact link #}
+        <div class="contact-link">
+          <a class="uk-link-text" href="{{ snippets.contact_link|e('esc_url') }}">
+            {{ snippets.contact_icon() }}
+            <div class="uk-text-small">{{ snippets.contact_txt|e('esc_html') }}</div>
+          </a>
+        </div>
+        
+        {# account link #}
+        <div class="account-link">
+          <a class="uk-link-text" href="{{ dashboard_endpoint|e('esc_url') }}">
+            {{ snippets.account_icon() }}
+            <div class="uk-text-small">{{ snippets.login_account_txt|e('esc_html') }}</div>
+          </a>
+        </div>
+        
+        {# basket link #}
+        <div class="basket-link">
+          <a class="uk-link-text uk-position-relative" href="{{ cart_url|e('esc_url') }}">
+            {{ snippets.basket_icon() }}
+            <span class="header-cart-count">{{ WC.cart.get_cart_contents_count()|e('wp_kses_post') }}</span>
+            <div class="uk-text-small">{{ snippets.cart_txt|e('esc_html') }}</div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

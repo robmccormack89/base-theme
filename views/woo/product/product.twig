@@ -1,0 +1,154 @@
+{% extends "single.twig" %}
+
+{% block styles %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ theme.link }}/assets/css/product.css" />
+{% endblock %}
+
+{% block main %}
+  <div id="Product-{{ post.id|e('esc_html') }}" class="single-product-details {{ post.class|e('esc_html') }} uk-sectionnn uk-margin-large-bottom" itemscope itemtype="http://schema.org/Product">
+    
+    {% block single_header %}
+      {% if fn('post_password_required', post.id) %}
+        {{ parent() }}
+      {% endif %}
+    {% endblock %}
+    
+    {% block breads %}
+      <div class="uk-background-default">
+        {% include '_breads.twig' %}
+      </div>
+    {% endblock %}
+    
+    {% if not fn('post_password_required', post.id) %}
+    
+      <section class="product-content-section uk-section-small uk-container">
+        
+        {% do action('woocommerce_before_single_product') %} {# store notices #}
+          
+        <div uk-grid="masonry: true;">
+          
+          <div class="product-left uk-width-1-3@m">
+            {% do action('woocommerce_before_single_product_summary') %} {# product thumb/gallery #}
+          </div>
+          
+          <div class="product-right uk-width-2-3@m">
+            {% do action('woocommerce_single_product_summary') %} {# product details #}
+          </div>
+        
+        </div>
+        
+        {% do action('woocommerce_after_single_product_summary') %} {# product tabs #}
+          
+      </section>
+      
+      <meta itemprop="url" content="{{ post.link|e('esc_url') }}" />
+      
+      {% if up_sells is not empty or related_products is not empty %}
+        {% include '_related-upsells.twig' %}
+      {% endif %}
+      
+      {% do action('woocommerce_after_single_product') %}
+      
+      {% block single_footer %}
+        {{ parent() }}
+      {% endblock %}
+    
+    {% else %}
+      <div class="password-protected-form uk-container">
+        {% include '_password-protected-form.twig' %}
+      </div>
+    {% endif %}
+  
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {# parent() #}
+  <script type='text/javascript'>
+  
+    // what to do to Woo when the document is ready
+    jQuery(document).ready(function($) {
+      
+      // notices 
+      $(".woocommerce-notices-wrapper").addClass("uk-container uk-container-large uk-margin-small");
+      $(".woocommerce-notices-wrapper .button").addClass("uk-button uk-button-primary uk-button-small uk-small-margin-right");
+      
+      // sale badge
+      $(".onsale").addClass("uk-card-badge uk-label");
+      
+      // add-to-cart
+      $(".variations_form table").addClass("uk-table-small uk-table-divider uk-table-middle uk-table-justify uk-position-relative");
+      // add-to-cart
+      $(".product-right .button").addClass("uk-button uk-button-primary");
+      // product buttons
+      $("#ProductButtons .button").addClass("uk-button uk-button-small uk-button-primary");
+      // quantity input
+      $(".quantity").addClass("uk-width-auto uk-display-inline-block");
+      
+      // product metas
+      $(".product_meta").addClass("uk-margin-small-top");
+      $(".product_meta > span").addClass("uk-display-block");
+      
+      // stock
+      $(".in-stock").addClass("uk-text-success");
+      $(".out-of-stock").addClass("uk-text-danger");
+      
+      // tab heading
+      $(".tab-content h2").addClass("uk-h4");
+      // reviews tab
+      $("ol.commentlist").addClass("uk-list uk-list-divider");
+      // additional info tab
+      $(".woocommerce-product-attributes").addClass("uk-table-small uk-table-divider uk-table-middle uk-table-justify uk-margin-remove-bottom");
+      
+    });
+    
+    var related_swiper = new Swiper('#slideshow_related', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      // autoplay: {
+      //   delay: 4000,
+      //   disableOnInteraction: true,
+      // },
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+      },
+      breakpoints: {
+        960: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        1290: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+      }
+    });
+    var upsells_swiper = new Swiper('#slideshow_upsells', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      // autoplay: {
+      //   delay: 4000,
+      //   disableOnInteraction: true,
+      // },
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+      },
+      breakpoints: {
+        // 960: {
+        //   slidesPerView: 3,
+        //   spaceBetween: 15,
+        // },
+        1290: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      }
+    });
+  
+  </script>
+{% endblock %}

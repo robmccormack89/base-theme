@@ -1,0 +1,135 @@
+.filtering-reset{
+  position: absolute;
+  top: 27px;
+  left: 42%;
+}
+
+#ProductFilters .uk-radio[checked] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle fill='%23fff' cx='8' cy='8' r='2'/%3E%3C/svg%3E");
+  background-color: #1e87f0;
+  border-color: transparent;
+}
+#ProductFilters .uk-radio:[checked] {
+  background-color: #1e87f0;
+  border-color: transparent;
+}
+#ProductFilters .uk-nav-sub li.uk-active:before {
+  top: 5px;
+  left: -13px;
+  color: #949494;
+  height: fit-content;
+  width: fit-content;
+  position: absolute;
+  font-style: normal;
+  font-variant: normal;
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: var(--fa-font-solid);
+  content: "\f104";
+}
+#ProductFiltersOffcanvas.quickloader::after {
+  background-color: #ffffff0f!important;
+}
+
+/* shop filters mod */
+.uk-panel-scrollable {
+  background-color: #f8f8f8;
+  border: none;
+}
+.uk-offcanvas-bar .uk-panel-scrollable {
+  background-color: #ffffff0f;
+}
+
+/* badge close icons */
+/* .icon::before {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.close-icon::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00d";
+  margin-right: 5px;
+  text-rendering: optimizeLegibility;
+}
+.grid-icon::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00a";
+  text-rendering: optimizeLegibility;
+}
+.list-icon::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f03a";
+  text-rendering: optimizeLegibility;
+} */
+/* New Simplified Version 6 CSS */
+/* Step 1: Common Properties: All required to make icons render reliably */
+.icon::before {
+  /* removed font- based rules */
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+/* Step 2: Reference Individual Icons */
+.close-icon::before {
+  font: var(--fa-font-solid);
+  content: "\f00d";
+  margin-right: 5px;
+}
+.grid-icon::before {
+  font: var(--fa-font-solid);
+  content: "\f009";
+}
+.list-icon::before {
+  font: var(--fa-font-solid);
+  content: "\f03a";
+}
+.uk-badge {
+  align-items: center;
+  background: #cf372d;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-size: .825rem;
+  height: 18px;
+  justify-content: center;
+  min-width: 22px;
+  padding: 0 5px;
+  vertical-align: middle;
+}
+
+#ShopToolbarLeft .uk-navbar-item, 
+#ShopToolbarLeft .uk-navbar-nav>li>a, 
+#ShopToolbarLeft .uk-navbar-toggle {
+  font-weight: 500;
+  min-height: 80px;
+  padding: 0 8px;
+}
+
+.demo-archive-posts .uk-background-secondary {
+  background-color: #afafaf;
+}
+.demo-archive-posts .demo-text {
+  height: 30px;
+}
+.demo-archive-posts .demo-text-first {
+  height: 15px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+#DemoProductsGrid {
+  min-height: 600px
+}
+
+#DemoProductsGrid.with-terms {
+  min-height: 340px!important;
+}

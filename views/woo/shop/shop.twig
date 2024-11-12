@@ -1,0 +1,86 @@
+{% extends 'archive.twig' %}
+{# {% import "_snippets.twig" as snippets %} #}
+
+{% block styles %}
+  {{ parent() }}
+  <link rel='stylesheet' href='{{theme.link}}/assets/css/shop.css' type='text/css' media='all' />
+{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+{% block main %}
+  <div id="IndexArchive" class="index-archive shop-archive theme-archive uk-background-muted" data-template="shop.twig">
+    
+    {% block archive_header %}
+      {# {{ parent() }} #}
+    {% endblock %}
+    
+    {# breads were here #}
+    
+    {% block archive_content %}
+      <div class="uk-background-default">
+        <div class="uk-container uk-section uk-section-small">
+            
+          {% do action('woocommerce_before_main_content') %}
+
+          {# filters were here #}
+          {% block blog_filters %}
+            {{ parent() }}
+          {% endblock %}
+
+          {% block archive_loop %}
+            <section id="TheLoopContainer" class="uk-position-relative {{ (fn('is_shop') and not _get) ? 'uk-margin-medium-top' }}">
+              <div id="TheLoop" class="products-loop uk-position-relative">
+
+                {# toolbar was here & commented out #}
+                
+                {% block shop_loop_grid %}
+                  {% if posts is not empty %}
+                    <ul id="ProductsGrid" class="archive-posts filters-container products {{ grid_classes }} uk-grid uk-grid-small" uk-grid="masonry: true">
+                      {% for post in posts %}
+                        <li>
+                          <!-- Product -->
+                          {% include tease_template %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% else %}
+                    <div id="ProductsGrid">
+                      No products found......
+                    </div>
+                  {% endif %}
+                {% endblock %}
+                
+                {% block shop_pagination %}
+                  {% if posts is not empty %}
+                    {# shop pagination was here & commented out #}
+                    {% include 'pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}), container_class: 'uk-background-muted uk-padding-small uk-margin-medium-top'} %}
+                  {% endif %}
+                {% endblock %}
+
+              </div>
+            </section>
+          {% endblock %}
+          
+          {# archive_footer were here #}
+          
+          {% do action('woocommerce_after_shop_loop') %}
+          
+          {% do action('woocommerce_after_main_content') %}
+          
+        </div>
+      </div>
+    {% endblock %}
+    
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ parent() }}
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+{% endblock %}

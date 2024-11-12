@@ -1,0 +1,6 @@
+{% for term in subcat_sel_terms %}
+  <label>
+    <input class="uk-checkbox uk-border-rounded" type="checkbox" name="product_cat" id="{{ term.term_id|e('esc_html') }}" value="{{ term.slug|e('esc_html') }}" {{ (term.slug in fn('get_query_var', 'product_cat')) ? 'checked'}}>
+    {{ term.name|e('esc_html') }}
+  </label>
+{% endfor %}

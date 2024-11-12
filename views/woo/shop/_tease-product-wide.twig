@@ -1,0 +1,41 @@
+{{fn('timber_set_product', post)}}
+
+<article id="{{post.id|e('esc_html')}}" class="entry item list-item product-list-item product-tease {{post.class|e('esc_html')}}" data-product-id="{{post.id|e('esc_html')}}">
+  <div class="uk-grid-match uk-flex uk-flex-middle uk-grid-small" uk-grid>
+    
+    {% if post.thumbnail %}
+      <div class="uk-width-1-4@m">
+        <div class="tease-image uk-position-relative">
+          <a href="{{post.link|e('esc_url')}}">
+            {% do action('woocommerce_before_shop_loop_item_title') %}
+            <img data-src="{{post.thumbnail.src|resize(900, 900)|e('esc_url')}}" alt="{{post.thumbnail.alt|e('esc_html')}}" uk-img>
+          </a>
+        </div>
+      </div>
+    {% endif %}
+     
+    <div class="uk-width-expand@m uk-background-default">
+      <div class="tease-details uk-padding-small">
+        
+        <div class="tease-title">
+          {% do action('woocommerce_shop_loop_item_title') %}
+          <h3 class="uk-h3">
+            <a class="uk-link-reset" href="{{post.link|e('esc_url')}}">{{post.title|e('esc_html')}}</a>
+          </h3>
+        </div>
+
+        <p class="tease-excerpt">{{post.preview.length(63).force.read_more('')|e('esc_html')}}</p>
+        
+        <div class="tease-price-rating uk-margin-small-bottom">
+          {% do action('woocommerce_after_shop_loop_item_title') %}
+        </div>
+        
+        <div class="tease-buttons">
+          {% do action( 'woocommerce_after_shop_loop_item' ) %}
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</article>

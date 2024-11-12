@@ -9,7 +9,7 @@
 
     {# the archive header #}
     {% block archive_header %}
-      {% include 'archive_parts/header.twig' %}
+      {% include 'archive_header.twig' %}
     {% endblock %}
 
     {# the archive content #}
@@ -19,13 +19,13 @@
         {# the archive filters: for blog #}
         {% block blog_filters %}
           {% if configs.blog_filters %}
-            {% include 'archive_parts/filters/main.twig' %}
+            {% include 'filters_main.twig' %}
           {% endif %}
         {% endblock %}
 
         {# the archive loop: posts (contains archive_footer) #}
         {% block archive_loop %}
-          {% include 'archive_parts/loop.twig' %}
+          {% include 'loop.twig' %}
         {% endblock %}
         
       </div>
@@ -52,7 +52,7 @@
 
   {# scripts for the blog filters: modular #}
   {% if configs.blog_filters and configs.blog_filters_properties.types %}
-    {% include 'archive_parts/filters/scripts.twig' %}
+    {% include 'filters_scripts.twig' %}
   {% endif %}
 
 {% endblock %}

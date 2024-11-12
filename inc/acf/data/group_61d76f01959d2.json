@@ -27,23 +27,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_626756573afe1",
-            "label": "Background colour",
-            "name": "bg_colour",
-            "type": "color_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "enable_opacity": 1,
-            "return_format": "string"
-        },
-        {
             "key": "field_620e46bf11699",
             "label": "Custom Classes",
             "name": "block_custom_classes",

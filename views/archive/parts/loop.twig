@@ -1,0 +1,29 @@
+{# the archive loop: main 2 wrappers & ids are for blog filters #}
+<section id="TheLoopContainer" class="uk-position-relative">
+  <div id="TheLoop" class="products-loop uk-position-relative">
+
+    {% if archive.posts is not empty %}
+
+      {# the actual posts loop. the wrapper & id here are again used for blog filters #}
+      <div id="PostsGrid" class="archive-posts filters-container" uk-grid>
+        {% for post in archive.posts %}
+          {% include fn('post_password_required', post) ? 'tease_protected.twig' : 'tease.twig' with {post: post, preview_length: 28, w: 1200} %}
+        {% endfor %}
+      </div>
+
+      {# the archive footer with pagination. only when archive.posts is not empty, which makes sense #}
+      {% block archive_footer %}
+        {% include 'archive_footer.twig' %}
+      {% endblock %}
+
+    {% else %}
+
+      {# empty posts result. uses same id #}
+      <div id="PostsGrid">
+        <p class="uk-text-emphasis">{{ _x('Sorry, there has been an error locating a resource for your query. Please try again.', '404/Error pages', 'base-theme')|e('esc_html') }}</p>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>

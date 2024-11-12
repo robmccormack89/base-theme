@@ -1,0 +1,85 @@
+{% extends "single.twig" %}
+
+{% block styles %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ theme.link }}/assets/css/basket.css" />
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script type='text/javascript'>
+  
+    jQuery(function($) {
+      
+      // the cart styles themselves
+      cartStyles = function() {
+        
+        // cart form
+        $(".woocommerce-cart-form").addClass("uk-overflow-auto");
+        $(".woocommerce-cart-form .shop_table").addClass("uk-table uk-table-justify uk-table-divider uk-table-responsive");
+        $(".woocommerce-cart-form .product-thumbnail").addClass("uk-width-small");
+        $(".woocommerce-cart-form .product-thumbnail img").addClass("uk-preserve-width");
+        $(".woocommerce-cart-form .product-quantity").addClass("uk-width-small");
+        $(".woocommerce-cart-form .product-name a").addClass("uk-link-text dont-underline");
+        $(".woocommerce-cart-form .input-text").addClass("uk-input");
+        $(".woocommerce-cart-form .actions").addClass("uk-padding-remove-horizontal");
+        $(".woocommerce-cart-form .button").addClass("uk-button uk-width-1-1");
+        $(".woocommerce-cart-form .coupon .button").addClass("uk-button-primary uk-margin-small-top uk-margin-small-bottom");
+        // cart totals
+        $(".cart_totals h2").addClass("uk-h3 uk-margin-top");
+        $(".cart_totals .shop_table").addClass("uk-table uk-table-striped");
+        $(".cart_totals .button").addClass("uk-button uk-button-primary");
+        // cart proceed to checkout btn
+        $(".wc-proceed-to-checkout .checkout-button").addClass("uk-button uk-button-primary");
+        // shipping methods
+        $("#shipping_method").addClass("uk-list");
+        // shipping calculator
+        $(".shipping-calculator-form").addClass("uk-margin-top");
+        $(".woocommerce-shipping-calculator .button").addClass("uk-button uk-button-default uk-button-small");
+        $(".woocommerce-shipping-calculator select").addClass("uk-select");
+        $(".woocommerce-shipping-calculator .input-text").addClass("uk-input");
+        // cross-sells products
+        $("#ProductButtons .button").addClass("uk-button uk-button-small uk-button-primary");
+        $(".onsale").addClass("uk-card-badge uk-label");
+        
+        
+      }
+      
+      $(document).ready(function() {
+      	cartStyles();
+      });
+      
+      whenNodesChange('.woocommerce', cartStyles); // do the CartStyles on .woocommerce subnode change (mutationObserver)
+      
+    });
+    
+    // cross-sells
+    var cross = document.getElementById("slideshow_cross");
+    if(cross){
+      var cross_swiper = new Swiper('#slideshow_cross', {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        // autoplay: {
+        //   delay: 4000,
+        //   disableOnInteraction: true,
+        // },
+        // init: false,
+        pagination: {
+          el: '.swiper-pagination',
+          dynamicBullets: true,
+        },
+        breakpoints: {
+          960: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          1290: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+        }
+      });
+    }
+  
+  </script>
+{% endblock %}

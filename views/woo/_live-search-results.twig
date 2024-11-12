@@ -1,0 +1,89 @@
+{% import "_snippets.twig" as snippets %}
+
+<ul class="">
+  
+  {% if product_categories is not empty %}
+    {% for product_category in product_categories %}
+      <li>
+         <a class="uk-link-text" href="{{ fn('get_term_link', product_category)|e('esc_url') }}">
+           <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+             <div class="uk-width-expand">
+               {{ product_category.name|e('esc_html') }}
+             </div>
+             <div clas="uk-width-auto">
+               <div class="uk-text-meta ajax-search-meta uk-text-right">
+                 {{ snippets.live_search_cat_label()|e('esc_html') }}
+               </div>
+             </div>
+           </div>
+         </a>
+       </li>
+    {% endfor %}
+  {% endif %}
+
+  {% if products is not empty %}
+    {% for product in products %}
+      <li>
+        <a class="uk-link-text" href="{{ fn('get_permalink', product.id)|e('esc_url') }}">
+          <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+              {{ product.name|e('esc_html') }}
+            </div>
+            <div clas="uk-width-auto">
+              <div class="uk-text-meta ajax-search-meta uk-text-right">
+                {{ snippets.live_search_part_label|e('esc_html') }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  {% endif %}
+
+  {% if products_in_cat is not empty %}
+    {% for product_in_cat in products_in_cat %}
+      <li>
+         <a class="uk-link-text" href="{{ fn('get_permalink', product_in_cat.id) }}">
+           <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+             <div class="uk-width-expand">
+               {{ product_in_cat.title|e('esc_html') }} ({{ query_string_upper|e('esc_html') }})
+             </div>
+             <div clas="uk-width-auto">
+               <div class="uk-text-meta ajax-search-meta uk-text-right">
+                 {{ snippets.live_search_part_label|e('esc_html') }}
+               </div>
+             </div>
+           </div>
+         </a>
+       </li>
+     {% endfor %}
+  {% endif %}
+
+  {% if products_with_sku is not empty %}
+    {% for product in products_with_sku %}
+      <li>
+         <a class="uk-link-text" href="{{ fn('get_permalink', product.id) }}">
+           <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+             <div class="uk-width-expand">
+               {{ product.name|e('esc_html') }}
+             </div>
+             <div clas="uk-width-auto">
+               <div class="uk-text-meta ajax-search-meta uk-text-right">
+                 {{ snippets.live_search_part_label|e('esc_html') }}
+               </div>
+             </div>
+           </div>
+         </a>
+       </li>
+    {% endfor %}
+  {% endif %}
+  
+  {% if products_with_sku is empty and products is empty and product_categories is empty and products_in_cat is empty %}
+    <li>
+      <span style="padding: 0 5px;">
+        {{ snippets.live_search_empty()|e('esc_html') }}
+      </span>
+    </li>
+  {% endif %}
+
+</ul>

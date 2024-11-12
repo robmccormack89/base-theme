@@ -1,0 +1,5 @@
+{# dump(terms) #}
+<option value="" selected="true" disabled="disabled">Select Sub-category</option>
+{% for term in subcat_sel_terms %}
+  <option id="{{ term.id|e('esc_html') }}" value="{{ term.slug|e('esc_html') }}">{{ term.name|e('esc_html') }}</option>
+{% endfor %}

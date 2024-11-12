@@ -94,9 +94,44 @@ class Blocks {
 
     // ));
 
+    // acf_register_block(array( // icon block 
+    
+    //   // *required
+    //   'name' => 'icon_block_section',
+    //   'title' => 'Icon Block',
+    
+    //   // the callback function
+    //   'render_callback' => array($this, 'icon_block_section_render_callback'),
+    
+    //   // what block settings does this block allow
+    //   'supports' => array(
+    //     'align' => false, 
+    //     'align_text' => true,
+    //     'align_content' => true,
+    //     'full_height' => false,
+    //     // 'mode' => false,
+    //     'jsx' => true
+    //   ),
+    
+    //   // the defaults for various block settings
+    //   // 'align' => 'full',
+    //   // 'full_height' => false,
+    //   'align_text' => 'left',
+    //   'align_content' => 'center',
+    //   'mode' => 'preview',
+    
+    //   // category & icon
+    //   'category' => 'design',
+    //   'icon' => 'cover-image',
+    
+    //   // keywords by which to search for the block
+    //   'keywords' => array('icon', 'block', 'section', 'rmcc'),
+    
+    // ));
+
     if(!function_exists('acf_register_block')) return;
     
-    acf_register_block(array( // cover section 
+    acf_register_block(array( // content grid section 
     
       // *required
       'name' => 'content_grid_section',
@@ -146,7 +181,12 @@ class Blocks {
         'align_content' => false,
         'full_height' => true,
         // 'mode' => false,
-        'jsx' => true
+        'jsx' => true,
+        'color'           => [
+          'background' => true,
+          'gradients'  => true,
+          'text'       => false,
+        ],
       ),
     
       // the defaults for various block settings
@@ -164,50 +204,15 @@ class Blocks {
     
     ));
     
-    acf_register_block(array( // icon block 
-    
-      // *required
-      'name' => 'icon_block_section',
-      'title' => 'Icon Block',
-    
-      // the callback function
-      'render_callback' => array($this, 'icon_block_section_render_callback'),
-    
-      // what block settings does this block allow
-      'supports' => array(
-        'align' => false, 
-        'align_text' => true,
-        'align_content' => true,
-        'full_height' => false,
-        // 'mode' => false,
-        'jsx' => true
-      ),
-    
-      // the defaults for various block settings
-      // 'align' => 'full',
-      // 'full_height' => false,
-      'align_text' => 'left',
-      'align_content' => 'center',
-      'mode' => 'preview',
-    
-      // category & icon
-      'category' => 'design',
-      'icon' => 'cover-image',
-    
-      // keywords by which to search for the block
-      'keywords' => array('icon', 'block', 'section', 'rmcc'),
-    
-    ));
-    
     acf_register_block(array( // Testimonials 
     
       // *required
-      'name' => 'testimonial_section',
-      'title' => 'Testimonial/Ratings section',
+      'name' => 'testimonial',
+      'title' => 'Testimonial',
     
       // the callback function
-      'render_callback' => array($this, 'testimonials_section_render_callback'),
-    
+      'render_callback' => array($this, 'testimonial_render_callback'),
+
       // what block settings does this block allow
       'supports' => array(
         // 'align' => array('center'), 
@@ -215,13 +220,15 @@ class Blocks {
         'align_text' => true, 
         'align_content' => false, 
         'full_height' => false, 
-        'mode' => 'preview',
-        // 'mode' => false
+        // 'mode' => 'preview',
+        'mode' => false,
+        'jsx' => true
       ),
     
       // the defaults for various block settings
       // 'align' => 'center', 
       'align_text' => 'center', 
+      'mode' => 'preview',
     
       // category & icon
       'category' => 'design',
@@ -386,7 +393,20 @@ class Blocks {
     Timber::render('cover-section.twig', $context);
   }
   
-  public function icon_block_section_render_callback($block, $content = '', $is_preview = false) {
+  public function testimonial_render_callback($block, $content = '', $is_preview = false) { 
+    $context = Timber::context();
+    $context['block'] = $block;
+    $context['fields'] = get_fields();
+    $context['is_preview'] = $is_preview;
+    
+    Timber::render('testimonial.twig', $context);
+  }
+
+  /*
+  OLD
+  */
+
+  public function _icon_block_section_render_callback($block, $content = '', $is_preview = false) {
     $context = Timber::context();
     $context['block'] = $block;
     $context['fields'] = get_fields();
@@ -394,19 +414,6 @@ class Blocks {
     
     Timber::render('icon-block.twig', $context);
   }
-  
-  public function testimonials_section_render_callback($block, $content = '', $is_preview = false) { 
-    $context = Timber::context();
-    $context['block'] = $block;
-    $context['fields'] = get_fields();
-    $context['is_preview'] = $is_preview;
-    
-    Timber::render('testimonials-section.twig', $context);
-  }
-
-  /*
-  OLD
-  */
 
   public function __cover_section_render_callback($block, $content = '', $is_preview = false) {
     $context = Timber::context();

@@ -87,7 +87,7 @@ function ajax_live_search() {
 
   // compile the data in twig & set
   $data['result'] = 1; // a valid result!! posts or no posts, we will compile the template
-  $response = Timber::compile(array('_live_search_results.twig'), $context);
+  $response = Timber::compile(array('live_search_results.twig'), $context);
   $data['response'] = $response;
 
   // echo the json_encoded compiled twig template, then kill the function

@@ -1,0 +1,48 @@
+{% extends "single.twig" %}
+
+{% block styles %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ theme.link }}/assets/css/checkout.css" />
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script type='text/javascript'>
+    jQuery(function($) {
+      
+      // the account styles themselves
+      checkoutStyles = function() {
+        
+        // form inputs/elements
+        $(".input-radio").addClass("uk-radio");
+        $(".input-text").addClass("uk-input");
+        $(".input-checkbox").addClass("uk-checkbox");
+        $("label").addClass("uk-form-label");
+        $("select").addClass("uk-select");
+        
+        // order review table
+        $(".woocommerce-checkout-review-order-table").addClass("uk-table uk-table-divider");
+        
+        // payments methods
+        $(".wc_payment_methods").addClass("uk-list uk-list-large uk-list-divider");
+        
+        // buttons on checkout
+        $(".button").addClass("uk-button uk-button-primary");
+        
+        // order rerceived
+        $(".woocommerce-thankyou-order-details").addClass("uk-list uk-list-striped");
+        $(".woocommerce-table--order-details").addClass("uk-table-small uk-table-striped uk-table-justify uk-margin-remove-top");
+        $(".woocommerce-customer-details .woocommerce-columns--2").addClass("uk-grid-small");
+        
+      }
+      
+      // what to do to Woo when the document is ready (woo globals)
+      jQuery(document).ready(function($) {
+        checkoutStyles();
+      });
+      
+      whenNodesChange('.woocommerce', checkoutStyles); // do the AccountStyles on .woocommerce subnode change (mutationObserver)
+      
+    });
+  </script>
+{% endblock %}

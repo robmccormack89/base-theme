@@ -1,0 +1,43 @@
+{% import "_snippets.twig" as snippets %}
+
+<div class="product-related-upsells-section uk-margin-large-bottom">
+  <div class="uk-container">
+    
+    {% if not up_sells is empty %}
+      <h2 class="uk-h3 uk-margin-remove-top">{{ up_sells_title|e('esc_html') }}</h2>
+      <div id="slideshow_upsells" class="swiper-container">
+        <div class="swiper-wrapper">
+          
+          {% for post in up_sells %}
+            <div class="swiper-slide">
+              {% include '_tease-product.twig' %}
+            </div>
+          {% endfor %}
+          
+        </div>
+        {% if not up_sells > 4 %}
+          <div class="swiper-pagination"></div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    {% if not related_products is empty %}
+      <h2 class="uk-h3">{{ related_products_title|e('esc_html') }}</h2>
+      <div id="slideshow_related" class="swiper-container">
+        <div class="swiper-wrapper">
+          
+          {% for post in related_products %}
+            <div class="swiper-slide">
+              {% include '_tease-product.twig' %}
+            </div>
+          {% endfor %}
+          
+        </div>
+        {% if not related_products > 4 %}
+          <div class="swiper-pagination"></div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+  </div>
+</div>

@@ -1,0 +1,89 @@
+{% extends 'shop.twig' %}
+{% import "_snippets.twig" as snippets %}
+
+{% block styles %}
+  {{ parent() }}
+{% endblock %}
+
+{% block shop_filters %}
+{% endblock %}
+
+{% block loader_shop_loop_grid %}
+  <div id="DemoProductsGrid" class="uk-hidden uk-margin-medium-top with-terms">
+    <div class="uk-text-bold uk-text-emphasis">{{ snippets.parts_loading()|e('esc_html') }}</div>
+    <ul class="demo-archive-posts demo-filters-container demo-products uk-child-width-1-2 uk-child-width-1-6@m uk-flex uk-flex-middle uk-flex-center" uk-grid="masonry: true">
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+      <li>
+        <div class="uk-height-small uk-background-muted"></div>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block shop_loop %}
+  <section id="TheLoopContainer" class="uk-position-relative uk-margin-medium-top">
+    <div id="TheLoop" class="products-loop uk-position-relative">
+      {% if terms is not empty %}
+        
+        {% block shop_loop_grid %}
+          <ul id="ProductsGrid" class="archive-posts filters-container products uk-child-width-1-2 uk-child-width-1-6@m uk-flex uk-flex-middle uk-flex-center" uk-grid>
+            {% for term in terms %}
+              <li>
+                <!-- Term -->
+                {% include '_tease-term.twig' %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endblock %}
+        
+        {% block shop_pagination %}
+          {# include '_shop-pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}), container_class: 'uk-margin-remove'} #}
+          {# include '_pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}), container_class: 'uk-background-muted uk-padding-small uk-margin-medium-top'} #}
+        {% endblock %}
+        
+      {% else %}
+        <div id="ProductsGrid">
+          {{ snippets.no_products_found_text()|e('esc_html') }}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block quickload_callbacks %}
+  wooGlobalStyles();
+  // console.log('the content has been replaced');
+  window.history.pushState({}, '', data_link); // then we add new url to the browser address bar
+{% endblock %}

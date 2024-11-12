@@ -1,6 +1,6 @@
 {% block html_head_container %}
 
-  {% include '_html_head.twig' %}
+  {% include 'html_head.twig' %}
     {% block styles %}
     {% endblock %}
   </head>
@@ -31,7 +31,7 @@
             <p>{{ description|default(_x('Sorry, nothing to display here....', 'Base: No content message', 'base-theme'))|e('esc_html') }}</p>
 
             {# if it's a 404, include the search form #}
-            {% include (fn('is_404') or fn('get_post_status', post.id) == 'private') ? '_search_form.twig' ignore missing  %}
+            {% include (fn('is_404') or fn('get_post_status', post.id) == 'private') ? 'search_form.twig' ignore missing %}
 
           </div>
         {% endblock %}
@@ -48,27 +48,7 @@
     {% endblock %}
 
     {# dark light js init #}
-    <script>
-      var darkLightCookie = getCookie("darklightswitch");
-      if (darkLightCookie) {
-        setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
-      } else {
-        unsetDarkStyle('uk-light', 'DarkSwitch', 'LightSwitch');
-      }
-      document.querySelectorAll('.darklight-switch').forEach(item => {
-        item.addEventListener('mousedown', event => {
-          event.preventDefault();
-          var darkLightCookie = getCookie("darklightswitch");
-          if (darkLightCookie != "" && darkLightCookie != null) {
-            unsetCookie('darklightswitch');
-            unsetDarkStyle('uk-light', 'DarkSwitch', 'LightSwitch');
-          } else {
-            setCookie('darklightswitch', 'dark', 7);
-            setDarkStyle('uk-light', 'LightSwitch', 'DarkSwitch');
-          }
-        })
-      })
-    </script>
+    <script src="{{theme.link}}/assets/js/darklight.js"></script>
 
     {% if configs.animated_preloader %}
       <script type='text/javascript'>

@@ -1,0 +1,6 @@
+{% for term in submodels_sel_terms %}
+  <label>
+    <input class="uk-checkbox uk-border-rounded" type="checkbox" name="product_series" id="{{ term.term_id|e('esc_html') }}" value="{{ term.slug|e('esc_html') }}" {{ (term.slug in fn('get_query_var', 'product_series')) ? 'checked'}}>
+    {{ term.name|e('esc_html') }}
+  </label>
+{% endfor %}

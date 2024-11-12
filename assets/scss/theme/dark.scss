@@ -15,17 +15,14 @@
   background: $global-secondary-background;
 }
 /* dark muted backgrounds */
-.uk-light .uk-background-muted {
-  background: $global-emphasis-color;
-}
-.uk-light .uk-modal-close-full {
-  background: $global-emphasis-color;
-}
-.uk-light .uk-section-muted {
-  background: $global-emphasis-color;
-}
+.uk-light .uk-background-muted,
+.uk-light .uk-modal-close-full,
+.uk-light .uk-section-muted,
 .uk-light .uk-tile-muted {
   background: $global-emphasis-color;
+}
+.uk-light .uk-comment-primary {
+  background-color: $global-emphasis-color;
 }
 /* links */
 .uk-light .uk-navbar-dropdown-nav > li > a {

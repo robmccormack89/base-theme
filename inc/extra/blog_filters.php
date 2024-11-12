@@ -58,6 +58,7 @@ function get_parent_term_slug_from_child($child, $tax = 'category'){
 	}
 	return '';
 }
+
 // set conditionals for shop filters functionality on child term archives
 function is_child_term_archive($tax_key = null) {
 	$queried_object = get_queried_object();
@@ -120,7 +121,7 @@ function get_subterms_for_filters($req) {
 	$context['q_key'] = $q_key;
   $context['sub_terms'] = array_merge(...$subs_array);
 	if(empty($context['sub_terms'])) return;
-	$data = Timber::compile(array('archive_parts/filters/_sub_terms.twig'), $context);
+	$data = Timber::compile(array('filters_sub_terms.twig'), $context);
   return $data;
 
 }

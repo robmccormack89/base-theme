@@ -6,6 +6,7 @@
             "key": "field_60d37f52d3310",
             "label": "Rating (stars)",
             "name": "rating",
+            "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 0,
@@ -22,44 +23,6 @@
             "min": 1,
             "max": 5,
             "step": 1
-        },
-        {
-            "key": "field_6202922ca64cf",
-            "label": "Citation",
-            "name": "heading",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_6202923ba64d0",
-            "label": "Content",
-            "name": "msg",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
         }
     ],
     "location": [
@@ -67,7 +30,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/testimonial-section"
+                "value": "acf\/testimonial"
             }
         ]
     ],
@@ -80,5 +43,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1661435052
+    "modified": 1691072465
 }

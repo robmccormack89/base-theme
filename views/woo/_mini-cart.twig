@@ -1,0 +1,118 @@
+{% import "_snippets.twig" as snippets %}
+
+{% do action('woocommerce_before_mini_cart') %}
+
+{% if not cart.is_empty() %}
+	
+	<div class="cart-list-box theme-border-bottom">
+		<div class="cart-list-area uk-padding-small">
+			<ul class="woocommerce-mini-cart cart_list product_list_widget uk-list uk-margin-remove {{ args.list_class }}">
+        {% do action('woocommerce_before_mini_cart_contents') %}
+
+				{# loop the minicart contents #}
+				{% for cart_item_key,cart_item in cart.get_cart() %}
+				
+					{# variables #}
+					{% set _product = cart_item.data|apply_filters('woocommerce_cart_item_product', cart_item, cart_item_key) %}
+					{% set product_id = cart_item.product_id|apply_filters('woocommerce_cart_item_product_id', cart_item, cart_item_key) %}
+					{% set the_truth = true %}
+					{% set cart_item_visible = the_truth|apply_filters('woocommerce_widget_cart_item_visible', cart_item, cart_item_key) %}
+					
+					{# if minicart item exists & is visible.. #}
+					{% if _product and _product.exists() and cart_item.quantity > 0 and cart_item_visible %}
+					
+						{# more variables #}
+						{% set product_name = _product.get_name()|apply_filters('woocommerce_cart_item_name', cart_item, cart_item_key) %}
+						{% set thumbnail = _product.get_image()|apply_filters('woocommerce_cart_item_thumbnail', cart_item, cart_item_key) %}
+						{% set product_price = cart.get_product_price(_product)|apply_filters('woocommerce_cart_item_price', cart_item, cart_item_key) %}
+						{% set _prod_permalink = (_product.is_visible()) ? _product.get_permalink(cart_item) : '' %}
+						{% set product_permalink = _prod_permalink|apply_filters('woocommerce_cart_item_permalink', cart_item, cart_item_key) %}
+						
+						{# the minicart product item #}
+						<li class="woocommerce-mini-cart-item uk-grid-small {{ "mini_cart_item"|apply_filters('woocommerce_mini_cart_item_class', cart_item, cart_item_key) }}" uk-grid>
+							
+							{# minicart item remove. this is filtered in woo-functions #}
+							<div class="mini-cart-remove uk-width-auto">
+								{% set remove_html_string = '<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">' ~ snippets.close_menu_icon() ~ '</a>' %}
+								{% filter apply_filters( 'woocommerce_cart_item_remove_link', cart_item_key) %}
+									{{ 
+									remove_html_string|format(fn('wc_get_cart_remove_url', cart_item_key), 
+									snippets.remove_item_text, 
+									product_id, 
+									cart_item_key, 
+									_product.get_sku())
+									 }}
+								{% endfilter %}
+							</div>
+							
+							{# minicart item thumbnail #}
+							{% if product_permalink is empty %}
+								<div class="cart-name-wrap uk-width-expand">
+									<div class="mini-cart-link">
+										<span>{{ product_name|e('esc_html') }}</span>
+									</div>
+									<div class="mini-cart-quantity">
+										{% filter apply_filters( 'woocommerce_widget_cart_item_quantity', cart_item, cart_item_key) %}
+											<div class="quantity">{{ '%s &times; %s'|format(cart_item.quantity, product_price)|e('esc_html') }}</div>
+										{% endfilter %}
+									</div>
+								</div>
+								
+								<div class="cart-image-wrap uk-width-auto">
+									<div class="cart-image uk-align-right uk-margin-remove">
+										<span>{{ thumbnail|e('wp_kses_post') }}</span>
+									</div>
+								</div>
+							{% else %}
+								<div class="cart-name-wrap uk-width-expand">
+									<div class="mini-cart-link">
+										<a href="{{ product_permalink|e('esc_url') }}" class="uk-link-reset">{{ product_name|e('esc_html') }}</a>
+									</div>
+									<div class="mini-cart-quantity">
+										{% filter apply_filters( 'woocommerce_widget_cart_item_quantity', cart_item, cart_item_key) %}
+											<div class="quantity">{{ '%s &times; %s'|format(cart_item.quantity, product_price) }}</div>
+										{% endfilter %}
+									</div>
+								</div>
+								
+								<div class="cart-image-wrap uk-width-auto">
+									<div class="cart-image uk-align-right uk-margin-remove">
+										<a href="{{ product_permalink|e('esc_url') }}">{{ thumbnail|e('wp_kses_post') }}</a>
+									</div>
+								</div>
+							{% endif %}
+							
+							{# minicart variations data. #}
+							<div class="mini-cart-variation-data">
+								{{ fn('wc_get_formatted_cart_item_data', cart_item)|e('wp_kses_post') }}
+							</div>
+							
+						</li>
+						
+					{% endif %}
+				{% endfor %}
+
+        {% do action('woocommerce_mini_cart_contents') %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="woocommerce-mini-cart__total total theme-border-bottom uk-padding-small">
+    {% do action('woocommerce_widget_shopping_cart_total') %}
+	</div>
+
+  {% do action('woocommerce_widget_shopping_cart_before_buttons') %}
+
+	<div class="woocommerce-mini-cart__buttons buttons uk-padding-small">
+    {% do action('woocommerce_widget_shopping_cart_buttons') %}
+	</div>
+
+  {% do action('woocommerce_widget_shopping_cart_after_buttons') %}
+	
+{% else %}
+	<div class="woocommerce-mini-cart__empty-message">
+		{{ snippets.no_products_cart_text|e('esc_html') }}
+	</div>
+{% endif %}
+
+{% do action('woocommerce_after_mini_cart') %}
