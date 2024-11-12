@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying general archive pages
+ * The template for displaying general archive pages.
  *
  * @package Rmcc_Theme
  */
